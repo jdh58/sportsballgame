@@ -3,7 +3,7 @@ const NBAPlayer = require('../models/Player');
 const scraper = require('nba-stat-scraper');
 
 // USE INSTRUCTIONS: Update file contents and year stats are saving to
-async function importNBARegularSeasonData(req, res, next) {
+async function importNBARegularSeasonData(req, res) {
   const fileContents = await fs.readFile(
     './assets/2022-23_NBA_REG.csv',
     'utf-8'
