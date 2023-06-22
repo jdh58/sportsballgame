@@ -1,11 +1,10 @@
-import express from 'express';
-import scraperRoute from './routes/scraperRoute.js';
-import mongoose from 'mongoose';
+const express = require('express');
+const NBAPlayerImport = require('./controllers/NBAPlayerImport');
+const mongoose = require('mongoose');
 
 // Configure .env variables
-import 'dotenv/config.js';
+require('dotenv').config();
 
-// eslint-disable-next-line no-undef
 const mongoDB = process.env.MONGOURI;
 mongoose.connect(mongoDB).catch((err) => {
   console.error('Could not connect to the database' + err);
@@ -13,7 +12,8 @@ mongoose.connect(mongoDB).catch((err) => {
 
 const app = express();
 
-app.use('/scraper', scraperRoute);
+// app.use('/scraper', scraperRoute);
+app.use('/nba', NBAPlayerImport);
 
 app.listen(3000, () => {
   console.log('server now running on port 3000');
