@@ -14,14 +14,15 @@ const NBAPlayerSchema = new Schema({
   accolades: { type: Array, required: true },
   stats: { type: Object, required: true },
   funFacts: { type: Array, required: true },
-  shootingHand: { type: Array, required: true },
+  shootingHand: { type: String, required: true },
   college: { type: String, required: false },
   birthplace: { type: String, required: true, maxLength: 50 },
   birthdate: { type: Date, required: true },
   draftPick: { type: Number, required: true },
   draftYear: { type: Number, required: true },
-  draftTeam: { type: String, required: false, minLength: 1, maxLength: 50 },
+  draftTeam: { type: String, required: false, maxLength: 50 },
   debut: { type: Date, required: false },
+  careerLength: { type: Number, required: true },
 });
 
 module.exports = mongoose.model('NBAPlayer', NBAPlayerSchema);
