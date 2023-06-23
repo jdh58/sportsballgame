@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import TileButton from './TileButton';
 import UserIcon from '../assets/user.svg';
 import HigherOrLowerIcon from '../assets/higherorlower.png';
@@ -20,11 +21,14 @@ export default function HomePage() {
   };
 
   return (
-    <div className="page homePage">
+    <main className="page homePage">
       {isLoggedIn ? (
         <h2 className="welcome">Welcome, {User.username}</h2>
       ) : (
-        <h2 className="welcome">You're currently signed out. </h2>
+        <h2 className="welcome">
+          You're currently signed out. <Link to="/signin">Sign in</Link> or{' '}
+          <Link to="/signup">Sign up</Link>?
+        </h2>
       )}
       <div className="optionsContainer">
         <div className="left">
@@ -32,12 +36,13 @@ export default function HomePage() {
           <TileButton label="Higher or Lower" icon={HigherOrLowerIcon} />
           <TileButton label="More" icon={More} />
         </div>
+        <div className="separator"></div>
         <div className="right">
           <TileButton label="Profile" icon={UserIcon} />
           <TileButton label="Leaderboards" icon={Leaderboard} />
           <TileButton label="Settings" icon={Settings} />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

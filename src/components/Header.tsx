@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ProfilePic from './ProfilePic';
+import '../styles/Header.css';
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

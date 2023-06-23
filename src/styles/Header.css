@@ -1,0 +1,27 @@
+/* 
+  <header>
+    <div className="logoContainer">
+      <img src="" alt="return home" className="logo" />
+    </div>
+    {isLoggedIn ? (
+      <div className="profileIndicator">
+        <ProfilePic image={User.picture} />
+      </div>
+    ) : (
+      <div className="signInButtonContainer">
+        <button className="signIn">Sign In</button>
+        <button className="signOut">Sign Out</button>
+      </div>
+    )}
+  </header> 
+    
+*/
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #2f3047;
+}

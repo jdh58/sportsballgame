@@ -254,6 +254,13 @@ button {
   color: var(--white);
 }
 
+#root {
+  height: 100vh;
+}
+
 .page {
   display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }

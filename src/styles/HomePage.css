@@ -16,15 +16,41 @@
   </div>
 */
 
-.optionsContainer {
-  margin: auto;
+.homePage {
+  background-color: #1c1c28;
   display: flex;
-  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.homePage .welcome {
+  font-size: 4rem;
+  padding-bottom: 50px;
+}
+
+.homePage .welcome a:hover {
+  text-decoration: underline;
+}
+
+.optionsContainer {
+  display: flex;
+  gap: 75px;
+}
+
+.optionsContainer .separator {
+  width: 1px;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.5) 20% 80%,
+    rgba(255, 255, 255, 0)
+  );
+  height: 100%;
 }
 
 .optionsContainer .left,
 .optionsContainer .right {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 50px;
 }
