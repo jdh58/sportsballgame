@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import TileButton from './TileButton';
+import UserIcon from '../assets/user.svg';
 
 export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,7 +22,7 @@ export default function HomePage() {
         <h2 className="welcome">You're currently signed out. </h2>
       )}
       <div className="optionsContainer">
-        <TileButton label="Who Am I?" icon={null} />
+        <TileButton label="Profile" icon={UserIcon} />
         {/* <TileButton label="Higher or Lower" icon={null} />
         <TileButton label="More" icon={null} />
         <TileButton label="Profile" icon={null} />
