@@ -5,7 +5,11 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Get user here
-  const user: object = {
+  interface User {
+    picture: string;
+  }
+
+  const User: User = {
     picture: '',
   };
 
@@ -16,7 +20,7 @@ export default function Header() {
       </div>
       {isLoggedIn ? (
         <div className="profileIndicator">
-          <ProfilePic image={user.picture} />
+          <ProfilePic image={User.picture} />
         </div>
       ) : (
         <div className="signInButtonContainer">

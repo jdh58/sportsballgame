@@ -1,15 +1,16 @@
+import Header from './components/Header';
 import HomePage from './components/HomePage';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
