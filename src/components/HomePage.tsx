@@ -5,6 +5,7 @@ import HigherOrLowerIcon from '../assets/higherorlower.png';
 import More from '../assets/more.svg';
 import Leaderboard from '../assets/leaderboard.svg';
 import Settings from '../assets/settings.svg';
+import '../styles/HomePage.css';
 
 export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,12 +27,16 @@ export default function HomePage() {
         <h2 className="welcome">You're currently signed out. </h2>
       )}
       <div className="optionsContainer">
-        <TileButton label="Profile" icon={UserIcon} />
-        <TileButton label="Higher or Lower" icon={HigherOrLowerIcon} />
-        <TileButton label="More" icon={More} />
-        <TileButton label="Profile" icon={UserIcon} />
-        <TileButton label="Leaderboards" icon={Leaderboard} />
-        <TileButton label="Settings" icon={Settings} />
+        <div className="left">
+          <TileButton label="Who Am I?" icon={UserIcon} />
+          <TileButton label="Higher or Lower" icon={HigherOrLowerIcon} />
+          <TileButton label="More" icon={More} />
+        </div>
+        <div className="right">
+          <TileButton label="Profile" icon={UserIcon} />
+          <TileButton label="Leaderboards" icon={Leaderboard} />
+          <TileButton label="Settings" icon={Settings} />
+        </div>
       </div>
     </div>
   );
