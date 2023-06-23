@@ -1,3 +1,5 @@
+import '../styles/TileButton.css';
+
 export default function TileButton({
   label,
   icon = null,
