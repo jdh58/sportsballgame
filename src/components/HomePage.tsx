@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import TileButton from './TileButton';
 import Footer from './Footer';
 import Curry from '../assets/curry.jpg';
+import WhoAmI from '../assets/whoamibackground.png';
+import Locker from '../assets/locker.jpg';
+import Leaderboard from '../assets/leaderboard.jpg';
+import Gears from '../assets/gears.jpg';
+import Hoop from '../assets/hoop.jpg';
 import '../styles/HomePage.css';
 
 export default function HomePage() {
@@ -31,15 +36,31 @@ export default function HomePage() {
           )}
           <div className="optionsContainer">
             <div className="left">
-              <TileButton label="Who Am I?" bgImage={null} />
-              <TileButton label="Higher or Lower" bgImage={Curry} />
-              <TileButton label="More" bgImage={null} />
+              <TileButton
+                label="Who Am I?"
+                bgImage={WhoAmI}
+                bgColor="55, 5, 5"
+              />
+              <TileButton
+                label="Higher or Lower"
+                bgImage={Curry}
+                bgColor="20, 20, 2"
+              />
+              <TileButton label="More" bgImage={Hoop} bgColor="10, 36, 70" />
             </div>
             <div className="separator"></div>
             <div className="right">
-              <TileButton label="Profile" bgImage={null} />
-              <TileButton label="Leaderboards" bgImage={null} />
-              <TileButton label="Settings" bgImage={null} />
+              <TileButton label="Profile" bgImage={Locker} bgColor="55, 5, 5" />
+              <TileButton
+                label="Leaderboards"
+                bgImage={Leaderboard}
+                bgColor="20, 20, 2"
+              />
+              <TileButton
+                label="Settings"
+                bgImage={Gears}
+                bgColor="10, 36, 70"
+              />
             </div>
           </div>
         </div>

@@ -4,9 +4,11 @@ import Curry from '../assets/curry.jpg';
 export default function TileButton({
   label,
   bgImage = null,
+  bgColor = null,
 }: {
   label: string;
   bgImage: string | null;
+  bgColor: string | null;
 }) {
   return (
     <div
@@ -14,7 +16,7 @@ export default function TileButton({
       style={
         bgImage
           ? {
-              backgroundImage: `url(${Curry})`,
+              backgroundImage: `url(${bgImage})`,
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               backgroundSize: 'cover',
@@ -23,11 +25,11 @@ export default function TileButton({
       }
     >
       <div
-        className={bgImage ? 'tileButton booo' : 'tileButton'}
+        className="tileButton"
         style={
           bgImage
             ? {
-                backgroundImage: `linear-gradient(0deg, rgba(20, 2, 2, .75), rgba(20, 20, 2, .2))`,
+                backgroundImage: `linear-gradient(0deg, rgba(${bgColor}, .75), rgba(${bgColor}, .2))`,
               }
             : {}
         }
