@@ -27,6 +27,7 @@ header.header {
   display: grid;
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
+  flex-shrink: 0;
 }
 
 header > .logo {

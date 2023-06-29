@@ -29,13 +29,33 @@
 
 .homePage {
   background-color: #1c1c28;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  box-sizing: border-box;
 }
 
 .homePage .welcome {
   font-size: 4rem;
-  padding-bottom: 50px;
+  font-weight: 700;
+}
+
+.homePage .mainContainer {
+  padding: 120px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  align-items: center;
+}
+
+.homePage .optionsContainer {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-between;
+}
+
+.homePage .optionsContainer .left,
+.homePage .optionsContainer .right {
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
 }

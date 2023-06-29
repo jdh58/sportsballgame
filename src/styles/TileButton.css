@@ -11,23 +11,26 @@
     
 */
 
+.tileButtonContainer {
+  border-radius: 16px;
+  filter: saturate(33%);
+  transition: 0.2s;
+}
+
+.tileButtonContainer:hover {
+  border-radius: 16px;
+  filter: saturate(67%);
+}
+
 .tileButton {
-  width: 500px;
-  height: 175px;
-  border-radius: 8px;
-  background: #2d2e45;
-
-  /* Dark / Elevation 03 */
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.32),
-    0px 0px 2px 0px rgba(0, 0, 0, 0.04);
-
-  /* border: 1px solid rgba(255, 255, 255, 0.2); */
-
+  width: 423px;
+  height: 153px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 25px;
   padding: 0 35px;
+  box-shadow: var(--default-shadow);
 }
 
 .tileButton .tileIconContainer {
@@ -47,8 +50,8 @@
 }
 
 .tileButton > .label {
-  font-size: 3.5em;
+  font-size: 3.5rem;
   text-align: center;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.25px;
 }
