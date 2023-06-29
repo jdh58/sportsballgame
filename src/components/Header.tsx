@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ProfilePic from './ProfilePic';
+import Dropdown from '../assets/dropdown.svg';
 import '../styles/Header.css';
 
 export default function Header() {
@@ -15,13 +16,14 @@ export default function Header() {
   };
 
   return (
-    <header>
-      <div className="logoContainer">
-        <img src="" alt="return home" className="logo" />
-      </div>
+    <header className="header">
+      <p className="logo">SportsBallGame.com</p>
       {isLoggedIn ? (
         <div className="profileIndicator">
           <ProfilePic image={User.picture} />
+          <div className="dropdownContainer">
+            <img src={Dropdown} alt="" />
+          </div>
         </div>
       ) : (
         <div className="signInButtonContainer">

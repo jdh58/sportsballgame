@@ -233,6 +233,8 @@ button {
   font-size: 10px;
 
   --white: #fafafc;
+  --background-primary: #222831;
+  --background-secondary: #393e46;
 
   color: var(--white);
 }

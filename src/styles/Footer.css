@@ -1,0 +1,17 @@
+footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  background-color: var(--background-secondary);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+footer > p.copyright {
+  font-size: 2rem;
+  color: white;
+  font-weight: 600;
+}
