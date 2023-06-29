@@ -30,8 +30,8 @@ export default function HomePage() {
             <h2 className="welcome">Welcome, {User.username}</h2>
           ) : (
             <h2 className="welcome">
-              You're currently signed out. <Link to="/signin">Sign in</Link> or{' '}
-              <Link to="/signup">Sign up</Link>?
+              You're currently signed out. <Link to="/login">Log in</Link> or{' '}
+              <Link to="/register">Register</Link>?
             </h2>
           )}
           <div className="optionsContainer">

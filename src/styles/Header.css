@@ -60,3 +60,21 @@ header.header > .profileIndicator {
   width: 100%;
   height: 100%;
 }
+
+.signInButtonContainer {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  justify-self: flex-end;
+}
+
+.signInButtonContainer > button {
+  font-family: 'Orbitron';
+  font-size: 2.4rem;
+  color: white;
+}
+
+.signInButtonContainer > button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

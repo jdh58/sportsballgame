@@ -1,5 +1,4 @@
 import '../styles/TileButton.css';
-import Curry from '../assets/curry.jpg';
 
 export default function TileButton({
   label,
