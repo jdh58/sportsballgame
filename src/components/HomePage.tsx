@@ -1,11 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TileButton from './TileButton';
-import UserIcon from '../assets/user.svg';
-import HigherOrLowerIcon from '../assets/higherorlower.png';
-import More from '../assets/more.svg';
-import Leaderboard from '../assets/leaderboard.svg';
-import Settings from '../assets/settings.svg';
 import '../styles/HomePage.css';
 
 export default function HomePage() {
@@ -32,15 +27,15 @@ export default function HomePage() {
       )}
       <div className="optionsContainer">
         <div className="left">
-          <TileButton label="Who Am I?" icon={UserIcon} />
-          <TileButton label="Higher or Lower" icon={HigherOrLowerIcon} />
-          <TileButton label="More" icon={More} />
+          <TileButton label="Who Am I?" bgImage={null} />
+          <TileButton label="Higher or Lower" bgImage={null} />
+          <TileButton label="More" bgImage={null} />
         </div>
         <div className="separator"></div>
         <div className="right">
-          <TileButton label="Profile" icon={UserIcon} />
-          <TileButton label="Leaderboards" icon={Leaderboard} />
-          <TileButton label="Settings" icon={Settings} />
+          <TileButton label="Profile" bgImage={null} />
+          <TileButton label="Leaderboards" bgImage={null} />
+          <TileButton label="Settings" bgImage={null} />
         </div>
       </div>
     </main>

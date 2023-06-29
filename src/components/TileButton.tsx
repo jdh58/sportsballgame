@@ -2,18 +2,13 @@ import '../styles/TileButton.css';
 
 export default function TileButton({
   label,
-  icon = null,
+  bgImage = null,
 }: {
   label: string;
-  icon: string | null;
+  bgImage: string | null;
 }) {
   return (
     <div className="tileButton">
-      {icon ? (
-        <div className="tileIconContainer">
-          <img src={icon} alt="" className="tileIcon" />
-        </div>
-      ) : null}
       <p className="label">{label}</p>
     </div>
   );
