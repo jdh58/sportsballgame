@@ -1,0 +1,12 @@
+.profilePicContainer {
+  width: 55px;
+  height: 55px;
+  border-radius: 1000px;
+  overflow: hidden;
+}
+
+.profilePicContainer > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

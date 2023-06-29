@@ -1,3 +1,5 @@
+import '../styles/ProfilePic.css';
+
 export default function ProfilePic({ image }: { image: string }) {
   return (
     <div className="profilePicContainer">
