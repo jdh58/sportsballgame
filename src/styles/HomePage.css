@@ -1,56 +1,41 @@
 /*
-  <div className="page homePage">
+<>
+  <main className="page homePage">
     {isLoggedIn ? (
       <h2 className="welcome">Welcome, {User.username}</h2>
     ) : (
-      <h2 className="welcome">You're currently signed out. </h2>
+      <h2 className="welcome">
+        You're currently signed out. <Link to="/signin">Sign in</Link> or{' '}
+        <Link to="/signup">Sign up</Link>?
+      </h2>
     )}
     <div className="optionsContainer">
-      <TileButton label="Profile" icon={UserIcon} />
-      <TileButton label="Higher or Lower" icon={HigherOrLowerIcon} />
-      <TileButton label="More" icon={More} />
-      <TileButton label="Profile" icon={UserIcon} />
-      <TileButton label="Leaderboards" icon={Leaderboard} />
-      <TileButton label="Settings" icon={Settings} />
+      <div className="left">
+        <TileButton label="Who Am I?" bgImage={null} />
+        <TileButton label="Higher or Lower" bgImage={null} />
+        <TileButton label="More" bgImage={null} />
+      </div>
+      <div className="separator"></div>
+      <div className="right">
+        <TileButton label="Profile" bgImage={null} />
+        <TileButton label="Leaderboards" bgImage={null} />
+        <TileButton label="Settings" bgImage={null} />
+      </div>
     </div>
-  </div>
+  </main>
+  <Footer />
+</>
 */
 
 .homePage {
   background-color: #1c1c28;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
 .homePage .welcome {
   font-size: 4rem;
   padding-bottom: 50px;
-}
-
-.homePage .welcome a:hover {
-  text-decoration: underline;
-}
-
-.optionsContainer {
-  display: flex;
-  gap: 75px;
-}
-
-.optionsContainer .separator {
-  width: 1px;
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.5) 20% 80%,
-    rgba(255, 255, 255, 0)
-  );
-  height: 100%;
-}
-
-.optionsContainer .left,
-.optionsContainer .right {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
 }
