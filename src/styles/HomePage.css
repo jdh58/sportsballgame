@@ -27,11 +27,6 @@
 </>
 */
 
-.homePage {
-  background-color: #1c1c28;
-  box-sizing: border-box;
-}
-
 .homePage .welcome {
   font-size: 4rem;
   font-weight: 700;
