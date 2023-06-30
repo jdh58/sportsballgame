@@ -239,6 +239,7 @@ button {
   --default-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
   --tile-hover-shadow: 0px 10px 12px 6px rgba(0, 0, 0, 0.25);
   --text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
+  --button-shadow: 0px 3px 0px 0.5px #fff;
 
   color: var(--white);
 }
@@ -259,4 +260,14 @@ button {
   margin: auto;
   height: 100%;
   max-width: 1400px;
+}
+
+.optionButton {
+  border: 3px solid white;
+  border-radius: 8px;
+  box-shadow: 0px 3px 0px 0.5px #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }

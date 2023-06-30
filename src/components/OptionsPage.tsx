@@ -2,15 +2,18 @@ import SportsContainer from './SportsContainer';
 import DifficultyContainer from './DifficultyContainer';
 import RoundContainer from './RoundContainer';
 import ToggleSwitch from './ToggleSwitch';
-import '../styles/WhoAmIOptions.css';
+import '../styles/OptionsPage.css';
 
 export default function OptionsPage() {
   return (
-    <div className="page whoAmIOptionsPage">
+    <div className="page optionsPage">
       <div className="mainContainer">
         <h2 className="title">
-          <p>Who Am I?</p>
-          <p>Game Options</p>
+          <p>
+            Who Am I?
+            <br />
+            Game Options
+          </p>
           <div className="separator"></div>
         </h2>
         <h3>Sport</h3>

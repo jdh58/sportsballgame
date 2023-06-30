@@ -1,0 +1,45 @@
+.sportsContainer {
+  display: flex;
+  gap: 110px;
+}
+
+.sportsContainer .optionButton {
+  width: 155px;
+  height: 155px;
+
+  padding: 5px;
+}
+
+/* 
+ <div className="sportsContainer">
+      <button className="optionButton">
+        <img src={NBA} alt="" />
+        <p>NBA</p>
+      </button>
+      <button className="optionButton">
+        <img src={NFL} alt="" />
+        <p>NFL</p>
+      </button>
+      <button className="optionButton">
+        <img src={MLB} alt="" />
+        <p>MLB</p>
+      </button>
+    </div>
+    */
+
+.optionButton > .optionPicContainer {
+  width: 100px;
+  height: 100px;
+}
+
+.optionPicContainer > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.optionButton > p {
+  color: white;
+  font-size: 3rem;
+  font-weight: 600;
+}

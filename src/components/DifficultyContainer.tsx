@@ -9,7 +9,7 @@ export default function DifficultyContainer() {
         <p className="label">15+ Mins/G</p>
         <p className="medium">Medium</p>
       </button>
-      <button className="optionButton ">
+      <button className="optionButton">
         <p className="label">All Players</p>
         <p className="hard">Hard</p>
       </button>
