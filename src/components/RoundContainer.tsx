@@ -5,20 +5,32 @@ export default function RoundContainer() {
         <p className="label">Freeplay</p>
       </button>
       <button className="optionButton">
-        <p className="label">3</p>
-        <p className="easy">Rounds</p>
+        <p className="label">
+          3
+          <br />
+          Rounds
+        </p>
       </button>
       <button className="optionButton">
-        <p className="label">5</p>
-        <p className="easy">Rounds</p>
+        <p className="label">
+          5
+          <br />
+          Rounds
+        </p>
       </button>
       <button className="optionButton">
-        <p className="label">10</p>
-        <p className="easy">Rounds</p>
+        <p className="label">
+          10
+          <br />
+          Rounds
+        </p>
       </button>
       <button className="optionButton">
-        <p className="label">25</p>
-        <p className="easy">Rounds</p>
+        <p className="label">
+          25
+          <br />
+          Rounds
+        </p>
       </button>
     </div>
   );

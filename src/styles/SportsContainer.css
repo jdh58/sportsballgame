@@ -5,27 +5,9 @@
 
 .sportsContainer .optionButton {
   width: 155px;
-  height: 155px;
-
   padding: 5px;
+  justify-content: space-between;
 }
-
-/* 
- <div className="sportsContainer">
-      <button className="optionButton">
-        <img src={NBA} alt="" />
-        <p>NBA</p>
-      </button>
-      <button className="optionButton">
-        <img src={NFL} alt="" />
-        <p>NFL</p>
-      </button>
-      <button className="optionButton">
-        <img src={MLB} alt="" />
-        <p>MLB</p>
-      </button>
-    </div>
-    */
 
 .optionButton > .optionPicContainer {
   width: 100px;

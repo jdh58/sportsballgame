@@ -1,0 +1,37 @@
+/*
+  <div className="difficultyContainer">
+    <button className="optionButton">
+      <p className="label">35+ Mins/G</p>
+      <p className="easy">Easy</p>
+    </button>
+    <button className="optionButton">
+      <p className="label">15+ Mins/G</p>
+      <p className="medium">Medium</p>
+    </button>
+    <button className="optionButton">
+      <p className="label">All Players</p>
+      <p className="hard">Hard</p>
+    </button>
+  </div>
+*/
+
+.difficultyContainer {
+  display: flex;
+  gap: 55px;
+}
+
+.difficultyContainer > .optionButton {
+  width: 250px;
+  justify-content: center;
+  gap: 15px;
+}
+
+.optionButton > .easy {
+  color: var(--easy-500);
+}
+.optionButton > .medium {
+  color: var(--medium-400);
+}
+.optionButton > .hard {
+  color: var(--hard-500);
+}

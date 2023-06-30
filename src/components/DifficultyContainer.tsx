@@ -1,3 +1,5 @@
+import '../styles/DifficultyContainer.css';
+
 export default function DifficultyContainer() {
   return (
     <div className="difficultyContainer">
