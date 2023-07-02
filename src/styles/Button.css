@@ -1,0 +1,23 @@
+.button {
+  width: 250px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--main-border-radius);
+  box-shadow: var(--button-shadow);
+  background-color: var(--easy-600);
+  border: var(--button-border);
+}
+
+.button > p.label {
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.button .buttonIcon {
+  width: 45px;
+  filter: invert(100%);
+}

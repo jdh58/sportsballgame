@@ -1,3 +1,5 @@
+import '../styles/ToggleSwitch.css';
+
 export default function ToggleSwitch() {
   return (
     <div className="toggleSwitch">

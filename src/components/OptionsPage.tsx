@@ -2,6 +2,9 @@ import SportsContainer from './SportsContainer';
 import DifficultyContainer from './DifficultyContainer';
 import RoundContainer from './RoundContainer';
 import ToggleSwitch from './ToggleSwitch';
+import Button from './Button';
+
+import ArrowRight from '../assets/arrow-right.svg';
 import '../styles/OptionsPage.css';
 
 export default function OptionsPage() {
@@ -16,17 +19,23 @@ export default function OptionsPage() {
           </p>
           <div className="separator"></div>
         </h2>
-        <h3>Sport</h3>
-        <SportsContainer />
-        <h3>Difficulty</h3>
-        <DifficultyContainer sport="nba" />
-        <div className="toggle">
-          <h3 className="time">Time</h3>
-          <ToggleSwitch />
-          <h3 className="rounds">Rounds</h3>
+        <div className="optionContainer">
+          <h3>Sport</h3>
+          <SportsContainer />
         </div>
-        <RoundContainer />
-        <button className="start">Start</button>
+        <div className="optionContainer">
+          <h3>Difficulty</h3>
+          <DifficultyContainer sport="nba" />
+        </div>
+        <div className="optionContainer">
+          <div className="toggle">
+            <h3 className="rounds">Rounds</h3>
+            <ToggleSwitch />
+            <h3 className="time">Time</h3>
+          </div>
+          <RoundContainer />
+        </div>
+        <Button label="Start" icon={ArrowRight} />
       </div>
     </div>
   );

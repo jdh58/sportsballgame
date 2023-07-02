@@ -1,0 +1,40 @@
+/* 
+  <div className="toggleSwitch">
+    <div className="rectangle"></div>
+    <div className="indicator"></div>
+  </div>
+*/
+
+.toggleSwitch {
+  width: 52.5px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.rectangle {
+  background-color: #56647a;
+  width: 52.5px;
+  height: 25px;
+  border-radius: 1000px;
+}
+
+.indicator {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 1000px;
+  background-color: white;
+  transition: 0.15s;
+}
+
+.toggleSwitch:hover {
+  cursor: pointer;
+}
+
+.toggleSwitch:hover > .indicator {
+  left: 26.25px;
+}

@@ -1,3 +1,5 @@
+import '../styles/RoundContainer.css';
+
 export default function RoundContainer() {
   return (
     <div className="roundContainer">

@@ -21,7 +21,6 @@
 .tileButtonContainer:hover {
   cursor: pointer;
   transform: translateY(-2px);
-  border-radius: 16px;
   filter: saturate(67%);
   box-shadow: var(--tile-hover-shadow);
 }

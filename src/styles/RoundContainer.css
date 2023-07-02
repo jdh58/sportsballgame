@@ -1,0 +1,9 @@
+.roundContainer {
+  display: flex;
+  gap: 37.5px;
+}
+
+.roundContainer > .optionButton {
+  width: 170px;
+  justify-content: center;
+}
