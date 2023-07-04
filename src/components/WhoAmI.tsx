@@ -9,8 +9,8 @@ export default function WhoAmI() {
       <div className="mainContainer">
         <div className="inputs">
           <GuessField type="player" />
-          <Button label="Guess" icon="" size="small" />
-          <Button label="Next Hint" icon="" size="small" />
+          <Button label="Guess" icon="" size="small" classes="guess" />
+          <Button label="Next Hint" icon="" size="small" classes="nexthint" />
         </div>
         <div className="gameContainer">
           <div className="hintsContainer">

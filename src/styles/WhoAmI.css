@@ -56,3 +56,20 @@
   display: flex;
   gap: 20px;
 }
+
+.whoAmIPage .guess {
+  background-color: var(--easy-600);
+}
+
+.whoAmIPage .nexthint {
+  background-color: var(--normal-600);
+}
+
+.whoAmIPage > .mainContainer {
+  height: calc(100vh - 100px);
+  padding: 36px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,25 +1,4 @@
-/*
-  <div className="page whoAmIOptionsPage">
-    <h2 className="title">
-      <p>Who Am I?</p>
-      <p>Game Options</p>
-      <div className="separator"></div>
-    </h2>
-    <h3>Sport</h3>
-    <SportsContainer />
-    <h3>Difficulty</h3>
-    <DifficultyContainer sport="nba" />
-    <div className="toggle">
-      <h3 className="time">Time</h3>
-      <ToggleSwitch />
-      <h3 className="rounds">Rounds</h3>
-    </div>
-    <RoundContainer />
-    <button className="start">Start</button>
-  </div>
-*/
-
-.mainContainer {
+.optionsPage > .mainContainer {
   display: flex;
   flex-direction: column;
   align-items: center;

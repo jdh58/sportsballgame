@@ -4,13 +4,17 @@ export default function Button({
   label,
   icon,
   size,
+  classes,
 }: {
   label: string;
   icon: string;
   size: string;
+  classes: string;
 }) {
+  const classList = `button ${size} ${classes}`;
+
   return (
-    <button className={size === 'small' ? 'small button' : 'button'}>
+    <button className={classList}>
       <p className="label">{label}</p>
       {icon ? (
         <div className="buttonIconContainer">

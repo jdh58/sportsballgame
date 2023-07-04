@@ -11,6 +11,10 @@
   border: var(--button-border);
 }
 
+.button:hover {
+  cursor: pointer;
+}
+
 .button > p.label {
   color: white;
   font-size: 3.5rem;

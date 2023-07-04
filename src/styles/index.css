@@ -237,6 +237,7 @@ button {
   --easy-600: #16a34a;
   --medium-400: #fcd34d;
   --hard-500: #ef4444;
+  --normal-600: #0284c7;
   --background-primary: #222831;
   --background-secondary: #393e46;
   --main-border-radius: 8px;
@@ -263,13 +264,14 @@ body {
 }
 
 .page {
-  min-height: calc(100vh - 100px);
-  height: 100%;
+  flex-grow: 1;
   width: 100%;
   background-color: var(--background-primary);
+  display: flex;
 }
 
 .mainContainer {
+  flex-grow: 2;
   margin: auto;
   height: 100%;
   max-width: 1400px;
