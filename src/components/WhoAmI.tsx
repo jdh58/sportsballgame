@@ -1,3 +1,6 @@
+import Button from './Button';
+import GuessField from './GuessField';
+
 import '../styles/WhoAmI.css';
 
 export default function WhoAmI() {
@@ -5,9 +8,9 @@ export default function WhoAmI() {
     <div className="page whoAmIPage">
       <div className="mainContainer">
         <div className="inputs">
-          <SearchField type="player" />
-          <SmallButton label="Guess" />
-          <SmallButton label="Next Hint" />
+          <GuessField type="player" />
+          <Button label="Guess" icon="" size="small" />
+          <Button label="Next Hint" icon="" size="small" />
         </div>
         <div className="gameContainer">
           <div className="hintsContainer">

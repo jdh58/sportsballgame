@@ -7,7 +7,7 @@
   gap: 10px;
   border-radius: var(--main-border-radius);
   box-shadow: var(--button-shadow);
-  background-color: var(--easy-600);
+  background-color: transparent;
   border: var(--button-border);
 }
 
@@ -19,5 +19,23 @@
 
 .button .buttonIcon {
   width: 45px;
+  filter: invert(100%);
+}
+
+/* Small Styles */
+
+.button.small {
+  width: 150px;
+  height: 46px;
+  box-shadow: var(--small-button-shadow);
+}
+
+.button.small > p.label {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.button.small .buttonIcon {
+  width: 25px;
   filter: invert(100%);
 }

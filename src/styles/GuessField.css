@@ -1,0 +1,52 @@
+/*
+    <div className="guessField">
+      <div className="searchContainer">
+        <img src={Search} alt="" className="searchIcon" />
+      </div>
+      <input
+        type="text"
+        name="guess"
+        id="guess"
+        placeholder="Type your guess..."
+      />
+    </div>
+*/
+
+.guessField {
+  background-color: white;
+  width: 600px;
+  height: fit-content;
+  padding: 7.5px 16px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border-radius: var(--main-border-radius);
+  box-shadow: var(--default-shadow);
+}
+
+.guessField.focused {
+  outline: 10px solid red;
+}
+
+.guessField > .searchIconContainer {
+  height: 33px;
+  width: 33px;
+}
+
+.guessField > .searchIconContainer > .searchIcon {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.guessField > input {
+  height: fit-content;
+  border: none;
+  font-family: 'Oxanium';
+  font-size: 2.2rem;
+  width: 100%;
+}
+
+.guessField > input:focus {
+  outline: none;
+}
