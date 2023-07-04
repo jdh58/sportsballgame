@@ -22,8 +22,8 @@ export default function WhoAmI() {
               <h3>Hard (3 pts)</h3>
               <p className="hint">I went to Kentucky for college. It’s lit!</p>
             </div>
-            <div className="medium">
-              <h3>Medium (2 pts)</h3>
+            <div className="normal">
+              <h3>Normal (2 pts)</h3>
               <p className="hint">Bro just get it already come on</p>
             </div>
             <div className="easy">

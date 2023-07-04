@@ -30,8 +30,8 @@
   color: var(--easy-500);
 }
 .optionButton > .medium {
-  color: var(--medium-400);
+  color: var(--hard-400);
 }
 .optionButton > .hard {
-  color: var(--hard-500);
+  color: var(--impossible-500);
 }

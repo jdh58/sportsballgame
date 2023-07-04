@@ -233,11 +233,13 @@ button {
   font-size: 10px;
 
   --white: #fafafc;
-  --easy-500: #22c55e;
-  --easy-600: #16a34a;
-  --medium-400: #fcd34d;
-  --hard-500: #ef4444;
+  --impossible-500: #ef4444;
+  --hard-400: #fcd34d;
+  --hard-500: #f59e0b;
   --normal-600: #0284c7;
+  --normal-500: #0ea5e9;
+  --easy-600: #16a34a;
+  --easy-500: #22c55e;
   --background-primary: #222831;
   --background-secondary: #393e46;
   --main-border-radius: 8px;

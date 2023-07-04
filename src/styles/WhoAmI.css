@@ -68,8 +68,51 @@
 .whoAmIPage > .mainContainer {
   height: calc(100vh - 100px);
   padding: 36px 0;
+  gap: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+
+.whoAmIPage .gameContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 2;
+  gap: 36px;
+  width: 100%;
+}
+
+.whoAmIPage .gameContainer .hintsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.whoAmIPage .hintsContainer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.impossible > h3 {
+  color: var(--impossible-500);
+}
+.hard > h3 {
+  color: var(--hard-500);
+}
+.normal > h3 {
+  color: var(--normal-500);
+}
+.easy > h3 {
+  color: var(--easy-500);
+}
+
+.whoAmIPage .hintsContainer > div > h3 {
+  font-size: 4rem;
+  font-weight: 700;
+}
+.whoAmIPage .hintsContainer > div > p.hint {
+  font-size: 3.2rem;
+  font-weight: 700;
 }
