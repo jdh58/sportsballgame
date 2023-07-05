@@ -1,5 +1,6 @@
 import Button from './Button';
 import GuessField from './GuessField';
+import LeBron from '../assets/lebron.webp';
 
 import '../styles/WhoAmI.css';
 
@@ -34,7 +35,7 @@ export default function WhoAmI() {
           <div className="player">
             <h2 className="title">Who Am I?</h2>
             <div className="silhouetteContainer">
-              <img src="" alt="" className="silhouette" />
+              <img src={LeBron} alt="" className="silhouette" />
             </div>
             <h4 className="playerName">Lebron James</h4>
           </div>
