@@ -171,3 +171,19 @@
   background-color: aliceblue;
   border-radius: 1000px;
 }
+
+.roundIndicator.easy {
+  background-color: var(--easy-500);
+}
+.roundIndicator.normal {
+  background-color: var(--normal-500);
+}
+.roundIndicator.hard {
+  background-color: var(--hard-400);
+}
+.roundIndicator.impossible {
+  background-color: var(--impossible-500);
+}
+.roundIndicator.active {
+  box-shadow: 0px 0px 8px 1px #fff;
+}
