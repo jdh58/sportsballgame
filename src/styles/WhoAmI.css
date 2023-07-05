@@ -187,3 +187,74 @@
 .roundIndicator.active {
   box-shadow: 0px 0px 8px 1px #fff;
 }
+
+/*
+{overlay === 'correct' ? (
+          <div className="notifyContainer correct">
+            <div className="iconContainer">
+              <img src={Check} alt="" />
+            </div>
+            <p className="correct">Correct!</p>
+            <p className="score">+5 Points</p>
+          </div>
+        ) : null}
+        {overlay === 'incorrect' ? (
+          <div className="notifyContainer incorrect">
+            <div className="iconContainer">
+              <img src={Close} alt="" />
+            </div>
+            <p className="incorrect">Incorrect!</p>
+            <p className="score">No Points ;(</p>
+          </div>
+        ) : null}
+
+    */
+
+.notifyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+.notifyContainer > div {
+  border-radius: var(--main-border-radius);
+  width: 250px;
+  height: 250px;
+}
+
+.notifyContainer > div > img {
+  width: 100%;
+  height: 100%;
+}
+
+.notifyContainer > p {
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+.notifyContainer.incorrect > div {
+  border: 10px solid var(--impossible-500);
+}
+
+.notifyContainer.incorrect > div > img {
+  filter: invert(35%) sepia(65%) saturate(1881%) hue-rotate(334deg)
+    brightness(95%) contrast(97%);
+}
+
+.notifyContainer.incorrect > p {
+  color: var(--impossible-500);
+}
+
+.notifyContainer.correct > div {
+  border: 10px solid var(--easy-500);
+}
+
+.notifyContainer.correct > div > img {
+  filter: invert(84%) sepia(29%) saturate(7424%) hue-rotate(87deg)
+    brightness(93%) contrast(75%);
+}
+
+.notifyContainer.correct > p {
+  color: var(--easy-500);
+}
