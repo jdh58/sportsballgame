@@ -1,0 +1,66 @@
+/*
+<div className="page gameOverPage">
+      <div className="mainContainer">
+        <h1 className="gameOver">Game Over</h1>
+        <div className="scoreContainer">
+          <p className="bestIndicator">NEW BEST!</p>
+          <h2 className="score">Score: 21</h2>
+        </div>
+        <h2 className="personalBest">Personal Best: 21</h2>
+        <h2 className="mode">Mode: 5 Rounds</h2>
+        <Button label="Play Again" icon="" size="" classes="" />
+        <div className="buttonContainer">
+          <Button label="Play Again" icon="" size="" classes="" />
+          <Button label="Play Again" icon="" size="" classes="" />
+        </div>
+        <Button label="Leaderboards" icon="" size="" classes="" />
+      </div>
+    </div>
+    */
+
+.gameOverPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 72px;
+}
+
+.gameOverPage .buttonContainer {
+  display: flex;
+  gap: 36px;
+}
+
+.gameOverPage h1 {
+  font-size: 6.4rem;
+  font-weight: 700;
+}
+
+.gameOverPage h2 {
+  font-weight: 400;
+  font-size: 4.8rem;
+}
+
+.gameOverPage h2 .label {
+  font-weight: 600;
+  margin-right: 25px;
+}
+
+.gameOverPage .buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: center;
+}
+
+.gameOverPage .scoreContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameOverPage .bestIndicator {
+  color: var(--normal-500);
+  font-size: 1.6rem;
+  font-weight: 600;
+}

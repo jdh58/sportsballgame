@@ -43,3 +43,18 @@
   width: 25px;
   filter: invert(100%);
 }
+
+.button.easy {
+  background-color: var(--easy-700);
+}
+
+/* Taller Styles */
+
+.button.taller {
+  width: 250px;
+  height: 90px;
+}
+
+.button.taller > p.label {
+  font-size: 3rem;
+}

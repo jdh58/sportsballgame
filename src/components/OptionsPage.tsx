@@ -35,7 +35,7 @@ export default function OptionsPage() {
           </div>
           <RoundContainer />
         </div>
-        <Button label="Start" icon={ArrowRight} />
+        <Button label="Start" icon={ArrowRight} size="default" classes="easy" />
       </div>
     </div>
   );
