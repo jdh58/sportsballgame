@@ -8,7 +8,7 @@ import '../styles/WhoAmI.css';
 import { useState } from 'react';
 
 export default function WhoAmI() {
-  const [overlay, setOverlay] = useState<string | null>('correct');
+  const [overlay, setOverlay] = useState<string | null>('');
 
   return (
     <div className="page whoAmIPage">
@@ -28,7 +28,7 @@ export default function WhoAmI() {
               <div className="hard">
                 <h3>Hard (3 pts)</h3>
                 <p className="hint">
-                  I went to Kentucky for college. It’s lit!
+                  I went to Kentucky for college. It's lit!
                 </p>
               </div>
               <div className="normal">

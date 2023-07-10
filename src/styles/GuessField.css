@@ -50,3 +50,13 @@
 .guessField > input:focus {
   outline: none;
 }
+
+@media (max-width: 1800px) {
+  .guessField {
+    padding: 6px 16px;
+  }
+
+  .guessField > input {
+    font-size: 2rem;
+  }
+}

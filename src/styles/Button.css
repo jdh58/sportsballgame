@@ -63,6 +63,17 @@
   background-color: var(--easy-700);
 }
 
+@media (max-width: 1800px) {
+  .button.small {
+    width: 150px;
+    height: 45px;
+  }
+
+  .button.small > p.label {
+    font-size: 2rem;
+  }
+}
+
 /* Taller Styles */
 
 .button.taller {

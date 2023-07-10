@@ -66,7 +66,6 @@
 }
 
 .whoAmIPage > .mainContainer {
-  height: calc(100vh - 100px);
   padding: 36px 0;
   gap: 36px;
   display: flex;
@@ -134,6 +133,8 @@
 }
 
 .whoAmIPage .gameContainer .player .silhouetteContainer {
+  display: flex;
+  justify-content: center;
   width: 550px;
 }
 
@@ -188,28 +189,57 @@
   box-shadow: 0px 0px 8px 1px #fff;
 }
 
-/*
-{overlay === 'correct' ? (
-          <div className="notifyContainer correct">
-            <div className="iconContainer">
-              <img src={Check} alt="" />
-            </div>
-            <p className="correct">Correct!</p>
-            <p className="score">+5 Points</p>
-          </div>
-        ) : null}
-        {overlay === 'incorrect' ? (
-          <div className="notifyContainer incorrect">
-            <div className="iconContainer">
-              <img src={Close} alt="" />
-            </div>
-            <p className="incorrect">Incorrect!</p>
-            <p className="score">No Points ;(</p>
-          </div>
-        ) : null}
+@media (max-width: 1800px) {
+  .whoAmIPage .gameContainer .hintsContainer {
+    padding: 50px;
+    gap: 50px;
+  }
+  .whoAmIPage .hintsContainer > div > h3 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  .whoAmIPage .hintsContainer > div > p.hint {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+  .whoAmIPage .gameContainer .player > h2.title {
+    font-size: 4rem;
+  }
+  .whoAmIPage .player .silhouette {
+    width: 386px;
+  }
+  .whoAmIPage .gameContainer .player > h4.playerName {
+    font-size: 3.5rem;
+  }
+  .whoAmIPage .gameInfo .score {
+    font-size: 4rem;
+  }
+  .whoAmIPage > .mainContainer {
+    padding: 15px 0;
+    gap: 0px;
+    justify-content: space-between;
+  }
+  .whoAmIPage .gameContainer {
+    flex-grow: 0;
+  }
+}
 
-    */
-
+/* {overlay === 'correct' ? (<div classname='notifycontainer correct'>
+ <div classname='iconcontainer'>
+ <img src={check} alt='' />
+ </div>
+ <p classname='correct'>correct!</p>
+ <p classname='score'>+5 points</p>
+ </div>) : null}
+        {overlay === 'incorrect' ? ((
+ <div className='notifyContainer incorrect'>
+ <div className='iconContainer'>
+ <img src={Close} alt='' />
+ </div>
+ <p className='incorrect'>Incorrect!</p>
+ <p className='score'>No Points ;(</p>
+ </div>
+ ): null}) */
 .notifyContainer {
   display: flex;
   flex-direction: column;
@@ -257,4 +287,7 @@
 
 .notifyContainer.correct > p {
   color: var(--easy-500);
+}
+
+@media (max-width: 1800px) {
 }
