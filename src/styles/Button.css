@@ -26,6 +26,21 @@
   filter: invert(100%);
 }
 
+@media (max-width: 1800px) {
+  .button {
+    width: 205px;
+    height: 60px;
+  }
+
+  .button > p.label {
+    font-size: 2.8rem;
+  }
+
+  .button .buttonIcon {
+    width: 35px;
+  }
+}
+
 /* Small Styles */
 
 .button.small {

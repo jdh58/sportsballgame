@@ -37,25 +37,38 @@
 }
 
 .homePage .mainContainer {
-  padding: 120px 0;
+  padding: 50px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* gap: 75px; */
   align-items: center;
+  gap: 50px;
 }
 
 .homePage .optionsContainer {
   display: flex;
   width: 100%;
   max-width: 1200px;
-  justify-content: space-between;
-  padding: 75px 0;
+  justify-content: center;
+  gap: 175px;
 }
 
 .homePage .optionsContainer .left,
 .homePage .optionsContainer .right {
   display: flex;
   flex-direction: column;
-  gap: 38px;
+  gap: 75px;
+}
+
+@media (max-width: 1800px) {
+  .homePage .welcome {
+    font-size: 3rem;
+  }
+  .homePage .optionsContainer .left,
+  .homePage .optionsContainer .right {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
 }

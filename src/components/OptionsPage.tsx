@@ -5,7 +5,7 @@ import ToggleSwitch from './ToggleSwitch';
 import Button from './Button';
 
 import ArrowRight from '../assets/arrow-right.svg';
-import '../styles/OptionsPage.css';
+import '../styles/OptionsPage.scss';
 
 export default function OptionsPage() {
   return (

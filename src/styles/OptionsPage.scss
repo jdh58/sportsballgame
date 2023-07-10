@@ -1,0 +1,85 @@
+.optionsPage {
+  > .mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px;
+    gap: 75px;
+
+    > .optionContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 35px;
+    }
+  }
+
+  h2.title {
+    text-align: center;
+    font-size: 4.5rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .separator {
+      width: 400px;
+      height: 2px;
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        #fff 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+  }
+
+  h3 {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+
+  .start {
+    width: 250px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: var(--main-border-radius);
+    box-shadow: var(--button-shadow);
+    background-color: var(--easy-600);
+    border: var(--button-border);
+
+    > p {
+      color: white;
+      font-size: 3.5rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.toggle > h3.time {
+  color: hsla(0, 0%, 100%, 0.5);
+}
+
+@media (max-width: 1800px) {
+  .optionsPage {
+    > .mainContainer {
+      gap: 50px;
+    }
+
+    h2.title {
+      font-size: 3.5rem;
+    }
+    h3 {
+      font-size: 3rem;
+    }
+  }
+}

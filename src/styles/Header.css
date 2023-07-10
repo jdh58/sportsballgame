@@ -18,6 +18,7 @@
 */
 
 header.header {
+  z-index: 2;
   position: sticky;
   top: 0;
   left: 0;
@@ -28,7 +29,8 @@ header.header {
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
   flex-shrink: 0;
-  padding: 0 250px;
+  padding: 0 150px;
+  border-bottom: 1px solid rgb(93, 93, 109);
 }
 
 header > .logo {
@@ -77,4 +79,17 @@ header.header > .profileIndicator {
 .signInButtonContainer > button:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+@media (max-width: 1800px) {
+  header.header {
+    height: 75px;
+    padding: 0 50px;
+  }
+  header > .logo {
+    font-size: 4rem;
+  }
+  .signInButtonContainer > button {
+    font-size: 2.2rem;
+  }
 }

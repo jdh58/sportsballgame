@@ -7,6 +7,13 @@
   width: 155px;
   padding: 5px;
   justify-content: space-between;
+  border: var(--button-border);
+  border-radius: var(--main-border-radius);
+  box-shadow: 0px 3px 0px 0.5px #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .optionButton > .optionPicContainer {
@@ -24,4 +31,20 @@
   color: white;
   font-size: 3rem;
   font-weight: 600;
+}
+
+@media (max-width: 1800px) {
+  .sportsContainer .optionButton {
+    width: 125px;
+    gap: 5px;
+  }
+
+  .optionButton > .optionPicContainer {
+    width: 80px;
+    height: 80px;
+  }
+
+  .optionButton > p {
+    font-size: 2.25rem;
+  }
 }

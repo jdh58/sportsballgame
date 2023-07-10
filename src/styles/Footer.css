@@ -16,3 +16,14 @@ footer.footer > p.copyright {
   color: white;
   font-weight: 600;
 }
+
+@media (max-width: 1800px) {
+  footer.footer {
+    height: 40px;
+  }
+
+  footer.footer > p.copyright {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
