@@ -8,7 +8,7 @@ import '../styles/WhoAmI.css';
 import { useState } from 'react';
 
 export default function WhoAmI() {
-  const [overlay, setOverlay] = useState<string | null>('');
+  const [overlay, setOverlay] = useState<string | null>('correct');
 
   return (
     <div className="page whoAmIPage">

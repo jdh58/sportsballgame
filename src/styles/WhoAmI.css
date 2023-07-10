@@ -290,4 +290,11 @@
 }
 
 @media (max-width: 1800px) {
+  .notifyContainer > div {
+    width: 200px;
+    height: 200px;
+  }
+  .notifyContainer > p {
+    font-size: 3.5rem;
+  }
 }
