@@ -82,8 +82,13 @@
   gap: 36px;
 }
 
+.profilePage .mainContainer {
+  width: 1200px;
+}
+
 .profilePage .profileHeader {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   padding: 0 50px;

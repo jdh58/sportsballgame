@@ -1,6 +1,15 @@
 import ProfilePic from './ProfilePic';
 import Button from './Button';
 
+import Badge1k from '../assets/1kbadge.svg';
+import Badge2k from '../assets/2kbadge.svg';
+import Badge3k from '../assets/3kbadge.svg';
+import Badge4k from '../assets/4kbadge.svg';
+import Badge5k from '../assets/5kbadge.svg';
+import Badge6k from '../assets/6kbadge.svg';
+
+import '../styles/Profile.css';
+
 export default function Profile() {
   return (
     <div className="page profilePage">
@@ -10,17 +19,29 @@ export default function Profile() {
           <div className="nameInfo">
             <h1 className="username">jdh58</h1>
             <div className="badges">
-              <div className="badge"></div>
-              <div className="badge"></div>
-              <div className="badge"></div>
-              <div className="badge"></div>
-              <div className="badge"></div>
-              <div className="badge"></div>
+              <div className="badge">
+                <img src={Badge1k} alt="" />
+              </div>
+              <div className="badge">
+                <img src={Badge2k} alt="" />
+              </div>
+              <div className="badge">
+                <img src={Badge3k} alt="" />
+              </div>
+              <div className="badge">
+                <img src={Badge4k} alt="" />
+              </div>
+              <div className="badge">
+                <img src={Badge5k} alt="" />
+              </div>
+              <div className="badge">
+                <img src={Badge6k} alt="" />
+              </div>
             </div>
           </div>
           <div className="buttons">
-            <Button label="Message" icon="" size="" classes="" />
-            <Button label="+ Add" icon="" size="" classes="easy" />
+            <Button label="Message" icon="" classes="" />
+            <Button label="+ Add" icon="" classes="easy" />
           </div>
         </div>
         <div className="separator"></div>

@@ -3,7 +3,6 @@ import '../styles/Button.css';
 export default function Button({
   label,
   icon,
-  size,
   classes,
 }: {
   label: string;
@@ -11,10 +10,8 @@ export default function Button({
   size: string;
   classes: string;
 }) {
-  const classList = `button ${size} ${classes}`;
-
   return (
-    <button className={classList}>
+    <button className={classes}>
       <p className="label">{label}</p>
       {icon ? (
         <div className="buttonIconContainer">

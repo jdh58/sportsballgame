@@ -4,6 +4,7 @@ import { Routes, Route, HashRouter } from 'react-router-dom';
 import OptionsPage from './components/OptionsPage';
 import WhoAmI from './components/WhoAmI';
 import GameOver from './components/GameOver';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <HashRouter>
         <Header />
         <Routes>
+          <Route path="/profile" element={<Profile />} />
           <Route path="/gameover" element={<GameOver />} />
           <Route path="/whoami/options" element={<OptionsPage />} />
           <Route path="/whoami/" element={<WhoAmI />} />
