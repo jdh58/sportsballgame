@@ -2,6 +2,8 @@ import ProfilePic from './ProfilePic';
 
 import Blank from '../assets/white.png';
 
+import '../styles/LeaderboardItem.css';
+
 export default function LeaderboardItem() {
   return (
     <div className="leaderboardItem">

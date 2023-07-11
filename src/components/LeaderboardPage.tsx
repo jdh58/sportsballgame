@@ -62,6 +62,12 @@ export default function LeaderboardPage() {
               <LeaderboardItem />
               <LeaderboardItem />
               <LeaderboardItem />
+              <LeaderboardItem />
+              <LeaderboardItem />
+              <LeaderboardItem />
+              <LeaderboardItem />
+              <LeaderboardItem />
+              <LeaderboardItem />
             </div>
             <div className="specialScores">
               <LeaderboardItem />
