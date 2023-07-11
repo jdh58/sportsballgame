@@ -1,0 +1,212 @@
+/*
+    <div className="page profilePage">
+      <div className="mainContainer">
+        <div className="profileHeader">
+          <ProfilePic image="" />
+          <div className="nameInfo">
+            <h1 className="username">jdh58</h1>
+            <div className="badges">
+              <div className="badge"></div>
+              <div className="badge"></div>
+              <div className="badge"></div>
+              <div className="badge"></div>
+              <div className="badge"></div>
+              <div className="badge"></div>
+            </div>
+          </div>
+          <div className="buttons">
+            <Button label="Message" icon="" size="" classes="" />
+            <Button label="+ Add" icon="" size="" classes="easy" />
+          </div>
+        </div>
+        <div className="separator"></div>
+        <div className="topScores">
+          <h2 className="scoresHeader">
+            <p>Top Scores</p>
+            <img src="small arrow right" alt="" />
+          </h2>
+          <div className="scoresContainer">
+            <div className="third">
+              <img src="ribbon" alt="" />
+              <h3 className="score">2</h3>
+              <p className="topPercentage">Top 32.6%</p>
+            </div>
+            <div className="first">
+              <img src="ribbon" alt="" />
+              <h3 className="score">32</h3>
+              <p className="topPercentage">Top 1.1%</p>
+            </div>
+            <div className="second">
+              <img src="ribbon" alt="" />
+              <h3 className="score">4</h3>
+              <p className="topPercentage">Top 2.7%</p>
+            </div>
+          </div>
+        </div>
+        <div className="separator"></div>
+        <div className="favoritesList">
+          <h2 className="favoritesHeader">Favorites</h2>
+          <div className="favoritesContainer">
+            <div className="team">
+              <h3>Team:</h3>
+              <img src="team" alt="" />
+              <p>Portland Trail Blazers</p>
+            </div>
+            <div className="sport">
+              <h3>Sport:</h3>
+              <img src="sportsball" alt="" />
+              <p>Baseball</p>
+            </div>
+            <div className="game">
+              <h3>Game:</h3>
+              <img src="gameIcon" alt="" />
+              <p>Who Am I</p>
+            </div>
+            <div className="player">
+              <h3>Player:</h3>
+              <img src="playerHeadshot" alt="" />
+              <p>Aaron Rodgers</p>
+            </div>
+          </div>
+        </div>
+        <div className="endSeparator">
+          <div className="separator"></div>
+          <p className="report">Report User?</p>
+        </div>
+      </div>
+    </div>
+*/
+
+.profilePage {
+  flex-direction: column;
+  gap: 36px;
+}
+
+.profilePage .profileHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 50px;
+}
+
+.profileHeader .profilePicContainer {
+  height: 150px;
+  width: 150px;
+}
+
+.profileHeader .nameInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileHeader .nameInfo .username {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.profileHeader .nameInfo .badges {
+  display: flex;
+  gap: 5px;
+  padding: 5px 0;
+}
+
+.profileHeader .buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.separator {
+  width: 100%;
+  background-color: var(--subtle-border);
+}
+
+.profilePage .topScores {
+  display: flex;
+  flex-direction: column;
+}
+
+.topScores .scoresHeader {
+  display: flex;
+  gap: 5px;
+  height: 250px;
+}
+
+.scoresHeader p,
+.favoritesHeader {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.scoresHeader img {
+  width: 20px;
+}
+
+.topScores .scoresContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.scoresContainer div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scoresContainer .ribbonContainer {
+  width: 80px;
+  height: 80px;
+}
+
+.ribbonContainer img {
+  object-fit: contain;
+}
+
+.scoresContainer .scoreInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5px;
+}
+
+.scoresContainer .score {
+  font-size: 2.8rem;
+  font-weight: 600;
+}
+
+.scoresContainer p {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.favoritesList {
+  display: flex;
+  flex-direction: column;
+}
+
+.favoritesContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 250px;
+}
+
+.favoritesContainer div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.favoritesContainer div h3 {
+  font-size: 2.8rem;
+  font-weight: 600;
+}
+
+.favoritesContainer div img {
+  height: 100px;
+  width: auto;
+}
+
+.favoritesContainer div p {
+  font-size: 2.4rem;
+  font-weight: 500;
+}

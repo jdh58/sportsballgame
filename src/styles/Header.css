@@ -30,7 +30,7 @@ header.header {
   grid-template-columns: repeat(3, 1fr);
   flex-shrink: 0;
   padding: 0 150px;
-  border-bottom: 1px solid rgb(93, 93, 109);
+  border-bottom: 1px solid var(--subtle-border);
 }
 
 header > .logo {
