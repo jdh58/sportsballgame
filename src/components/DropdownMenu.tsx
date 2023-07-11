@@ -1,6 +1,6 @@
 import ProfilePic from './ProfilePic';
 import ToggleSwitch from './ToggleSwitch';
-import DropdownItem from './DropdownItem';
+import DropdownItem from './DropdownMenuItem';
 
 import Blank from '../assets/white.png';
 import User from '../assets/user-filled.svg';
@@ -9,9 +9,9 @@ import Help from '../assets/help.svg';
 import Settings from '../assets/settings.svg';
 import Logout from '../assets/logout.svg';
 
-import '../styles/Dropdown.css';
+import '../styles/DropdownMenu.css';
 
-export default function Dropdown() {
+export default function DropdownMenu() {
   return (
     <div className="dropdown">
       <div className="profile">

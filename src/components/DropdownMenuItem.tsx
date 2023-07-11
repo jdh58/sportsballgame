@@ -1,4 +1,4 @@
-import '../styles/DropdownItem.css';
+import '../styles/DropdownMenuItem.css';
 
 export default function DropdownMenuItem({
   icon,

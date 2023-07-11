@@ -5,6 +5,7 @@ import OptionsPage from './components/OptionsPage';
 import WhoAmI from './components/WhoAmI';
 import GameOver from './components/GameOver';
 import Profile from './components/Profile';
+import LeaderboardPage from './components/LeaderboardPage';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <HashRouter>
         <Header />
         <Routes>
+          <Route path="/leaderboard" element={<LeaderboardPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/gameover" element={<GameOver />} />
           <Route path="/whoami/options" element={<OptionsPage />} />
