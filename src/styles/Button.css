@@ -95,3 +95,14 @@
     font-size: 2.4rem;
   }
 }
+
+/* Smaller Styles */
+
+.button.smaller {
+  width: 175px;
+  height: 60px;
+}
+
+.button.smaller > p.label {
+  font-size: 2.4rem;
+}

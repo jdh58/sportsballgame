@@ -7,6 +7,13 @@ import Badge3k from '../assets/3kbadge.svg';
 import Badge4k from '../assets/4kbadge.svg';
 import Badge5k from '../assets/5kbadge.svg';
 import Badge6k from '../assets/6kbadge.svg';
+import RightArrow from '../assets/small-right-arrow.svg';
+import Ribbon from '../assets/ribbon.svg';
+import Medals from '../assets/medals.svg';
+import Blazers from '../assets/blazers.png';
+import ARod from '../assets/arod.png';
+import LeBron from '../assets/lebron.webp';
+import Baseball from '../assets/baseball.png';
 
 import '../styles/Profile.css';
 
@@ -40,20 +47,22 @@ export default function Profile() {
             </div>
           </div>
           <div className="buttons">
-            <Button label="Message" icon="" classes="" />
-            <Button label="+ Add" icon="" classes="easy" />
+            <Button label="Message" icon="" classes="smaller" />
+            <Button label="+ Add" icon="" classes="smaller easy" />
           </div>
         </div>
         <div className="separator"></div>
         <div className="topScores">
           <h2 className="scoresHeader">
             <p>Top Scores</p>
-            <img src="small arrow right" alt="" />
+            <div className="rightArrow">
+              <img src={RightArrow} alt="small arrow right" />
+            </div>
           </h2>
           <div className="scoresContainer">
             <div className="third">
               <div className="ribbonContainer">
-                <img src="ribbon" alt="" />
+                <img src={Ribbon} alt="third place ribbon" />
               </div>
               <div className="scoreInfo">
                 <h3 className="score">2</h3>
@@ -63,7 +72,7 @@ export default function Profile() {
             </div>
             <div className="first">
               <div className="ribbonContainer">
-                <img src="ribbon" alt="" />
+                <img src={Medals} alt="first place medal" />
               </div>
               <div className="scoreInfo">
                 <h3 className="score">32</h3>
@@ -73,7 +82,7 @@ export default function Profile() {
             </div>
             <div className="second">
               <div className="ribbonContainer">
-                <img src="ribbon" alt="" />
+                <img src={Ribbon} alt="second place ribbon" />
               </div>
               <div className="scoreInfo">
                 <h3 className="score">4</h3>
@@ -89,22 +98,22 @@ export default function Profile() {
           <div className="favoritesContainer">
             <div className="team">
               <h3>Team:</h3>
-              <img src="team" alt="" />
+              <img src={Blazers} alt="" />
               <p>Portland Trail Blazers</p>
             </div>
             <div className="sport">
               <h3>Sport:</h3>
-              <img src="sportsball" alt="" />
+              <img src={Baseball} alt="" />
               <p>Baseball</p>
             </div>
             <div className="game">
               <h3>Game:</h3>
-              <img src="gameIcon" alt="" />
+              <img src={LeBron} alt="" />
               <p>Who Am I</p>
             </div>
             <div className="player">
               <h3>Player:</h3>
-              <img src="playerHeadshot" alt="" />
+              <img src={ARod} alt="" />
               <p>Aaron Rodgers</p>
             </div>
           </div>

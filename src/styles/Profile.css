@@ -77,21 +77,21 @@
     </div>
 */
 
-.profilePage {
-  flex-direction: column;
-  gap: 36px;
-}
-
 .profilePage .mainContainer {
   width: 1200px;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 0;
+  gap: 36px;
 }
 
 .profilePage .profileHeader {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   width: 100%;
   padding: 0 50px;
+  gap: 36px;
 }
 
 .profileHeader .profilePicContainer {
@@ -102,6 +102,9 @@
 .profileHeader .nameInfo {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  flex-grow: 2;
+  gap: 15px;
 }
 
 .profileHeader .nameInfo .username {
@@ -118,22 +121,28 @@
 .profileHeader .buttons {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .separator {
   width: 100%;
+  height: 1px;
   background-color: var(--subtle-border);
 }
 
 .profilePage .topScores {
   display: flex;
   flex-direction: column;
+  height: 250px;
+  gap: 36px;
+  /* padding: 0 50px; */
 }
 
 .topScores .scoresHeader {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
-  height: 250px;
 }
 
 .scoresHeader p,
@@ -142,8 +151,15 @@
   font-weight: 600;
 }
 
-.scoresHeader img {
-  width: 20px;
+.scoresHeader .rightArrow {
+  width: 40px;
+  height: 40px;
+}
+
+.rightArrow img {
+  height: 100%;
+  width: 100%;
+  filter: invert(100%);
 }
 
 .topScores .scoresContainer {
@@ -155,6 +171,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
@@ -164,7 +181,21 @@
 }
 
 .ribbonContainer img {
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.scoresContainer .first img {
+  filter: invert(64%) sepia(100%) saturate(514%) hue-rotate(3deg)
+    brightness(111%) contrast(105%);
+}
+.scoresContainer .second img {
+  filter: invert(94%) sepia(0%) saturate(362%) hue-rotate(142deg)
+    brightness(81%) contrast(97%);
+}
+.scoresContainer .third img {
+  filter: invert(60%) sepia(86%) saturate(898%) hue-rotate(339deg)
+    brightness(86%) contrast(83%);
 }
 
 .scoresContainer .scoreInfo {
@@ -186,12 +217,15 @@
 .favoritesList {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 36px;
 }
 
 .favoritesContainer {
   display: flex;
   justify-content: space-between;
   height: 250px;
+  width: 100%;
 }
 
 .favoritesContainer div {
@@ -199,6 +233,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .favoritesContainer div h3 {
@@ -207,11 +242,29 @@
 }
 
 .favoritesContainer div img {
-  height: 100px;
+  height: 125px;
   width: auto;
 }
 
 .favoritesContainer div p {
   font-size: 2.4rem;
   font-weight: 500;
+}
+
+.endSeparator {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.endSeparator p {
+  width: 100%;
+  font-size: 1.6rem;
+  color: var(--impossible-500);
+  text-align: right;
+}
+
+.endSeparator p:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

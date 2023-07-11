@@ -22,12 +22,12 @@ export default function GameOver() {
       </h2>
       <div className="buttons">
         <div className="buttonContainer">
-          <Button label="Play Again" icon="" size="taller" classes="easy" />
-          <Button label="Game Options" icon="" size="taller" classes="" />
+          <Button label="Play Again" icon="" classes="taller easy" />
+          <Button label="Game Options" icon="" classes="taller " />
         </div>
         <div className="buttonContainer">
-          <Button label="Main Menu" icon="" size="taller" classes="" />
-          <Button label="Leaderboards" icon="" size="taller" classes="" />
+          <Button label="Main Menu" icon="" classes="taller" />
+          <Button label="Leaderboards" icon="" classes="taller " />
         </div>
       </div>
     </div>

@@ -7,11 +7,10 @@ export default function Button({
 }: {
   label: string;
   icon: string;
-  size: string;
   classes: string;
 }) {
   return (
-    <button className={classes}>
+    <button className={`button ${classes}`}>
       <p className="label">{label}</p>
       {icon ? (
         <div className="buttonIconContainer">
