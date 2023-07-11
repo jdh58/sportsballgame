@@ -3,7 +3,7 @@
   align-items: center;
   padding: 0 30px;
   border-bottom: 1px solid var(--subtle-border);
-  height: 60px;
+  height: 80px;
   gap: 36px;
   flex-shrink: 0;
 }
@@ -28,4 +28,10 @@
 .leaderboardItem .score {
   flex-grow: 1;
   text-align: right;
+}
+
+@media (max-width: 1800px) {
+  .leaderboardItem {
+    height: 65px;
+  }
 }
