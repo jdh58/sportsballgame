@@ -1,0 +1,32 @@
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-bottom: 1px solid var(--subtle-border);
+  padding: 0 20px;
+  gap: 15px;
+}
+
+.dropdownItem .iconContainer {
+  height: 30px;
+  width: 30px;
+}
+
+.dropdownItem .iconContainer img {
+  width: 100%;
+  height: 100%;
+  filter: invert(100%);
+}
+
+.dropdownItem .label {
+  font-size: 2rem;
+}
+
+.dropdownItem.red img {
+  filter: invert(45%) sepia(91%) saturate(3065%) hue-rotate(332deg)
+    brightness(92%) contrast(106%);
+}
+
+.dropdownItem.red .label {
+  color: var(--impossible-500);
+}

@@ -1,6 +1,7 @@
 import ProfilePic from './ProfilePic';
 import Button from './Button';
 
+import Blank from '../assets/white.png';
 import Badge1k from '../assets/1kbadge.svg';
 import Badge2k from '../assets/2kbadge.svg';
 import Badge3k from '../assets/3kbadge.svg';
@@ -15,14 +16,17 @@ import ARod from '../assets/arod.png';
 import LeBron from '../assets/lebron.webp';
 import Baseball from '../assets/baseball.png';
 
+import Dropdown from './Dropdown';
+
 import '../styles/Profile.css';
 
 export default function Profile() {
   return (
     <div className="page profilePage">
       <div className="mainContainer">
+        <Dropdown />
         <div className="profileHeader">
-          <ProfilePic image="" />
+          <ProfilePic image={Blank} />
           <div className="nameInfo">
             <h1 className="username">jdh58</h1>
             <div className="badges">

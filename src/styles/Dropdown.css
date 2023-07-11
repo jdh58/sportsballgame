@@ -1,0 +1,34 @@
+.dropdown {
+  width: 300px;
+  background-color: var(--background-secondary);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--main-border-radius);
+  position: absolute;
+  right: 300px;
+  top: 200px;
+  box-shadow: var(--default-shadow);
+}
+
+.dropdown .profile {
+  align-items: center;
+  height: 75px;
+  padding: 0 20px;
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid var(--subtle-border);
+}
+
+.dropdown .profile .username {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.dropdown .lightMode {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 2rem;
+}
