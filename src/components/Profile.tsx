@@ -16,7 +16,7 @@ import ARod from '../assets/arod.png';
 import LeBron from '../assets/lebron.webp';
 import Baseball from '../assets/baseball.png';
 
-import Dropdown from './Dropdown';
+import DropdownMenu from './DropdownMenu';
 
 import '../styles/Profile.css';
 
@@ -24,7 +24,7 @@ export default function Profile() {
   return (
     <div className="page profilePage">
       <div className="mainContainer">
-        <Dropdown />
+        <DropdownMenu />
         <div className="profileHeader">
           <ProfilePic image={Blank} />
           <div className="nameInfo">

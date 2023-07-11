@@ -1,6 +1,6 @@
 import '../styles/DropdownItem.css';
 
-export default function DropdownItem({
+export default function DropdownMenuItem({
   icon,
   label,
   classes,
