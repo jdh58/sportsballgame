@@ -1,4 +1,4 @@
-import { Dispatch, createContext, useReducer } from 'react';
+import { Dispatch, createContext, useEffect, useReducer } from 'react';
 
 type Auth = {
   user: {
@@ -41,6 +41,15 @@ export const AuthContextProvider = ({
   children: React.ReactElement;
 }) => {
   const [state, dispatch] = useReducer(AuthReducer, { user: null });
+
+  // Use this to check if logged in when the application loads
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+
+    if (storedUser) {
+      dispatch({ type: 'LOGIN', user: JSON.parse(storedUser) });
+    }
+  }, []);
 
   console.log(`Auth Context: ${state}`);
 
