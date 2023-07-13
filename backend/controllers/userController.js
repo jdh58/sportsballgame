@@ -56,7 +56,7 @@ exports.logIn = [
 
       // If they do match, return OK with a JWT
       const token = createToken(currentUser._id);
-      res.status(200).json({ token });
+      res.status(200).json({ user: currentUser, token });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Failed to sign in' });
@@ -137,7 +137,7 @@ exports.signUp = [
       // If we got here, save the new user to the database and respond OK and give JWT
       await newUser.save();
       const token = createToken(newUser._id);
-      res.status(200).json({ token });
+      res.status(200).json({ user: newUser, token });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Error signing up' });

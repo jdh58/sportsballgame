@@ -1,8 +1,8 @@
-import SportsContainer from './SportsContainer';
-import DifficultyContainer from './DifficultyContainer';
-import RoundContainer from './RoundContainer';
-import ToggleSwitch from './ToggleSwitch';
-import Button from './Button';
+import SportsContainer from '../components/SportsContainer';
+import DifficultyContainer from '../components/DifficultyContainer';
+import RoundContainer from '../components/RoundContainer';
+import ToggleSwitch from '../components/ToggleSwitch';
+import Button from '../components/Button';
 
 import ArrowRight from '../assets/arrow-right.svg';
 import '../styles/OptionsPage.scss';
@@ -35,7 +35,7 @@ export default function OptionsPage() {
           </div>
           <RoundContainer />
         </div>
-        <Button label="Start" icon={ArrowRight} size="default" classes="easy" />
+        <Button label="Start" icon={ArrowRight} classes="default easy" />
       </div>
     </div>
   );

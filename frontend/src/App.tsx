@@ -1,11 +1,11 @@
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import { Routes, Route, HashRouter } from 'react-router-dom';
-import OptionsPage from './components/OptionsPage';
-import WhoAmI from './components/WhoAmI';
-import GameOver from './components/GameOver';
-import Profile from './components/Profile';
-import LeaderboardPage from './components/LeaderboardPage';
+import OptionsPage from './pages/OptionsPage';
+import WhoAmI from './pages/WhoAmI';
+import GameOver from './pages/GameOver';
+import Profile from './pages/Profile';
+import LeaderboardPage from './pages/LeaderboardPage';
 
 function App() {
   return (
