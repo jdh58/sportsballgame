@@ -12,11 +12,12 @@ const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '7d' });
 };
 
-exports.getUser = function (req, res) {
+exports.getUser = async function (req, res) {
   res.send('get user');
 };
 
 exports.logIn = [
+  // Validate and trim login details
   body('email')
     .exists({ values: 'falsy' })
     .withMessage('Please enter an email')
@@ -30,7 +31,7 @@ exports.logIn = [
   async function (req, res) {
     try {
       // First, get the user account associated with the email
-      const currentUser = await User.findOne({ email }).exec();
+      const currentUser = await User.findOne({ email: req.body.email }).exec();
 
       // If they don't exist, let the user know.
       if (!currentUser) {
@@ -57,6 +58,7 @@ exports.logIn = [
       const token = createToken(currentUser._id);
       res.status(200).json({ token });
     } catch (err) {
+      console.error(err);
       res.status(500).json({ error: 'Failed to sign in' });
     }
   },
@@ -86,7 +88,10 @@ exports.signUp = [
     .escape(),
 
   // Ensure it's above 6 characters
-  body('password').trim().isLength({ min: 6 }).withMessage('Invalid password'),
+  body('password')
+    .trim()
+    .isLength({ min: 6 })
+    .withMessage('Password must be at least 6 characters long'),
 
   async function (req, res) {
     try {
