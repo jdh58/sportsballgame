@@ -1,8 +1,9 @@
 .signupPage .mainContainer {
   flex-grow: 0;
-  width: 600px;
+  width: 385px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 50px;
   align-items: center;
 }
@@ -16,5 +17,63 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 36px;
+}
+
+.signupForm .allInputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.signupForm .inputContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.signupForm .inputContainer label {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+.signupForm input {
+  width: 250px;
+  height: 38px;
+  font-family: 'Oxanium';
+  color: black;
+  font-size: 2rem;
+  padding-left: 10px;
+
+  border: none;
+  border-radius: var(--main-border-radius);
+  box-shadow: var(--default-shadow);
+}
+
+.signupForm input:focus {
+  outline: 1px solid var(--subtle-border);
+}
+
+.signupForm .buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.signupForm .buttonContainer p {
+  font-size: 1.4rem;
+}
+
+.signupForm .buttonContainer p a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.signupForm .errors {
+  list-style: disc;
+  color: var(--impossible-500);
+  font-size: 1.6rem;
 }

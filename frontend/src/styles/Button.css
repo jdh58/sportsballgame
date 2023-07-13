@@ -106,3 +106,15 @@
 .button.smaller > p.label {
   font-size: 2.4rem;
 }
+
+/* Login Styles */
+
+.button.login {
+  width: fit-content;
+  height: 60px;
+  padding: 0 16px;
+}
+
+.button.login > p.label {
+  font-size: 2.2rem;
+}
