@@ -7,6 +7,7 @@ import GameOver from './pages/GameOver';
 import Profile from './pages/Profile';
 import LeaderboardPage from './pages/LeaderboardPage';
 import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <HashRouter>
         <Header />
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />
           <Route path="/profile" element={<Profile />} />

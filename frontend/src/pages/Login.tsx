@@ -3,7 +3,7 @@ import Button from '../components/Button';
 
 import '../styles/Signup.css';
 
-export default function Signup() {
+export default function Login() {
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
   };
@@ -11,15 +11,11 @@ export default function Signup() {
   return (
     <main className="page signupPage">
       <div className="mainContainer">
-        <h1>Sign up</h1>
+        <h1>Log in</h1>
         <form action="" className="signupForm" onSubmit={handleFormSubmit}>
           <div className="inputContainer">
             <label htmlFor="email">Email</label>
             <input type="email" name="email" id="email" />
-          </div>
-          <div className="inputContainer">
-            <label htmlFor="username">Username</label>
-            <input type="text" name="username" id="username" />
           </div>
           <div className="inputContainer">
             <label htmlFor="password">Password</label>
@@ -29,14 +25,12 @@ export default function Signup() {
             <li>Please enter the proper thing</li>
           </ul>
           <div className="buttonContainer">
-            <Button
-              label="Create Account"
-              type="submit"
-              icon=""
-              classes="signup"
-            />
+            <Button label="Log in" type="submit" icon="" classes="login" />
             <p>
-              Already have an account? <Link to="/login">Log in</Link>
+              <Link to="/login">Forgot password?</Link>
+            </p>
+            <p>
+              Don't have an account? <Link to="/signup">Sign up</Link>
             </p>
           </div>
         </form>
