@@ -2,25 +2,80 @@ import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 
 import '../styles/Signup.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Login() {
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
+  const Auth = useContext(AuthContext);
 
-    setIsLoading(true);
+  const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    e
+  ) => {
+    try {
+      // Don't refresh the page
+      e.preventDefault();
 
-    // Don't refresh the page
-    // Disable the button
-    // Request the signup
-    // If bad, display the errors, enable the button, and return
-    // If good, continue
-    // Update the authentication context to have the user with JWT
-    // Store the user in localStorage
-    // Enable the button
+      // Disable the button
+      setIsLoading(true);
+
+      // Extract the email and password from the form
+      const form = e.currentTarget;
+
+      // @ts-ignore
+      const email: string = form.elements['email'].value;
+      // @ts-ignore
+      const password: string = form.elements['password'].value;
+
+      // Request the signup and get the data
+      const response = await fetch('http://localhost:3100/api/user/login', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const responseData = await response.json();
+      /* Response if good should be:
+        {
+          email:
+          username:
+          _id:
+          token:
+        }
+    
+        If bad:
+        {
+          error:
+        }
+        */
+
+      // If bad, display the errors, enable the button, and return
+      if (responseData.error) {
+        setError(responseData.error);
+        setIsLoading(false);
+        return;
+      }
+
+      // If good, continue
+
+      // Update the authentication context to have the user with JWT
+      Auth.dispatch({ type: 'LOGIN', user: responseData });
+
+      // Store the user in localStorage
+      localStorage.setItem('user', JSON.stringify(responseData));
+
+      // Enable the button
+      setIsLoading(false);
+    } catch (err) {
+      console.error(err);
+      // Enable the button
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -36,9 +91,11 @@ export default function Login() {
             <label htmlFor="password">Password</label>
             <input type="password" name="password" id="password" />
           </div>
-          <ul className="errors">
-            <li>Please enter the proper thing</li>
-          </ul>
+          {error && (
+            <ul className="errors">
+              <li>{error}</li>
+            </ul>
+          )}
           <div className="buttonContainer">
             <Button
               label="Log in"

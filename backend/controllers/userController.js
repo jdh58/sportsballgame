@@ -56,7 +56,12 @@ exports.logIn = [
 
       // If they do match, return OK with a JWT
       const token = createToken(currentUser._id);
-      res.status(200).json({ user: currentUser, token });
+      res.status(200).json({
+        email: currentUser.email,
+        username: currentUser.username,
+        _id: currentUser._id,
+        token,
+      });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Failed to sign in' });
@@ -124,6 +129,8 @@ exports.signUp = [
       const newUser = new User({
         email: req.body.email,
         username: req.body.username,
+        scores: {},
+        badges: {},
       });
 
       // Then, hash and salt the password and update the newUser object

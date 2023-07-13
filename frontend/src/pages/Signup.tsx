@@ -27,9 +27,10 @@ export default function Signup() {
       // @ts-ignore
       const email: string = form.elements['email'].value;
       // @ts-ignore
+      const username: string = form.elements['username'].value;
+      // @ts-ignore
       const password: string = form.elements['password'].value;
 
-      console.log(JSON.stringify({ email, password }));
       // Request the signup and get the data
       const response = await fetch('http://localhost:3100/api/user/signup', {
         method: 'POST',
@@ -37,7 +38,7 @@ export default function Signup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, username, password }),
       });
 
       const responseData = await response.json();
@@ -96,7 +97,11 @@ export default function Signup() {
             <label htmlFor="password">Password</label>
             <input type="password" name="password" id="password" />
           </div>
-          <ul className="errors">{error && <li>{error}</li>}</ul>
+          {error && (
+            <ul className="errors">
+              <li>{error}</li>
+            </ul>
+          )}
           <div className="buttonContainer">
             <Button
               label="Create Account"
