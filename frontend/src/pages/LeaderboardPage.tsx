@@ -1,5 +1,5 @@
-import LeaderboardItem from './LeaderboardItem';
-import Selector from './Selector';
+import LeaderboardItem from '../components/LeaderboardItem';
+import Selector from '../components/Selector';
 
 import '../styles/LeaderboardPage.css';
 

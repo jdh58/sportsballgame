@@ -1,5 +1,5 @@
-import Button from './Button';
-import GuessField from './GuessField';
+import Button from '../components/Button';
+import GuessField from '../components/GuessField';
 import LeBron from '../assets/lebron.webp';
 import Check from '../assets/check.svg';
 import Close from '../assets/close.svg';

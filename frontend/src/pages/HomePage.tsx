@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import TileButton from './TileButton';
-import Footer from './Footer';
+import TileButton from '../components/TileButton';
+import Footer from '../components/Footer';
 import Curry from '../assets/curry.jpg';
 import WhoAmI from '../assets/whoamibackground.png';
 import Locker from '../assets/locker.jpg';

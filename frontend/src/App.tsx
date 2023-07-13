@@ -1,5 +1,5 @@
 import Header from './components/Header';
-import HomePage from './components/HomePage';
+import HomePage from './pages/HomePage';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import OptionsPage from './components/OptionsPage';
 import WhoAmI from './components/WhoAmI';

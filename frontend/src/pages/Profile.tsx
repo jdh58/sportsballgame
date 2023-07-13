@@ -1,5 +1,5 @@
-import ProfilePic from './ProfilePic';
-import Button from './Button';
+import ProfilePic from '../components/ProfilePic';
+import Button from '../components/Button';
 
 import Blank from '../assets/white.png';
 import Badge1k from '../assets/1kbadge.svg';
@@ -16,7 +16,7 @@ import ARod from '../assets/arod.png';
 import LeBron from '../assets/lebron.webp';
 import Baseball from '../assets/baseball.png';
 
-import DropdownMenu from './DropdownMenu';
+import DropdownMenu from '../components/DropdownMenu';
 
 import '../styles/Profile.css';
 
