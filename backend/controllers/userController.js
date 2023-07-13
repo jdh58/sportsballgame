@@ -16,9 +16,51 @@ exports.getUser = function (req, res) {
   res.send('get user');
 };
 
-exports.logIn = function (req, res) {
-  res.send('log in');
-};
+exports.logIn = [
+  body('email')
+    .exists({ values: 'falsy' })
+    .withMessage('Please enter an email')
+    .trim()
+    .escape(),
+  body('password')
+    .exists({ values: 'falsy' })
+    .withMessage('Please enter a password')
+    .trim(),
+
+  async function (req, res) {
+    try {
+      // First, get the user account associated with the email
+      const currentUser = await User.findOne({ email }).exec();
+
+      // If they don't exist, let the user know.
+      if (!currentUser) {
+        res.status(400).json({
+          error:
+            'No user found with that email. Please sign up or use another account.',
+        });
+        return;
+      }
+
+      // Otherwise, compare the passwords
+      const isPasswordCorrect = await bcrypt.compare(
+        req.body.password,
+        currentUser.password
+      );
+
+      // If they don't match, send the error
+      if (!isPasswordCorrect) {
+        res.status(400).json({ error: 'Incorrect password' });
+        return;
+      }
+
+      // If they do match, return OK with a JWT
+      const token = createToken(currentUser._id);
+      res.status(200).json({ token });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to sign in' });
+    }
+  },
+];
 
 exports.signUp = [
   // Check the email exists and matches the regex
