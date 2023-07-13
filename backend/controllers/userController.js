@@ -1,11 +1,16 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 
 const emailRegex =
   /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 
 const usernameRegex = /^[a-zA-Z0-9._]+$/;
+
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '7d' });
+};
 
 exports.getUser = function (req, res) {
   res.send('get user');
@@ -45,7 +50,7 @@ exports.signUp = [
     try {
       // If there's validation errors, send them back
       if (!validationResult(req).isEmpty()) {
-        res.status(400).json(validationResult(req).array());
+        res.status(400).json({ error: validationResult(req).errors[0].msg });
         return;
       }
 
@@ -82,9 +87,10 @@ exports.signUp = [
         });
       });
 
-      // If we got here, save the new user to the database and respond OK
+      // If we got here, save the new user to the database and respond OK and give JWT
       await newUser.save();
-      res.status(200).json({ newUser });
+      const token = createToken(newUser._id);
+      res.status(200).json({ token });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Error signing up' });
