@@ -1,0 +1,20 @@
+.signupPage .mainContainer {
+  flex-grow: 0;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
+
+.signupPage h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.signupPage .signupForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}

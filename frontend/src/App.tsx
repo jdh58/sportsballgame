@@ -6,6 +6,7 @@ import WhoAmI from './pages/WhoAmI';
 import GameOver from './pages/GameOver';
 import Profile from './pages/Profile';
 import LeaderboardPage from './pages/LeaderboardPage';
+import Signup from './pages/Signup';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <HashRouter>
         <Header />
         <Routes>
+          <Route path="/signup" element={<Signup />} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/gameover" element={<GameOver />} />

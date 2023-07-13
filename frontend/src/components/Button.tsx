@@ -2,15 +2,17 @@ import '../styles/Button.css';
 
 export default function Button({
   label,
+  type,
   icon,
   classes,
 }: {
   label: string;
+  type: 'button' | 'submit' | 'reset' | undefined;
   icon: string;
   classes: string;
 }) {
   return (
-    <button className={`button ${classes}`}>
+    <button type={type} className={`button ${classes}`}>
       <p className="label">{label}</p>
       {icon ? (
         <div className="buttonIconContainer">

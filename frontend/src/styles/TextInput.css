@@ -1,0 +1,8 @@
+.textInput {
+  background-color: white;
+  box-shadow: var(--default-shadow);
+  border-radius: var(--main-border-radius);
+}
+
+.textInput:hover {
+}
