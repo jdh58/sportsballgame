@@ -2,6 +2,11 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
 
+const emailRegex =
+  /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+
+const usernameRegex = /^[a-zA-Z0-9._]+$/;
+
 exports.getUser = function (req, res) {
   res.send('get user');
 };
@@ -11,25 +16,23 @@ exports.logIn = function (req, res) {
 };
 
 exports.signUp = [
-  ////////// VALIDATION /////////
-
   // Check the email exists and matches the regex
   body('email')
     .trim()
-    .exists({ values: falsy })
+    .exists({ values: 'falsy' })
     .withMessage('Please enter an email')
-    .not.matches(emailRegex)
+    .matches(emailRegex)
     .withMessage('Invalid email address')
     .escape(),
 
-  // We only want alphanumeric usernames
+  // We only want certain usernames
   body('username')
     .trim()
-    .exists({ values: falsy })
+    .exists({ values: 'falsy' })
     .withMessage('Please enter a username')
     .isLength({ min: 3, max: 20 })
     .withMessage('Usernames must be between 3 and 20 characters')
-    .not.matches(usernameRegex)
+    .matches(usernameRegex)
     .withMessage(
       'Usernames may only contain characters a-Z, 0-9, periods, and underscores'
     )
@@ -40,6 +43,12 @@ exports.signUp = [
 
   async function (req, res) {
     try {
+      // If there's validation errors, send them back
+      if (!validationResult(req).isEmpty()) {
+        res.status(400).json(validationResult(req).array());
+        return;
+      }
+
       // Make sure the user doesn't already exist
       const existingEmail = await User.findOne({
         email: req.body.email,
@@ -50,8 +59,10 @@ exports.signUp = [
 
       if (existingEmail) {
         res.status(400).json({ error: 'Email already exists' });
+        return;
       } else if (existingUsername) {
         res.status(400).json({ error: 'Username already exists' });
+        return;
       }
 
       // Go ahead and store the new user in the database.
@@ -62,11 +73,13 @@ exports.signUp = [
       });
 
       // Then, hash and salt the password and update the newUser object
-      bcrypt.hash(req.body.password, 10, function (err, hashedPassword) {
-        if (err) {
-          throw new Error(err);
-        }
-        newUser.password = hashedPassword;
+      newUser.password = await new Promise((resolve, reject) => {
+        bcrypt.hash(req.body.password, 10, function (err, hashedPassword) {
+          if (err) {
+            throw new Error(err);
+          }
+          resolve(hashedPassword);
+        });
       });
 
       // If we got here, save the new user to the database and respond OK
@@ -82,9 +95,3 @@ exports.signUp = [
 exports.deleteUser = function (req, res) {
   res.send('delete user');
 };
-
-// lol.
-const emailRegex =
-  /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-
-const usernameRegex = /^[a-zA-Z0-9._]+$/;
