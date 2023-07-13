@@ -48,7 +48,6 @@ export default function HomePage() {
               />
               <TileButton label="More" bgImage={Hoop} bgColor="10, 36, 70" />
             </div>
-            <div className="separator"></div>
             <div className="right">
               <TileButton label="Profile" bgImage={Locker} bgColor="55, 5, 5" />
               <TileButton
