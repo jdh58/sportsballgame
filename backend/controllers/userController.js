@@ -12,6 +12,16 @@ const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '7d' });
 };
 
+const profilePicURLS = [
+  'https://i.imgur.com/teNX2f9.jpg',
+  'https://i.imgur.com/XNPRyNQ.jpg',
+  'https://i.imgur.com/Q81BEoA.jpg',
+  'https://i.imgur.com/u3zSQIS.jpg',
+  'https://i.imgur.com/9aA0MYy.jpg',
+  'https://i.imgur.com/1mux5U3.jpg',
+  'https://i.imgur.com/COEo6jV.jpg',
+];
+
 exports.getUser = async function (req, res) {
   res.send('get user');
 };
@@ -124,11 +134,14 @@ exports.signUp = [
         return;
       }
 
+      const randomNum1to7 = Math.floor(Math.random() * 7);
+
       // Go ahead and store the new user in the database.
       // First, set up the new User object
       const newUser = new User({
         email: req.body.email,
         username: req.body.username,
+        picture: profilePicURLS[randomNum1to7],
         scores: {},
         badges: {},
       });
@@ -149,6 +162,7 @@ exports.signUp = [
       res.status(200).json({
         email: newUser.email,
         username: newUser.username,
+        picture: newUser.picture,
         _id: newUser._id,
         token,
       });

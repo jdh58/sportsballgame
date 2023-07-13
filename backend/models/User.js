@@ -13,6 +13,7 @@ const UserSchema = new Schema(
       unique: true,
     },
     password: { type: String, required: true },
+    picture: { type: String, required: true },
     scores: { type: Object, required: false },
     badges: { type: Object, required: false },
   },

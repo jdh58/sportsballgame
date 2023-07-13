@@ -1,26 +1,18 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ProfilePic from './ProfilePic';
 import Dropdown from '../assets/dropdown.svg';
 import '../styles/Header.css';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Get user here
-  interface User {
-    picture: string;
-  }
-
-  const User: User = {
-    picture: '',
-  };
+  const Auth = useContext(AuthContext);
 
   return (
     <header className="header">
       <p className="logo">SportsBallGame.com</p>
-      {isLoggedIn ? (
+      {Auth.user ? (
         <div className="profileIndicator">
-          <ProfilePic image={User.picture} />
+          <ProfilePic image={Auth.user.picture} />
           <div className="dropdownContainer">
             <img src={Dropdown} alt="" />
           </div>

@@ -4,6 +4,7 @@ type Auth = {
   user: {
     email: string;
     username: string;
+    picture: string;
     _id: string;
     token: string;
   } | null;

@@ -56,6 +56,10 @@
   outline: 1px solid var(--subtle-border);
 }
 
+.signupForm #password {
+  font-size: 1.2rem;
+}
+
 .signupForm .buttonContainer {
   display: flex;
   flex-direction: column;
