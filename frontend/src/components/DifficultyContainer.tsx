@@ -1,6 +1,10 @@
 import '../styles/DifficultyContainer.css';
 
-export default function DifficultyContainer() {
+export default function DifficultyContainer({ sport }: { sport: string }) {
+  if (sport !== 'nba') {
+    return;
+  }
+
   return (
     <div className="difficultyContainer">
       <button className="optionButton">
