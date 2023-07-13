@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
     email: { type: String, required: true, unique: true },
-    username: { type: String, required: true, unique: true },
+    username: {
+      type: String,
+      minLength: 3,
+      maxLength: 20,
+      required: true,
+      unique: true,
+    },
     password: { type: String, required: true },
     scores: { type: Object, required: false },
     badges: { type: Object, required: false },
@@ -16,4 +22,4 @@ const UserSchema = new Schema(
 // Implement this later
 // UserSchema.virtual('sign up date')
 
-export default mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
