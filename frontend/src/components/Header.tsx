@@ -12,7 +12,7 @@ export default function Header() {
       <p className="logo">SportsBallGame.com</p>
       {Auth.user ? (
         <div className="profileIndicator">
-          <ProfilePic image={Auth.user.picture} />
+          <ProfilePic image={Auth.user.profilePicURL} />
           <div className="dropdownContainer">
             <img src={Dropdown} alt="" />
           </div>

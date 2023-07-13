@@ -68,6 +68,7 @@ exports.logIn = [
       const token = createToken(currentUser._id);
       res.status(200).json({
         email: currentUser.email,
+        profilePicURL: currentUser.profilePicURL,
         username: currentUser.username,
         _id: currentUser._id,
         token,
@@ -141,7 +142,7 @@ exports.signUp = [
       const newUser = new User({
         email: req.body.email,
         username: req.body.username,
-        picture: profilePicURLS[randomNum1to7],
+        profilePicURL: profilePicURLS[randomNum1to7],
         scores: {},
         badges: {},
       });
@@ -162,7 +163,7 @@ exports.signUp = [
       res.status(200).json({
         email: newUser.email,
         username: newUser.username,
-        picture: newUser.picture,
+        profilePicURL: newUser.profilePicURL,
         _id: newUser._id,
         token,
       });
