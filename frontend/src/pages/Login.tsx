@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 
 import '../styles/Signup.css';
@@ -8,6 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 export default function Login() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const Auth = useContext(AuthContext);
 
@@ -71,6 +72,9 @@ export default function Login() {
 
       // Enable the button
       setIsLoading(false);
+
+      // Navigate user to the home page
+      navigate('/');
     } catch (err) {
       console.error(err);
       // Enable the button
