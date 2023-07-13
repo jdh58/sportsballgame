@@ -5,14 +5,16 @@ export default function Button({
   type,
   icon,
   classes,
+  disabled,
 }: {
   label: string;
   type: 'button' | 'submit' | 'reset' | undefined;
   icon: string;
   classes: string;
+  disabled: boolean;
 }) {
   return (
-    <button type={type} className={`button ${classes}`}>
+    <button type={type} className={`button ${classes}`} disabled={disabled}>
       <p className="label">{label}</p>
       {icon ? (
         <div className="buttonIconContainer">

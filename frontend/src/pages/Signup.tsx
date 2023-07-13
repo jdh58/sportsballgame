@@ -1,11 +1,58 @@
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
+import { AuthContext } from '../context/AuthContext';
 
 import '../styles/Signup.css';
+import { useContext, useState } from 'react';
 
 export default function Signup() {
-  const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const Auth = useContext(AuthContext);
+
+  const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    e
+  ) => {
+    // Don't refresh the page
     e.preventDefault();
+
+    // Disable the button
+    setIsLoading(true);
+
+    // Extract the email and password from the form
+    const form = e.currentTarget;
+
+    // @ts-ignore
+    const email: string = form.elements['email'].value;
+    // @ts-ignore
+    const password: string = form.elements['password'].value;
+
+    // Request the signup and get the data
+    const response = await fetch('/api/users/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const responseData = await response.json();
+
+    // If bad, display the errors, enable the button, and return
+    if (responseData.error) {
+      setError(responseData.error);
+      setIsLoading(false);
+      return;
+    }
+
+    // If good, continue
+
+    // Update the authentication context to have the user with JWT
+    Auth.dispatch({ type: 'LOGIN', user: responseData });
+
+    // Store the user in localStorage
+    // Enable the button
   };
 
   return (
@@ -25,15 +72,14 @@ export default function Signup() {
             <label htmlFor="password">Password</label>
             <input type="password" name="password" id="password" />
           </div>
-          <ul className="errors">
-            <li>Please enter the proper thing</li>
-          </ul>
+          <ul className="errors">{error && <li>{error}</li>}</ul>
           <div className="buttonContainer">
             <Button
               label="Create Account"
               type="submit"
               icon=""
               classes="signup"
+              disabled={isLoading}
             />
             <p>
               Already have an account? <Link to="/login">Log in</Link>

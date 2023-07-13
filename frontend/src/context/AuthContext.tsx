@@ -1,6 +1,17 @@
-import { createContext, useReducer } from 'react';
+import { Dispatch, createContext, useReducer } from 'react';
 
-export const AuthContext = createContext({});
+type Auth = {
+  user: {
+    email: string;
+    username: string;
+    _id: string;
+    token: string;
+  } | null;
+  dispatch: Dispatch<ReactAction>;
+};
+
+// @ts-expect-error
+export const AuthContext = createContext<Auth>({ user: null, dispatch: null });
 
 type ReactAction = {
   type: string;

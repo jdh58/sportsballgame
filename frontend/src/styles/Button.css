@@ -11,6 +11,10 @@
   border: var(--button-border);
 }
 
+.button:disabled {
+  opacity: 50%;
+}
+
 .button:hover {
   cursor: pointer;
 }
