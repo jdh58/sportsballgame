@@ -35,7 +35,13 @@ export default function OptionsPage() {
           </div>
           <RoundContainer />
         </div>
-        <Button label="Start" icon={ArrowRight} classes="default easy" />
+        <Button
+          label="Start"
+          type="button"
+          icon={ArrowRight}
+          classes="default easy"
+          disabled={false}
+        />
       </div>
     </div>
   );

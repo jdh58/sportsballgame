@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const userRouter = require('./routes/userRoutes');
 
@@ -13,11 +14,14 @@ mongoose.connect(mongoDB).catch((err) => {
 
 const app = express();
 
+// Allow access from localhost
+app.use(cors());
+
 // Parse incoming requests as JSON
 app.use(express.json());
 
 app.use('/api/user', userRouter);
 
-app.listen(3000, () => {
-  console.log('server now running on port 3000');
+app.listen(parseInt(process.env.PORT), () => {
+  console.log(`server now running on port ${process.env.PORT}`);
 });

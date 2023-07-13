@@ -10,8 +10,11 @@ type Auth = {
   dispatch: Dispatch<ReactAction>;
 };
 
+/* The two TS expect errors here are because TS doesn't understand the value
+is initialized later no matter what */
+
 // @ts-expect-error
-export const AuthContext = createContext<Auth>({ user: null, dispatch: null });
+export const AuthContext = createContext<Auth>();
 
 type ReactAction = {
   type: string;
@@ -38,8 +41,11 @@ export const AuthContextProvider = ({
 }) => {
   const [state, dispatch] = useReducer(AuthReducer, { user: null });
 
+  console.log(`Auth Context: ${state}`);
+
   // The context's value will always be in sync with the reducer
   return (
+    // @ts-expect-error
     <AuthContext.Provider value={{ ...state, dispatch }}>
       {children}
     </AuthContext.Provider>

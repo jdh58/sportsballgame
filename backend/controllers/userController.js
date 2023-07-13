@@ -95,6 +95,8 @@ exports.signUp = [
 
   async function (req, res) {
     try {
+      console.log('SIGN UP CALLED');
+      console.log(req.body);
       // If there's validation errors, send them back
       if (!validationResult(req).isEmpty()) {
         res.status(400).json({ error: validationResult(req).errors[0].msg });
@@ -137,7 +139,12 @@ exports.signUp = [
       // If we got here, save the new user to the database and respond OK and give JWT
       await newUser.save();
       const token = createToken(newUser._id);
-      res.status(200).json({ user: newUser, token });
+      res.status(200).json({
+        email: newUser.email,
+        username: newUser.username,
+        _id: newUser._id,
+        token,
+      });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Error signing up' });
@@ -148,3 +155,11 @@ exports.signUp = [
 exports.deleteUser = function (req, res) {
   res.send('delete user');
 };
+
+// How to use userReducer() with action type,
+
+// Ampersand to do conditional rendering
+
+// Hooks you can access all their state the entire time not just return
+
+// Store in local storage

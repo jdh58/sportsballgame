@@ -15,8 +15,20 @@ export default function WhoAmI() {
       <div className="mainContainer">
         <div className="inputs">
           <GuessField type="player" />
-          <Button label="Guess" icon="" classes="small guess" />
-          <Button label="Next Hint" icon="" classes="small nexthint" />
+          <Button
+            label="Guess"
+            type="button"
+            icon=""
+            classes="small guess"
+            disabled={false}
+          />
+          <Button
+            label="Next Hint"
+            type="button"
+            icon=""
+            classes="small nexthint"
+            disabled={false}
+          />
         </div>
         {overlay ? null : (
           <div className="gameContainer">

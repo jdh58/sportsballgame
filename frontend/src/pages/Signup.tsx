@@ -14,45 +14,69 @@ export default function Signup() {
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e
   ) => {
-    // Don't refresh the page
-    e.preventDefault();
+    try {
+      // Don't refresh the page
+      e.preventDefault();
 
-    // Disable the button
-    setIsLoading(true);
+      // Disable the button
+      setIsLoading(true);
 
-    // Extract the email and password from the form
-    const form = e.currentTarget;
+      // Extract the email and password from the form
+      const form = e.currentTarget;
 
-    // @ts-ignore
-    const email: string = form.elements['email'].value;
-    // @ts-ignore
-    const password: string = form.elements['password'].value;
+      // @ts-ignore
+      const email: string = form.elements['email'].value;
+      // @ts-ignore
+      const password: string = form.elements['password'].value;
 
-    // Request the signup and get the data
-    const response = await fetch('/api/users/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
+      console.log(JSON.stringify({ email, password }));
+      // Request the signup and get the data
+      const response = await fetch('http://localhost:3100/api/user/signup', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const responseData = await response.json();
+      const responseData = await response.json();
+      /* Response if good should be:
+      {
+        email:
+        username:
+        _id:
+        token:
+      }
+  
+      If bad:
+      {
+        error:
+      }
+      */
 
-    // If bad, display the errors, enable the button, and return
-    if (responseData.error) {
-      setError(responseData.error);
+      // If bad, display the errors, enable the button, and return
+      if (responseData.error) {
+        setError(responseData.error);
+        setIsLoading(false);
+        return;
+      }
+
+      // If good, continue
+
+      // Update the authentication context to have the user with JWT
+      Auth.dispatch({ type: 'LOGIN', user: responseData });
+
+      // Store the user in localStorage
+      localStorage.setItem('user', JSON.stringify(Auth.user));
+
+      // Enable the button
       setIsLoading(false);
-      return;
+    } catch (err) {
+      console.error(err);
+      // Enable the button
+      setIsLoading(false);
     }
-
-    // If good, continue
-
-    // Update the authentication context to have the user with JWT
-    Auth.dispatch({ type: 'LOGIN', user: responseData });
-
-    // Store the user in localStorage
-    // Enable the button
   };
 
   return (
