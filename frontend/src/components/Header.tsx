@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ProfilePic from './ProfilePic';
 import Dropdown from '../assets/dropdown.svg';
 import '../styles/Header.css';
@@ -19,8 +20,12 @@ export default function Header() {
         </div>
       ) : (
         <div className="signInButtonContainer">
-          <button className="signIn">Log In</button>
-          <button className="register">Register</button>
+          <Link to="/login" className="login">
+            Log In
+          </Link>
+          <Link to="/signup" className="signup">
+            Sign Up
+          </Link>
         </div>
       )}
     </header>

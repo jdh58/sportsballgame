@@ -70,13 +70,13 @@ header.header > .profileIndicator {
   justify-self: flex-end;
 }
 
-.signInButtonContainer > button {
+.signInButtonContainer > a {
   font-family: 'Orbitron';
   font-size: 2.4rem;
   color: white;
 }
 
-.signInButtonContainer > button:hover {
+.signInButtonContainer > a:hover {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -89,7 +89,7 @@ header.header > .profileIndicator {
   header > .logo {
     font-size: 4rem;
   }
-  .signInButtonContainer > button {
+  .signInButtonContainer > a {
     font-size: 2.2rem;
   }
 }
