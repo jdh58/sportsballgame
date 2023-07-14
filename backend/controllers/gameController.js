@@ -2,6 +2,7 @@ const WhoAmI = require('../models/WhoAmI');
 const NBAPlayer = require('../models/NBAPlayer');
 
 const getRandomPlayer = require('../middlewear/getRandomPlayer');
+const createHints = require('../middlewear/createHints');
 const requireAuth = require('../middlewear/requireAuth');
 
 exports.startWhoAmIGame = async function (req, res, next) {

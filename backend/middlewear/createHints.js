@@ -1,10 +1,16 @@
+const { format, formatDistanceStrict } = require('date-fns');
+
 module.exports = function createHints(sport, Player) {
-  if (sport === 'nba') {
-  }
+  console.log(Player);
+  console.log(createDraftHint(Player, 4));
+  console.log(createDraftHint(Player, 1));
+  console.log(createDebutHint(Player, 4));
+  console.log(createDebutHint(Player, 1));
 };
 
 const hintFunctions = [
   createDraftHint,
+  createDebutHint,
   createStatHint,
   createScoringHint,
   createHometownHint,
@@ -25,40 +31,65 @@ const hintFunctions = [
   createShootingHandHint,
 ];
 
-const createDraftHint = () => {};
+function createDraftHint(Player, difficulty) {
+  // If they were drafted, use difficulty to choose between the info given
+  if (Player.draftPick < 0) {
+    return -1;
+  }
 
-const createStatHint = () => {};
+  if (difficulty > 2) {
+    return `I was drafted with pick number ${Player.draftPick}.`;
+  } else {
+    return `I was drafted with pick number ${Player.draftPick} in the ${Player.draftYear} draft.`;
+  }
+}
 
-const createScoringHint = () => {};
+function createDebutHint(Player, difficulty) {
+  // Give up more info if the difficulty is lower
+  if (difficulty > 2) {
+    return `I made my debut on ${format(Player.debut, 'MMMM d, yyyy')}.`;
+  } else {
+    return `I made my debut on ${format(
+      Player.debut,
+      'MMMM dd, yyyy'
+    )} at the age of ${formatDistanceStrict(Player.debut, new Date(), {
+      unit: 'years days',
+    })}`;
+  }
+}
 
-const createHometownHint = () => {};
+function createStatHint() {}
 
-const createChampionshipsHint = () => {};
+function createScoringHint() {}
 
-const createFunFactHint = () => {};
+function createHometownHint() {}
 
-const createTeamHint = () => {};
+function createChampionshipsHint() {}
 
-const createJerseyNumberHint = () => {};
+function createFunFactHint() {}
 
-const createPositionHint = () => {};
+function createTeamHint() {}
 
-const createMissingSeasonHint = () => {};
+function createJerseyNumberHint() {}
 
-const createMultipleTeamHint = () => {};
+function createPositionHint() {}
 
-const createContractHint = () => {};
+function createMissingSeasonHint() {}
 
-const createNicknameHint = () => {};
+function createMultipleTeamHint() {}
 
-const createYearsPlayedHint = () => {};
+function createContractHint() {}
 
-const createStartedHint = () => {};
+function createNicknameHint() {}
 
-const createAccoladeHint = () => {};
+function createYearsPlayedHint() {}
 
-const createMeasurablesHint = () => {};
+function createStartedHint() {}
 
-const createAgeHint = () => {};
+function createAccoladeHint() {}
 
-const createShootingHandHint = () => {};
+function createMeasurablesHint() {}
+
+function createAgeHint() {}
+
+function createShootingHandHint() {}
