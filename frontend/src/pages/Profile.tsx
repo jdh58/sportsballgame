@@ -92,6 +92,7 @@ export default function Profile() {
                 icon=""
                 classes="smaller"
                 disabled={true}
+                onClick={undefined}
               />
               <Button
                 label="+ Add"
@@ -99,6 +100,7 @@ export default function Profile() {
                 icon=""
                 classes="smaller easy"
                 disabled={true}
+                onClick={undefined}
               />
             </div>
           </div>

@@ -119,8 +119,6 @@ exports.signUp = [
 
   async function (req, res) {
     try {
-      console.log('SIGN UP CALLED');
-      console.log(req.body);
       // If there's validation errors, send them back
       if (!validationResult(req).isEmpty()) {
         res.status(400).json({ error: validationResult(req).errors[0].msg });

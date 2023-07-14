@@ -10,7 +10,9 @@ const WhoAmISchema = new Schema(
     currentRound: { type: Number, required: true },
     currentHint: { type: Number, required: true },
     score: { type: Number, required: true },
-    correctPlayer: { type: mongoose.SchemaTypes.ObjectId, required: true },
+    correctPlayer: { type: Object, required: true },
   },
   { timestamps: true }
 );
+
+module.exports = mongoose.model('WhoAmI', WhoAmISchema);

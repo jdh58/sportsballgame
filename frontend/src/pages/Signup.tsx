@@ -120,6 +120,7 @@ export default function Signup() {
               icon=""
               classes="signup"
               disabled={isLoading}
+              onClick={undefined}
             />
             <p>
               Already have an account? <Link to="/login">Log in</Link>

@@ -21,6 +21,7 @@ export default function WhoAmI() {
             icon=""
             classes="small guess"
             disabled={false}
+            onClick={undefined}
           />
           <Button
             label="Next Hint"
@@ -28,6 +29,7 @@ export default function WhoAmI() {
             icon=""
             classes="small nexthint"
             disabled={false}
+            onClick={undefined}
           />
         </div>
         {overlay ? null : (

@@ -22,25 +22,28 @@ export default function OptionsPage() {
   const navigate = useNavigate();
 
   const startGame = async () => {
-    // Redirect user to the game page
-    navigate('/whoami');
-
     // Start the game on the backend
-    const response = await fetch('http:localhost:3100/api/game/whoami/start', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'apllication/json',
-        Authorization: `${Auth.user?.token}`,
-      },
-    });
+    const response = await fetch(
+      'http://localhost:3100/api/game/whoami/start',
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Auth.user?.token}`,
+        },
+        body: JSON.stringify({ sport, difficulty, rounds }),
+      }
+    );
 
     // If the user has an invalid token, wipe the user and send them to login
-    if (response.status == 401) {
+    if (response.status === 401) {
       navigate('/logout');
+      return;
     }
 
-    // Otherwise, the game was successfully created.
+    // Otherwise, the game was successfully created. Send them to the game page
+    navigate('/whoami');
   };
 
   // TO-DO: Start button starts the game, go from there

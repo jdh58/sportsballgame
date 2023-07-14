@@ -1,7 +1,34 @@
-const requireAuth = require('./requireAuth');
+const WhoAmI = require('../models/WhoAmI');
+const NBAPlayer = require('../models/NBAPlayer');
 
-exports.startWhoAmIGame = function (req, res, next) {
+const getRandomPlayer = require('../middlewear/getRandomPlayer');
+const requireAuth = require('../middlewear/requireAuth');
+
+exports.startWhoAmIGame = async function (req, res, next) {
   const userID = requireAuth(req, res, next);
+  console.log(userID);
 
-  const newGame = new Game();
+  console.log(req.body);
+  const { sport, difficulty, rounds } = req.body;
+
+  const newGame = new WhoAmI({
+    userID,
+    gameMode: { sport, difficulty, rounds },
+    currentRound: 1,
+    currentHint: 4,
+    score: 0,
+  });
+
+  // Now randomly pick a player from the database
+
+  // First, get the number of players stored
+  const randomPlayer = await getRandomPlayer(sport, difficulty);
+
+  newGame;
+
+  console.log(randomPlayer);
+  res.send('banan');
+
+  if (difficulty === 'easy') {
+  }
 };
