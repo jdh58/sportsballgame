@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const userRouter = require('./routes/userRoutes');
+const gameRouter = require('./routes/gameRoutes');
 
 // Configure .env variables
 require('dotenv').config();
@@ -21,6 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/user', userRouter);
+app.use('/api/game', gameRouter);
 
 app.listen(parseInt(process.env.PORT), () => {
   console.log(`server now running on port ${process.env.PORT}`);

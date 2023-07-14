@@ -11,11 +11,19 @@ import '../styles/RoundContainer.css';
 import ArrowRight from '../assets/arrow-right.svg';
 import '../styles/OptionsPage.scss';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function OptionsPage() {
   const [sport, setSport] = useState('nba');
   const [difficulty, setDifficulty] = useState('medium');
   const [rounds, setRounds] = useState('free');
+
+  const navigate = useNavigate();
+
+  const startGame = () => {
+    // Redirect user to the game page
+    navigate('/whoami');
+  };
 
   // TO-DO: Start button starts the game, go from there
 
@@ -228,6 +236,7 @@ export default function OptionsPage() {
           icon={ArrowRight}
           classes="default easy"
           disabled={false}
+          onClick={startGame}
         />
       </div>
     </div>

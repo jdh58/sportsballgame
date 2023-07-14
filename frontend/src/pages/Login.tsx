@@ -114,6 +114,7 @@ export default function Login() {
               icon=""
               classes="login"
               disabled={isLoading}
+              onClick={undefined}
             />
             <p>
               <Link to="/login">Forgot password?</Link>
