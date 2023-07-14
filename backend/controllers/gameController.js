@@ -24,7 +24,10 @@ exports.startWhoAmIGame = async function (req, res, next) {
   // First, get the number of players stored
   const randomPlayer = await getRandomPlayer(sport, difficulty);
 
-  newGame;
+  newGame.correctPlayer = randomPlayer;
+
+  // Next up, create hints
+  createHints(sport, randomPlayer);
 
   console.log(randomPlayer);
   res.send('banan');

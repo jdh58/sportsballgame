@@ -25,4 +25,8 @@ const NBAPlayerSchema = new Schema({
   careerLength: { type: Number, required: true },
 });
 
+NBAPlayerSchema.virtual('yearsPlayed').get(function () {
+  return Object.keys(this.stats).length - 1;
+});
+
 module.exports = mongoose.model('NBAPlayer', NBAPlayerSchema);
