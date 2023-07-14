@@ -17,7 +17,7 @@ export default function Logout() {
     Auth.dispatch({ type: 'LOGOUT', user: null });
 
     // Send the user home
-    navigate('/');
+    navigate('/login');
   }, []);
 
   return <div className="page homePage"></div>;

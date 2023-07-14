@@ -4,6 +4,6 @@ const route = express.Router();
 
 const controller = require('../controllers/gameController');
 
-route.post('/start', controller.startGame);
+route.post('/whoami/start', controller.startWhoAmIGame);
 
 module.exports = route;

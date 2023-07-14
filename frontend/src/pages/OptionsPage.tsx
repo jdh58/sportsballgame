@@ -1,4 +1,3 @@
-import ToggleSwitch from '../components/ToggleSwitch';
 import Button from '../components/Button';
 import NBA from '../assets/nba.png';
 import MLB from '../assets/mlb.png';
@@ -20,9 +19,19 @@ export default function OptionsPage() {
 
   const navigate = useNavigate();
 
-  const startGame = () => {
+  const startGame = async () => {
     // Redirect user to the game page
     navigate('/whoami');
+
+    // Start the game on the backend
+    const response = await fetch('http:localhost:3100/api/game/whoami/start');
+
+    // If the user has an invalid token, wipe the user and send them to login
+    if (response.status == 401) {
+      navigate('/logout');
+    }
+
+    // Otherwise, the game was successfully created.
   };
 
   // TO-DO: Start button starts the game, go from there
