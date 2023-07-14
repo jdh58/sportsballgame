@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: 0.1s;
 }
 
 @media (max-width: 1800px) {

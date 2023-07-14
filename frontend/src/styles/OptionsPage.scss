@@ -69,6 +69,37 @@
   color: hsla(0, 0%, 100%, 0.5);
 }
 
+.page.optionsPage .optionButton:hover {
+  cursor: pointer;
+  box-shadow: 0px 5px 0px 0.5px #fff;
+  transform: translateY(-2px);
+}
+
+.page.optionsPage .optionButton:active {
+  cursor: pointer;
+  box-shadow: 0px 0px 0px 0.5px #fff;
+  transform: translateY(3px);
+}
+
+.page.optionsPage .optionButton.selected {
+  border-color: var(--hard-200);
+  box-shadow: 0px 3px 0px 0.5px var(--hard-200),
+    0px 3px 12px 0px var(--hard-200);
+}
+
+.page.optionsPage .optionButton.selected:hover {
+  cursor: pointer;
+  box-shadow: 0px 5px 0px 0.5px var(--hard-200),
+    0px 3px 16px 0px var(--hard-200);
+  transform: translateY(-2px);
+}
+
+.page.optionsPage .optionButton.selected:active {
+  cursor: pointer;
+  box-shadow: 0px 0px 0px 0.5px var(--hard-200), 0px 3px 6px 0px var(--hard-200);
+  transform: translateY(3px);
+}
+
 @media (max-width: 1800px) {
   .optionsPage {
     > .mainContainer {

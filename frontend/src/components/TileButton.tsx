@@ -1,14 +1,19 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/TileButton.css';
 
 export default function TileButton({
   label,
   bgImage = null,
   bgColor = null,
+  redirect,
 }: {
   label: string;
   bgImage: string | null;
   bgColor: string | null;
+  redirect: string;
 }) {
+  const navigate = useNavigate();
+
   return (
     <div
       className="tileButtonContainer"
@@ -22,6 +27,9 @@ export default function TileButton({
             }
           : {}
       }
+      onClick={() => {
+        navigate(redirect);
+      }}
     >
       <div
         className="tileButton"

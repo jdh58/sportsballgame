@@ -6,7 +6,7 @@ import '../styles/SportsContainer.css';
 export default function SportsContainer() {
   return (
     <div className="sportsContainer">
-      <button className="optionButton">
+      <button className="optionButton selected">
         <div className="optionPicContainer">
           <img src={NBA} alt="" />
         </div>

@@ -9,6 +9,19 @@
   box-shadow: var(--button-shadow);
   background-color: transparent;
   border: var(--button-border);
+  transition: 0.1s;
+}
+
+.button:hover {
+  cursor: pointer;
+  box-shadow: 0px 5px 0px 0.5px #fff;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  cursor: pointer;
+  box-shadow: 0px 0px 0px 0.5px #fff;
+  transform: translateY(3px);
 }
 
 .button:disabled {

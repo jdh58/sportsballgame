@@ -32,25 +32,39 @@ export default function HomePage() {
                 label="Who Am I?"
                 bgImage={WhoAmI}
                 bgColor="55, 5, 5"
+                redirect="/whoami/options"
               />
               <TileButton
                 label="Higher or Lower"
                 bgImage={Curry}
                 bgColor="20, 20, 2"
+                redirect="/"
               />
-              <TileButton label="More" bgImage={Hoop} bgColor="10, 36, 70" />
+              <TileButton
+                label="More"
+                bgImage={Hoop}
+                bgColor="10, 36, 70"
+                redirect="/"
+              />
             </div>
             <div className="right">
-              <TileButton label="Profile" bgImage={Locker} bgColor="55, 5, 5" />
+              <TileButton
+                label="Profile"
+                bgImage={Locker}
+                bgColor="55, 5, 5"
+                redirect={`/profile/${Auth.user?.username}`}
+              />
               <TileButton
                 label="Leaderboards"
                 bgImage={Leaderboard}
                 bgColor="20, 20, 2"
+                redirect="/leaderboard"
               />
               <TileButton
                 label="Settings"
                 bgImage={Gears}
                 bgColor="10, 36, 70"
+                redirect="/"
               />
             </div>
           </div>
