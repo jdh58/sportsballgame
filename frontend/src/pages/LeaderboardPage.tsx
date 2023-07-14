@@ -44,6 +44,10 @@ export default function LeaderboardPage() {
               ]}
             />
           </div>
+          <div>
+            <h2>Difficulty</h2>
+            <Selector name="mode" options={['Easy', 'Meduim', 'Hard']} />
+          </div>
         </section>
         <div className="leaderboardContainer">
           <h1 className="title">Leaderboard</h1>

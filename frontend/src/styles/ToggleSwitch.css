@@ -35,6 +35,6 @@
   cursor: pointer;
 }
 
-.toggleSwitch:hover > .indicator {
+.toggleSwitch.active > .indicator {
   left: 26.25px;
 }
