@@ -19,8 +19,12 @@ export default function DropdownMenu({ killMenu }: { killMenu: Function }) {
   return (
     <div className="dropdown">
       <div className="profile">
-        <ProfilePic image={Blank} />
-        <p className="username">jdh58</p>
+        {Auth.user ? (
+          <ProfilePic image={Auth.user?.profilePicURL} />
+        ) : (
+          <ProfilePic image={Blank} />
+        )}
+        <p className="username">{Auth.user?.username}</p>
       </div>
       <DropdownItem
         icon={User}
