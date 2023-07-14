@@ -51,8 +51,20 @@ export default function Profile() {
             </div>
           </div>
           <div className="buttons">
-            <Button label="Message" icon="" classes="smaller" />
-            <Button label="+ Add" icon="" classes="smaller easy" />
+            <Button
+              label="Message"
+              type="button"
+              icon=""
+              classes="smaller"
+              disabled={false}
+            />
+            <Button
+              label="+ Add"
+              type="button"
+              icon=""
+              classes="smaller easy"
+              disabled={false}
+            />
           </div>
         </div>
         <div className="separator"></div>

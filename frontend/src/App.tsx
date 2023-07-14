@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import LeaderboardPage from './pages/LeaderboardPage';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Logout from './pages/Logout';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <HashRouter>
         <Header />
         <Routes>
+          <Route path="/logout" element={<Logout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />

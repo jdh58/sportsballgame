@@ -19,7 +19,7 @@ export default function HomePage() {
       <main className="page homePage">
         <div className="mainContainer">
           {Auth.user ? (
-            <h2 className="welcome">Welcome, {Auth.user?.username}!</h2>
+            <h2 className="welcome">Welcome, {Auth.user.username}!</h2>
           ) : (
             <h2 className="welcome">
               You're currently signed out. <Link to="/login">Log in</Link> or{' '}

@@ -25,7 +25,7 @@ export default function DropdownMenu() {
       <DropdownItem
         icon={User}
         label="My Profile"
-        redirect={`/profile/${Auth.user?._id}`}
+        redirect={`/profile/${Auth.user?.username}`}
         classes=""
       />
       <DropdownItem
@@ -36,7 +36,12 @@ export default function DropdownMenu() {
       />
       <DropdownItem icon={Help} label="Help & Support" redirect="" classes="" />
       <DropdownItem icon={Settings} label="Settings" redirect="" classes="" />
-      <DropdownItem icon={Logout} label="Log Out" redirect="/" classes="red" />
+      <DropdownItem
+        icon={Logout}
+        label="Log Out"
+        redirect="/logout"
+        classes="red"
+      />
       <div className="lightMode">
         <p>Light</p>
         <ToggleSwitch />
