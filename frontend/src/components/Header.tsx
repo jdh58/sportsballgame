@@ -29,7 +29,11 @@ export default function Header() {
           </div>
           {dropdownShowing && (
             <>
-              <DropdownMenu />
+              <DropdownMenu
+                killMenu={() => {
+                  setDropdownShowing(false);
+                }}
+              />
               <div
                 className="overlay"
                 onClick={() => {

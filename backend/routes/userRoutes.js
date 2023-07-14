@@ -5,7 +5,7 @@ const route = express.Router();
 const controller = require('../controllers/userController');
 
 // GET user
-route.get('/:userId', controller.getUser);
+route.get('/:username', controller.getUser);
 
 // Log in user
 route.post('/login', controller.logIn);

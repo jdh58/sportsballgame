@@ -23,7 +23,15 @@ const profilePicURLS = [
 ];
 
 exports.getUser = async function (req, res) {
-  res.send('get user');
+  try {
+    // Anybody can get this info so don't bother to check token
+    const grabbedUser = await User.findOne({ username: req.params.username });
+
+    res.status(200).json(grabbedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Failed to grab user profile');
+  }
 };
 
 exports.logIn = [

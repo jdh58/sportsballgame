@@ -13,7 +13,7 @@ import '../styles/DropdownMenu.css';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
-export default function DropdownMenu() {
+export default function DropdownMenu({ killMenu }: { killMenu: Function }) {
   const Auth = useContext(AuthContext);
 
   return (
@@ -27,25 +27,35 @@ export default function DropdownMenu() {
         label="My Profile"
         redirect={`/profile/${Auth.user?.username}`}
         classes=""
+        killMenu={killMenu}
       />
       <DropdownItem
         icon={Leaderboard}
         label="Leaderboard"
         redirect="/leaderboard"
         classes=""
+        killMenu={killMenu}
       />
       <DropdownItem
         icon={Help}
         label="Contact & Support"
         redirect=""
         classes=""
+        killMenu={killMenu}
       />
-      <DropdownItem icon={Settings} label="Settings" redirect="" classes="" />
+      <DropdownItem
+        icon={Settings}
+        label="Settings"
+        redirect=""
+        classes=""
+        killMenu={killMenu}
+      />
       <DropdownItem
         icon={Logout}
         label="Log Out"
         redirect="/logout"
         classes="red"
+        killMenu={killMenu}
       />
       <div className="lightMode">
         <p>Light</p>

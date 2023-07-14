@@ -6,11 +6,13 @@ export default function DropdownMenuItem({
   label,
   redirect,
   classes,
+  killMenu,
 }: {
   icon: string;
   label: string;
   redirect: string;
   classes: string;
+  killMenu: Function;
 }) {
   const navigate = useNavigate();
 
@@ -18,6 +20,7 @@ export default function DropdownMenuItem({
     <div
       className={`dropdownItem ${classes}`}
       onClick={() => {
+        killMenu();
         navigate(redirect);
       }}
     >
