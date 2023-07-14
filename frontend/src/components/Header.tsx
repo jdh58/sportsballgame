@@ -13,7 +13,9 @@ export default function Header() {
 
   return (
     <header className="header">
-      <p className="logo">SportsBallGame.com</p>
+      <Link to="/" className="logo">
+        SportsBallGame.com
+      </Link>
       {Auth.user ? (
         <div className="profileIndicator">
           <ProfilePic image={Auth.user.profilePicURL} />

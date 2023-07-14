@@ -20,7 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:userID" element={<Profile />} />
           <Route path="/gameover" element={<GameOver />} />
           <Route path="/whoami/options" element={<OptionsPage />} />
           <Route path="/whoami/" element={<WhoAmI />} />

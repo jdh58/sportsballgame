@@ -23,7 +23,7 @@ export default function HomePage() {
           ) : (
             <h2 className="welcome">
               You're currently signed out. <Link to="/login">Log in</Link> or{' '}
-              <Link to="/register">Register</Link>?
+              <Link to="/signup">Sign Up</Link>?
             </h2>
           )}
           <div className="optionsContainer">

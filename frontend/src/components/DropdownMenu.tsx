@@ -34,7 +34,12 @@ export default function DropdownMenu() {
         redirect="/leaderboard"
         classes=""
       />
-      <DropdownItem icon={Help} label="Help & Support" redirect="" classes="" />
+      <DropdownItem
+        icon={Help}
+        label="Contact & Support"
+        redirect=""
+        classes=""
+      />
       <DropdownItem icon={Settings} label="Settings" redirect="" classes="" />
       <DropdownItem
         icon={Logout}
