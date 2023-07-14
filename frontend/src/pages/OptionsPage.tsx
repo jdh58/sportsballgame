@@ -9,14 +9,16 @@ import '../styles/RoundContainer.css';
 
 import ArrowRight from '../assets/arrow-right.svg';
 import '../styles/OptionsPage.scss';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 export default function OptionsPage() {
   const [sport, setSport] = useState('nba');
   const [difficulty, setDifficulty] = useState('medium');
   const [rounds, setRounds] = useState('free');
 
+  const Auth = useContext(AuthContext);
   const navigate = useNavigate();
 
   const startGame = async () => {
@@ -24,7 +26,14 @@ export default function OptionsPage() {
     navigate('/whoami');
 
     // Start the game on the backend
-    const response = await fetch('http:localhost:3100/api/game/whoami/start');
+    const response = await fetch('http:localhost:3100/api/game/whoami/start', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'apllication/json',
+        Authorization: `${Auth.user?.token}`,
+      },
+    });
 
     // If the user has an invalid token, wipe the user and send them to login
     if (response.status == 401) {
