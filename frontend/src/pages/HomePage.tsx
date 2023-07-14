@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import TileButton from '../components/TileButton';
 import Footer from '../components/Footer';
@@ -9,25 +9,17 @@ import Leaderboard from '../assets/leaderboard.jpg';
 import Gears from '../assets/gears.jpg';
 import Hoop from '../assets/hoop.jpg';
 import '../styles/HomePage.css';
+import { AuthContext } from '../context/AuthContext';
 
 export default function HomePage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Get user here
-  interface User {
-    username: string;
-  }
-
-  const User: User = {
-    username: '',
-  };
+  const Auth = useContext(AuthContext);
 
   return (
     <>
       <main className="page homePage">
         <div className="mainContainer">
-          {isLoggedIn ? (
-            <h2 className="welcome">Welcome, {User.username}</h2>
+          {Auth.user ? (
+            <h2 className="welcome">Welcome, {Auth.user?.username}!</h2>
           ) : (
             <h2 className="welcome">
               You're currently signed out. <Link to="/login">Log in</Link> or{' '}

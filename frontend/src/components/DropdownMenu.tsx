@@ -10,19 +10,33 @@ import Settings from '../assets/settings.svg';
 import Logout from '../assets/logout.svg';
 
 import '../styles/DropdownMenu.css';
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 export default function DropdownMenu() {
+  const Auth = useContext(AuthContext);
+
   return (
     <div className="dropdown">
       <div className="profile">
         <ProfilePic image={Blank} />
         <p className="username">jdh58</p>
       </div>
-      <DropdownItem icon={User} label="My Profile" classes="" />
-      <DropdownItem icon={Leaderboard} label="Leaderboards" classes="" />
-      <DropdownItem icon={Help} label="Help & Support" classes="" />
-      <DropdownItem icon={Settings} label="Settings" classes="" />
-      <DropdownItem icon={Logout} label="Log Out" classes="red" />
+      <DropdownItem
+        icon={User}
+        label="My Profile"
+        redirect={`/profile/${Auth.user?._id}`}
+        classes=""
+      />
+      <DropdownItem
+        icon={Leaderboard}
+        label="Leaderboard"
+        redirect="/leaderboard"
+        classes=""
+      />
+      <DropdownItem icon={Help} label="Help & Support" redirect="" classes="" />
+      <DropdownItem icon={Settings} label="Settings" redirect="" classes="" />
+      <DropdownItem icon={Logout} label="Log Out" redirect="/" classes="red" />
       <div className="lightMode">
         <p>Light</p>
         <ToggleSwitch />

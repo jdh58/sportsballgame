@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 
 import '../styles/Signup.css';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Login() {
@@ -11,6 +11,13 @@ export default function Login() {
   const navigate = useNavigate();
 
   const Auth = useContext(AuthContext);
+
+  useEffect(() => {
+    // If the user is logged in, navigate to home page
+    if (Auth.user) {
+      navigate('/');
+    }
+  }, [Auth]);
 
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e

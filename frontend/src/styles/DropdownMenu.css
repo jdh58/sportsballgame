@@ -5,9 +5,10 @@
   flex-direction: column;
   border-radius: var(--main-border-radius);
   position: absolute;
-  right: 300px;
-  top: 200px;
+  top: 90px;
+  right: 0;
   box-shadow: var(--default-shadow);
+  z-index: 6;
 }
 
 .dropdown .profile {
@@ -31,4 +32,19 @@
   justify-content: center;
   gap: 15px;
   font-size: 2rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+}
+
+@media (max-width: 1800px) {
+  .dropdown {
+    top: 75px;
+  }
 }
