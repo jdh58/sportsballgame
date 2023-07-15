@@ -53,7 +53,7 @@ function createDraftHint(Player, difficulty) {
 }
 
 function createDebutHint(Player, difficulty) {
-  const randomSelector = Math.floor(Math.random() * 2);
+  const randomSelector = Math.floor(Math.random() * 3);
 
   // Select either debut age or current age
   if (randomSelector === 0) {
@@ -71,11 +71,23 @@ function createDebutHint(Player, difficulty) {
         differenceInDays(Player.debut, Player.birthdate) % 365
       } days.`;
     }
-  } else {
+  } else if (randomSelector === 1) {
     // Give current age
     return `I am ${differenceInYears(new Date(), Player.birthdate)} years and ${
       differenceInDays(new Date(), Player.birthdate) % 365
     } days old.`;
+  } else {
+    const statsList = Player.stats;
+
+    let seasonCount = 0;
+
+    for (let season in statsList) {
+      if (season !== 'career') {
+        seasonCount++;
+      }
+    }
+
+    return `I have played for ${seasonCount} seasons.`;
   }
 }
 
@@ -315,9 +327,23 @@ function createNicknameHint(Player, difficulty) {
   return `I have the nickname ${Player.nicknames[randomSelector]}.`;
 }
 
-function createYearsPlayedHint() {}
+function createStartedHint(Player, difficulty) {
+  const randomSelector = Math.floor(Math.random() * 2);
 
-function createStartedHint() {}
+  if (randomSelector === 0) {
+    const percentStarted = (
+      Player.stats['2022-23'].games_started / Player.stats['2022-23'].games
+    ).toFixed(1);
+
+    return `I have started in ${percentStarted}% of my games in the 2022-23 season.`;
+  } else {
+    const percentStarted = (
+      Player.stats.career.games_started / Player.stats.career.games
+    ).toFixed(1);
+
+    return `I have started in ${percentStarted}% of my career games.`;
+  }
+}
 
 function createAccoladeHint() {}
 
