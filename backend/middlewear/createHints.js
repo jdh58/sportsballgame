@@ -33,7 +33,6 @@ const hintFunctions = [
   createStartedHint,
   createAccoladeHint,
   createMeasurablesHint,
-  createAgeHint,
   createShootingHandHint,
 ];
 
@@ -51,19 +50,29 @@ function createDraftHint(Player, difficulty) {
 }
 
 function createDebutHint(Player, difficulty) {
-  // Give up more info if the difficulty is lower
-  if (difficulty > 2) {
-    return `I made my debut on ${format(Player.debut, 'MMMM d, yyyy')}.`;
+  const randomSelector = Math.floor(Math.random() * 2);
+
+  // Select either debut age or current age
+  if (randomSelector === 0) {
+    // Give up more info if the difficulty is lower
+    if (difficulty > 2) {
+      return `I made my debut on ${format(Player.debut, 'MMMM d, yyyy')}.`;
+    } else {
+      return `I made my debut on ${format(
+        Player.debut,
+        'MMMM d, yyyy'
+      )} at the age of ${differenceInYears(
+        Player.debut,
+        Player.birthdate
+      )} years and ${
+        differenceInDays(Player.debut, Player.birthdate) % 365
+      } days.`;
+    }
   } else {
-    return `I made my debut on ${format(
-      Player.debut,
-      'MMMM d, yyyy'
-    )} at the age of ${differenceInYears(
-      Player.debut,
-      Player.birthdate
-    )} years and ${
-      differenceInDays(Player.debut, Player.birthdate) % 365
-    } days.`;
+    // Give current age
+    return `I am ${differenceInYears(new Date(), Player.birthdate)} years and ${
+      differenceInDays(new Date(), Player.birthdate) % 365
+    } days old.`;
   }
 }
 
@@ -207,12 +216,33 @@ function createTeamHint(Player, difficulty) {
 
   return `I played for ${Player.stats['2022-23'].teams.join(
     ' and '
-  )} in the 2022-23 season`;
+  )} in the 2022-23 season.`;
 }
 
-function createJerseyNumberHint() {}
+function createJerseyNumberHint(Player, difficulty) {
+  // Not really a good first hint or very easy one
+  if (difficulty === 4 || difficulty === 1) {
+    return -1;
+  }
 
-function createPositionHint() {}
+  if (Player.jerseyNumbers.length === 1) {
+    return `I have only worn the jersey number ${Player.jerseyNumbers[0]}.`;
+  } else {
+    return `I have worn the jersey numbers ${Player.jerseyNumbers.join(', ')}`;
+  }
+}
+
+function createPositionHint(Player, difficulty) {
+  if (difficulty === 4) {
+    return -1;
+  }
+
+  if (Player.positions.length === 1) {
+    return `The position I play is ${Player.positions[0]}`;
+  } else {
+    return `The positions I play are ${Player.positions.join(' and ')}`;
+  }
+}
 
 function createMissingSeasonHint() {}
 
@@ -229,8 +259,6 @@ function createStartedHint() {}
 function createAccoladeHint() {}
 
 function createMeasurablesHint() {}
-
-function createAgeHint() {}
 
 function createShootingHandHint() {}
 
