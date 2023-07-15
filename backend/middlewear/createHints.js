@@ -32,7 +32,6 @@ const hintFunctions = [
   createMissingSeasonHint,
   createContractHint,
   createNicknameHint,
-  createYearsPlayedHint,
   createStartedHint,
   createAccoladeHint,
   createMeasurablesHint,
@@ -243,7 +242,9 @@ function createJerseyNumberHint(Player, difficulty) {
   if (Player.jerseyNumbers.length === 1) {
     return `I have only worn the jersey number ${Player.jerseyNumbers[0]}.`;
   } else {
-    return `I have worn the jersey numbers ${Player.jerseyNumbers.join(', ')}`;
+    return `I have worn the jersey numbers ${Player.jerseyNumbers
+      .join(', ')
+      .trim()}.`;
   }
 }
 
@@ -345,7 +346,21 @@ function createStartedHint(Player, difficulty) {
   }
 }
 
-function createAccoladeHint(Player, difficulty) {}
+function createAccoladeHint(Player, difficulty) {
+  const accolades = Player.accolades;
+
+  if (difficulty === 1 && accolades.length > 3) {
+    return `My accolades are ${accolades.join(', ').trim()}.`;
+  }
+
+  const randomSelector = Math.floor(Math.random() * 2);
+
+  if (randomSelector === 0 && Player.mvps > 0) {
+    return `I am a ${Player.mvps} time MVP.`;
+  } else if (Player.allStars > 0) {
+    return `I am a ${Player.allStars} time all-star.`;
+  }
+}
 
 function createMeasurablesHint(Player, difficulty) {
   return `I am ${Player.height} and ${Player.weight} pounds`;
