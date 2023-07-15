@@ -9,6 +9,9 @@ module.exports = function createHints(sport, Player) {
   console.log(createStatHint(Player, 1));
   console.log(createScoringHint(Player, 1));
   console.log(createHometownHint(Player, 1));
+  console.log(createChampionshipsHint(Player, 1));
+  console.log(createFunFactHint(Player, 1));
+  console.log(createTeamHint(Player, 1));
 };
 
 const hintFunctions = [
@@ -168,11 +171,44 @@ function createHometownHint(Player, difficulty) {
   return `I was born in ${Player.birthplace}.`;
 }
 
-function createChampionshipsHint() {}
+function createChampionshipsHint(Player, difficulty) {
+  const championships = Player.championships;
 
-function createFunFactHint() {}
+  if (difficulty === 4 || championships === 0) {
+    return -1;
+  }
 
-function createTeamHint() {}
+  // Anti plural
+  if (championships === 1) {
+    return `I have won ${championships} NBA championship.`;
+  }
+
+  return `I have won ${championships} NBA championships.`;
+}
+
+function createFunFactHint(Player, difficulty) {
+  const { funFacts } = Player;
+
+  // They have to have a fun fact to use
+  if (funFacts.length === 0) {
+    return -1;
+  }
+
+  const randomSelector = Math.floor(Math.random() * funFacts.length);
+
+  return funFacts[randomSelector];
+}
+
+function createTeamHint(Player, difficulty) {
+  // This isn't a good first hint, so return if it's the start
+  if (difficulty === 4) {
+    return -1;
+  }
+
+  return `I played for ${Player.stats['2022-23'].teams.join(
+    ' and '
+  )} in the 2022-23 season`;
+}
 
 function createJerseyNumberHint() {}
 
