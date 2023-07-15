@@ -293,7 +293,16 @@ function createMissingSeasonHint(Player, difficulty) {
   }
 }
 
-function createContractHint() {}
+function createContractHint(Player, difficulty) {
+  // Randomly select between career earnings and recent salary
+  const randomSelector = Math.floor(Math.random() * 2);
+
+  if (randomSelector === 0) {
+    return `I have made ${Player.careerEarnings} money in my career.`;
+  } else {
+    return `I was paid ${Player.recentSalary} money in the 2022-23 season.`;
+  }
+}
 
 function createNicknameHint() {}
 
