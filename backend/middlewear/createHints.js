@@ -345,9 +345,11 @@ function createStartedHint(Player, difficulty) {
   }
 }
 
-function createAccoladeHint() {}
+function createAccoladeHint(Player, difficulty) {}
 
-function createMeasurablesHint() {}
+function createMeasurablesHint(Player, difficulty) {
+  return `I am ${Player.height} and ${Player.weight} pounds`;
+}
 
 function createShootingHandHint(Player, difficulty) {
   // If they're right handed it's lame
