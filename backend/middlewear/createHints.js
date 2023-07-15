@@ -305,7 +305,15 @@ function createContractHint(Player, difficulty) {
   }
 }
 
-function createNicknameHint(Player, difficulty) {}
+function createNicknameHint(Player, difficulty) {
+  if (Player.nicknames.length === 0) {
+    return -1;
+  }
+
+  const randomSelector = Math.floor(Math.random() * Player.nicknames.length);
+
+  return `I have the nickname ${Player.nicknames[randomSelector]}.`;
+}
 
 function createYearsPlayedHint() {}
 
