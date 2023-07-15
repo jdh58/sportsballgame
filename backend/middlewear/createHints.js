@@ -7,6 +7,7 @@ module.exports = function createHints(sport, Player) {
   console.log(createDebutHint(Player, 4));
   console.log(createDebutHint(Player, 1));
   console.log(createStatHint(Player, 1));
+  console.log(createScoringHint(Player, 1));
 };
 
 const hintFunctions = [
@@ -109,7 +110,41 @@ function createStatHint(Player, difficulty) {
   }
 }
 
-function createScoringHint() {}
+function createScoringHint(Player, difficulty) {
+  const randomSelector1 = Math.floor(Math.random() * 2);
+  const randomSelector2 = Math.floor(Math.random() * 4);
+
+  let shotType;
+
+  switch (randomSelector2) {
+    case 0:
+      shotType = ['the free throw line', 'fta', 'ft_pct'];
+      break;
+    case 1:
+      shotType = ['the field', 'fga', 'fg_pct'];
+      break;
+    case 2:
+      shotType = ['two', '2pa', '2p_pct'];
+      break;
+    case 3:
+      shotType = ['three', '3pa', '3p_pct'];
+      break;
+  }
+
+  if (randomSelector1 === 0) {
+    return `I shot ${(Player.stats['2022-23'][shotType[2]] * 100).toFixed(
+      1
+    )}% from ${shotType[0]} on ${
+      Player.stats['2022-23'][shotType[1]]
+    } attemps per game in the 2022-23 season.`;
+  } else {
+    return `I have shot ${(Player.stats.career[shotType[2]] * 100).toFixed(
+      1
+    )}% from ${shotType[0]} on ${
+      Player.stats.career[shotType[1]]
+    } attemps per game in my career.`;
+  }
+}
 
 function createHometownHint() {}
 
