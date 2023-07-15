@@ -8,6 +8,7 @@ module.exports = function createHints(sport, Player) {
   console.log(createDebutHint(Player, 1));
   console.log(createStatHint(Player, 1));
   console.log(createScoringHint(Player, 1));
+  console.log(createHometownHint(Player, 1));
 };
 
 const hintFunctions = [
@@ -146,7 +147,26 @@ function createScoringHint(Player, difficulty) {
   }
 }
 
-function createHometownHint() {}
+function createHometownHint(Player, difficulty) {
+  // This hint isn't too helpful unless they're from outside the US, so don't
+  // use it on low difficulty levels.
+  let isUS = false;
+
+  for (let i = 0; i < states.length; i++) {
+    const stateRegEx = RegExp(states[i]);
+    if (stateRegEx.test(Player.birthplace)) {
+      isUS = true;
+      break;
+    }
+  }
+
+  if (difficulty <= 2 && isUS) {
+    return -1;
+  }
+
+  // Otherwise, either difficulty is high enough or it is useful enough to use
+  return `I was born in ${Player.birthplace}.`;
+}
 
 function createChampionshipsHint() {}
 
@@ -177,3 +197,56 @@ function createMeasurablesHint() {}
 function createAgeHint() {}
 
 function createShootingHandHint() {}
+
+const states = [
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Pennsylvania',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming',
+];
