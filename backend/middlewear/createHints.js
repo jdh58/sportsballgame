@@ -1,4 +1,4 @@
-const { format, formatDistanceStrict } = require('date-fns');
+const { format, differenceInDays, differenceInYears } = require('date-fns');
 
 module.exports = function createHints(sport, Player) {
   console.log(Player);
@@ -51,10 +51,13 @@ function createDebutHint(Player, difficulty) {
   } else {
     return `I made my debut on ${format(
       Player.debut,
-      'MMMM dd, yyyy'
-    )} at the age of ${formatDistanceStrict(Player.debut, new Date(), {
-      unit: 'years days',
-    })}`;
+      'MMMM d, yyyy'
+    )} at the age of ${differenceInYears(
+      Player.debut,
+      Player.birthdate
+    )} years and ${
+      differenceInDays(Player.debut, Player.birthdate) % 365
+    } days.`;
   }
 }
 
