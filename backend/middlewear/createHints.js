@@ -12,6 +12,9 @@ module.exports = function createHints(sport, Player) {
   console.log(createChampionshipsHint(Player, 1));
   console.log(createFunFactHint(Player, 1));
   console.log(createTeamHint(Player, 1));
+  console.log(createJerseyNumberHint(Player, 1));
+  console.log(createPositionHint(Player, 1));
+  console.log(createMissingSeasonHint(Player, 1));
 };
 
 const hintFunctions = [
@@ -26,7 +29,6 @@ const hintFunctions = [
   createJerseyNumberHint,
   createPositionHint,
   createMissingSeasonHint,
-  createMultipleTeamHint,
   createContractHint,
   createNicknameHint,
   createYearsPlayedHint,
@@ -244,9 +246,52 @@ function createPositionHint(Player, difficulty) {
   }
 }
 
-function createMissingSeasonHint() {}
+function createMissingSeasonHint(Player, difficulty) {
+  const statsList = Player.stats;
 
-function createMultipleTeamHint() {}
+  let prevSeason = null;
+  let missedSeasons = 0;
+  let firstMissed = null;
+
+  for (let season in statsList) {
+    // We don't want career to interfere
+    if (season === 'career') {
+      return;
+    }
+
+    const seasonNumber = parseInt(season.split(4)) + 1;
+
+    // If this isn't their rookie season
+    if (prevSeason) {
+      // And if they did not play two seasons in order
+      if (seasonNumber - prevSeason !== 1) {
+        missedSeasons = seasonNumber - prevSeason;
+        firstMissed = prevSeason + 1;
+      }
+    }
+
+    // Prepare for next loop
+    prevSeason = seasonNumber;
+  }
+
+  // Now, if they didn't miss a season, return -1
+  if (missedSeasons === 0) {
+    return -1;
+  }
+
+  const missedList = [];
+
+  for (let i = 0; i < missedSeasons; i++) {
+    missedList.push(firstMissed + i);
+  }
+
+  // Otherwise, give the proper message based on how many missed
+  if (missedSeasons === 1) {
+    return `I missed the entire ${missedList[0]} season.`;
+  } else {
+    return `I missed then enitre ${missedList.join(' and ')} seasons.`;
+  }
+}
 
 function createContractHint() {}
 
