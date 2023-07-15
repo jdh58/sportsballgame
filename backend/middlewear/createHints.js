@@ -15,6 +15,7 @@ module.exports = function createHints(sport, Player) {
   console.log(createJerseyNumberHint(Player, 1));
   console.log(createPositionHint(Player, 1));
   console.log(createMissingSeasonHint(Player, 1));
+  console.log(createContractHint(Player, 1));
 };
 
 const hintFunctions = [
@@ -304,7 +305,7 @@ function createContractHint(Player, difficulty) {
   }
 }
 
-function createNicknameHint() {}
+function createNicknameHint(Player, difficulty) {}
 
 function createYearsPlayedHint() {}
 
@@ -314,7 +315,14 @@ function createAccoladeHint() {}
 
 function createMeasurablesHint() {}
 
-function createShootingHandHint() {}
+function createShootingHandHint(Player, difficulty) {
+  // If they're right handed it's lame
+  if (Player.shootingHand === 'right') {
+    return -1;
+  } else {
+    return `I am ${Player.shootingHand} handed`;
+  }
+}
 
 const states = [
   'Alabama',
