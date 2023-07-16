@@ -22,7 +22,6 @@ function App() {
           <Route path="/leaderboard" element={<LeaderboardPage />} />
           <Route path="/profile/:userID" element={<Profile />} />
           <Route path="/gameover" element={<GameOver />} />
-          <Route path="/whoami/options" element={<OptionsPage />} />
           <Route path="/whoami/" element={<WhoAmI />} />
           <Route path="/" element={<HomePage />} />
         </Routes>

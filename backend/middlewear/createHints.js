@@ -1,22 +1,43 @@
 const { format, differenceInDays, differenceInYears } = require('date-fns');
 
 module.exports = function createHints(sport, Player) {
-  console.log(Player.name);
-  console.log(createDraftHint(Player, 4));
-  console.log(createDraftHint(Player, 1));
-  console.log(createDebutHint(Player, 4));
-  console.log(createDebutHint(Player, 1));
-  console.log(createStatHint(Player, 1));
-  console.log(createScoringHint(Player, 1));
-  console.log(createHometownHint(Player, 1));
-  console.log(createChampionshipsHint(Player, 1));
-  console.log(createFunFactHint(Player, 1));
-  console.log(createTeamHint(Player, 1));
-  console.log(createJerseyNumberHint(Player, 1));
-  console.log(createPositionHint(Player, 1));
-  console.log(createMissingSeasonHint(Player, 1));
-  console.log(createContractHint(Player, 1));
+  const alreadyUsedHints = [];
+  const hints = [];
+  let hintsLeft = 4;
+
+  let hint;
+  let randomSelector;
+
+  // Get hints until we get 3
+  // HintsLeft will be used as our difficulty
+  while (hintsLeft > 1) {
+    // Get a random number and new hintuntil it's not already used and the hint is valid
+    do {
+      randomSelector = Math.floor(Math.random() * hintFunctions.length);
+      hint = hintFunctions[randomSelector](Player, hintsLeft);
+    } while (alreadyUsedHints.includes(randomSelector) || hint === -1);
+
+    // Update the hints and make sure we don't use the same one
+    alreadyUsedHints.push(randomSelector);
+    hints.push(hint);
+    hintsLeft -= 1;
+  }
+
+  // Last hint will always be an easy one
+  do {
+    randomSelector = Math.floor(Math.random() * easyHintFunctions.length);
+    hint = easyHintFunctions[randomSelector](Player, hintsLeft);
+  } while (hint === -1);
+
+  hintsLeft -= 1;
+  hints.push(hint);
+
+  console.log(hints);
+
+  return hints;
 };
+
+const easyHintFunctions = [createTeamHint, createAccoladeHint];
 
 const hintFunctions = [
   createDraftHint,
@@ -26,7 +47,6 @@ const hintFunctions = [
   createHometownHint,
   createChampionshipsHint,
   createFunFactHint,
-  createTeamHint,
   createJerseyNumberHint,
   createPositionHint,
   createMissingSeasonHint,
@@ -36,6 +56,8 @@ const hintFunctions = [
   createAccoladeHint,
   createMeasurablesHint,
   createShootingHandHint,
+  createNameHint,
+  createHyphenHint,
 ];
 
 function createDraftHint(Player, difficulty) {
@@ -129,7 +151,7 @@ function createStatHint(Player, difficulty) {
   if (randomSelector1 === 0) {
     return `I averaged ${Player.stats['2022-23'][stats[0]]} ${
       stats[1]
-    } per game in the 2022-23 season.`;
+    } per game last season.`;
   } else {
     return `I have averaged ${Player.stats.career[stats[0]]} ${
       stats[1]
@@ -163,7 +185,7 @@ function createScoringHint(Player, difficulty) {
       1
     )}% from ${shotType[0]} on ${
       Player.stats['2022-23'][shotType[1]]
-    } attemps per game in the 2022-23 season.`;
+    } attemps per game last season.`;
   } else {
     return `I have shot ${(Player.stats.career[shotType[2]] * 100).toFixed(
       1
@@ -230,7 +252,7 @@ function createTeamHint(Player, difficulty) {
 
   return `I played for ${Player.stats['2022-23'].teams.join(
     ' and '
-  )} in the 2022-23 season.`;
+  )} last season.`;
 }
 
 function createJerseyNumberHint(Player, difficulty) {
@@ -270,7 +292,7 @@ function createMissingSeasonHint(Player, difficulty) {
   for (let season in statsList) {
     // We don't want career to interfere
     if (season === 'career') {
-      return;
+      return -1;
     }
 
     const seasonNumber = parseInt(season.split(4)) + 1;
@@ -314,7 +336,7 @@ function createContractHint(Player, difficulty) {
   if (randomSelector === 0) {
     return `I have made ${Player.careerEarnings} money in my career.`;
   } else {
-    return `I was paid ${Player.recentSalary} money in the 2022-23 season.`;
+    return `I was paid ${Player.recentSalary} money last season.`;
   }
 }
 
@@ -333,13 +355,15 @@ function createStartedHint(Player, difficulty) {
 
   if (randomSelector === 0) {
     const percentStarted = (
-      Player.stats['2022-23'].games_started / Player.stats['2022-23'].games
+      (Player.stats['2022-23'].games_started / Player.stats['2022-23'].games) *
+      100
     ).toFixed(1);
 
-    return `I have started in ${percentStarted}% of my games in the 2022-23 season.`;
+    return `I started in ${percentStarted}% of my games last season.`;
   } else {
     const percentStarted = (
-      Player.stats.career.games_started / Player.stats.career.games
+      (Player.stats.career.games_started / Player.stats.career.games) *
+      100
     ).toFixed(1);
 
     return `I have started in ${percentStarted}% of my career games.`;
@@ -349,8 +373,12 @@ function createStartedHint(Player, difficulty) {
 function createAccoladeHint(Player, difficulty) {
   const accolades = Player.accolades;
 
-  if (difficulty === 1 && accolades.length > 3) {
+  if (difficulty === 1 && accolades.length >= 3) {
     return `My accolades are ${accolades.join(', ').trim()}.`;
+  }
+
+  if (Player.mvps === 0 && Player.allStars === 0) {
+    return -1;
   }
 
   const randomSelector = Math.floor(Math.random() * 2);
@@ -368,10 +396,22 @@ function createMeasurablesHint(Player, difficulty) {
 
 function createShootingHandHint(Player, difficulty) {
   // If they're right handed it's lame
-  if (Player.shootingHand === 'right') {
+  if (Player.shootingHand === 'Right') {
     return -1;
   } else {
-    return `I am ${Player.shootingHand} handed`;
+    return `I am ${Player.shootingHand.toLowerCase()} handed`;
+  }
+}
+
+function createNameHint(Player, difficulty) {
+  return `My first name starts with ${Player.name.charAt(0)}`;
+}
+
+function createHyphenHint(Player, difficulty) {
+  if (/-/.test(Player.name)) {
+    return `My last name is hyphenated`;
+  } else {
+    return -1;
   }
 }
 

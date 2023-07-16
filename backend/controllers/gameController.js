@@ -28,10 +28,10 @@ exports.startWhoAmIGame = async function (req, res, next) {
   newGame.correctPlayer = randomPlayer;
 
   // Next up, create hints
-  createHints(sport, randomPlayer);
-
-  res.send('banan');
+  newGame.hints = createHints(sport, randomPlayer);
 
   if (difficulty === 'easy') {
   }
+
+  res.send(newGame);
 };

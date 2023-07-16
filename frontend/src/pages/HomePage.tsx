@@ -32,7 +32,7 @@ export default function HomePage() {
                 label="Who Am I?"
                 bgImage={WhoAmI}
                 bgColor="55, 5, 5"
-                redirect="/whoami/options"
+                redirect="/whoami"
               />
               <TileButton
                 label="Higher or Lower"
