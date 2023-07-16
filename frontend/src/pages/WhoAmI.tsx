@@ -24,8 +24,10 @@ export default function WhoAmI() {
   const [rounds, setRounds] = useState('free');
   const [overlay, setOverlay] = useState('none');
 
-  const [hints, setHints] = useState([]);
+  const [gameID, setGameID] = useState([]);
+  const [hints, setHints] = useState<Array<string>>([]);
   const [playerPicture, setPlayerPicture] = useState('');
+  const [correctAnswer, setCorrectAnswer] = useState('');
 
   const navigate = useNavigate();
   const [gameState, setGameState] = useState('before');
@@ -56,8 +58,31 @@ export default function WhoAmI() {
 
     // Otherwise, the game was successfully created. Update the game state
     setHints([json.hints]);
-    setPlayerPicture([json.playerPicture]);
+    setPlayerPicture(json.playerPicture);
+    setGameID(json._id);
     setGameState('during');
+  };
+
+  const getHint = async () => {
+    // Grab a new hint
+    const response = await fetch(
+      'http://localhost:3100/api/game/whoami/getHint',
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Auth.user?.token}`,
+        },
+        body: JSON.stringify({ gameID }),
+      }
+    );
+    const json = await response.json();
+
+    // Append it to the hints array
+    setHints([...hints, json.hint]);
+
+    console.log(json);
   };
 
   return (
@@ -260,7 +285,7 @@ export default function WhoAmI() {
                 icon=""
                 classes="small nexthint"
                 disabled={false}
-                onClick={undefined}
+                onClick={getHint}
               />
             </div>
             {overlay === 'none' && (
@@ -268,21 +293,19 @@ export default function WhoAmI() {
                 <div className="hintsContainer">
                   <div className="impossible">
                     <h3>Impossible (4 pts)</h3>
-                    <p className="hint">{hints[0] ? hints[0] : ''}</p>
+                    <p className="hint">{hints[0] && hints[0]}</p>
                   </div>
                   <div className="hard">
                     <h3>Hard (3 pts)</h3>
-                    <p className="hint">
-                      I went to Kentucky for college. It's lit!
-                    </p>
+                    <p className="hint">{hints[1] && hints[1]}</p>
                   </div>
                   <div className="normal">
                     <h3>Normal (2 pts)</h3>
-                    <p className="hint">Bro just get it already come on</p>
+                    <p className="hint">{hints[2] && hints[2]}</p>
                   </div>
                   <div className="easy">
                     <h3>Easy (1 pts)</h3>
-                    <p className="hint">I am literally LeBron James</p>
+                    <p className="hint">{hints[3] && hints[3]}</p>
                   </div>
                 </div>
                 <div className="player">
@@ -294,7 +317,9 @@ export default function WhoAmI() {
                       className="silhouette"
                     />
                   </div>
-                  <h4 className="playerName">Lebron James</h4>
+                  <h4 className="playerName">
+                    {correctAnswer && correctAnswer}
+                  </h4>
                 </div>
               </div>
             )}
