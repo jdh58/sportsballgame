@@ -61,7 +61,7 @@ const hintFunctions = [
 function createDraftHint(Player, difficulty) {
   // If they were drafted, use difficulty to choose between the info given
   if (Player.draftPick < 0) {
-    return -1;
+    return 'I went undrafted.';
   }
 
   if (difficulty > 2) {

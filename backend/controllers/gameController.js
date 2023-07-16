@@ -63,6 +63,12 @@ exports.getWhoAmIHint = async function (req, res, next) {
   game.hints.shift();
   game.currentHint = game.currentHint - 1;
 
+  // Have to mark hints as modified because it wasn't clear enough I guess...
+  game.markModified('hints');
+
+  // Save these updates to the database
+  await game.save();
+
   // Finally, send back the new hint
   res.json({ hint });
 };
