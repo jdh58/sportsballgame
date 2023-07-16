@@ -389,7 +389,7 @@ function createAccoladeHint(Player, difficulty) {
 }
 
 function createMeasurablesHint(Player, difficulty) {
-  return `I am ${Player.height} and ${Player.weight} pounds`;
+  return `I am ${Player.height} and ${Player.weight} pounds.`;
 }
 
 function createShootingHandHint(Player, difficulty) {
@@ -397,17 +397,17 @@ function createShootingHandHint(Player, difficulty) {
   if (Player.shootingHand === 'Right') {
     return -1;
   } else {
-    return `I am ${Player.shootingHand.toLowerCase()} handed`;
+    return `I am ${Player.shootingHand.toLowerCase()} handed.`;
   }
 }
 
 function createNameHint(Player, difficulty) {
-  return `My first name starts with ${Player.name.charAt(0)}`;
+  return `My first name starts with ${Player.name.charAt(0)}.`;
 }
 
 function createHyphenHint(Player, difficulty) {
   if (/-/.test(Player.name)) {
-    return `My last name is hyphenated`;
+    return `My last name is hyphenated.`;
   } else {
     return -1;
   }

@@ -70,5 +70,5 @@ exports.getWhoAmIHint = async function (req, res, next) {
   await game.save();
 
   // Finally, send back the new hint
-  res.json({ hint });
+  res.json({ hint, hintLevel: game.currentHint });
 };

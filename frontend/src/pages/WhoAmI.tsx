@@ -26,6 +26,8 @@ export default function WhoAmI() {
 
   const [gameID, setGameID] = useState([]);
   const [hints, setHints] = useState<Array<string>>([]);
+  const [hintText, setHintText] = useState<Array<string>>([]);
+  const [hintLevel, setHintLevel] = useState(4);
   const [playerPicture, setPlayerPicture] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState('');
 
@@ -61,9 +63,15 @@ export default function WhoAmI() {
     setPlayerPicture(json.playerPicture);
     setGameID(json._id);
     setGameState('during');
+    console.log(json);
   };
 
   const getHint = async () => {
+    // If they've already got all the hints, return
+    if (hintLevel <= 1) {
+      return;
+    }
+
     // Grab a new hint
     const response = await fetch(
       'http://localhost:3100/api/game/whoami/getHint',
@@ -81,9 +89,43 @@ export default function WhoAmI() {
 
     // Append it to the hints array
     setHints([...hints, json.hint]);
+    setHintLevel(json.hintLevel);
 
     console.log(json);
   };
+
+  // This will cause a text writing effect for the hints
+  useEffect(() => {
+    if (hints.length === 0) {
+      return;
+    }
+
+    const lastIndex = hints.length - 1;
+
+    let tempString = '';
+
+    let i = 0;
+
+    writeLoop();
+
+    function writeLoop() {
+      setTimeout(() => {
+        tempString += hints[lastIndex][i];
+
+        i++;
+
+        if (i % 5 === 0) {
+          console.log(hintText);
+        }
+        setHintText([...hintText, tempString]);
+
+        if (i < hints[lastIndex].length) {
+          writeLoop();
+        }
+        return;
+      }, 50);
+    }
+  }, [hints]);
 
   return (
     <>
@@ -293,19 +335,19 @@ export default function WhoAmI() {
                 <div className="hintsContainer">
                   <div className="impossible">
                     <h3>Impossible (4 pts)</h3>
-                    <p className="hint">{hints[0] && hints[0]}</p>
+                    <p className="hint">{hintText[0] && hintText[0]}</p>
                   </div>
                   <div className="hard">
                     <h3>Hard (3 pts)</h3>
-                    <p className="hint">{hints[1] && hints[1]}</p>
+                    <p className="hint">{hintText[1] && hintText[1]}</p>
                   </div>
                   <div className="normal">
                     <h3>Normal (2 pts)</h3>
-                    <p className="hint">{hints[2] && hints[2]}</p>
+                    <p className="hint">{hintText[2] && hintText[2]}</p>
                   </div>
                   <div className="easy">
                     <h3>Easy (1 pts)</h3>
-                    <p className="hint">{hints[3] && hints[3]}</p>
+                    <p className="hint">{hintText[3] && hintText[3]}</p>
                   </div>
                 </div>
                 <div className="player">
