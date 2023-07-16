@@ -32,7 +32,7 @@ exports.startWhoAmIGame = async function (req, res, next) {
   // Return the player's headshot picture and first hint
   const firstReturn = {
     playerPicture: newGame.correctPlayer.picture,
-    hints: [newGame.hints[0]],
+    hints: newGame.hints[0],
   };
 
   // Take off the first hint

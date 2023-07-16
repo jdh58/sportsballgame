@@ -22,11 +22,15 @@ export default function WhoAmI() {
   const [sport, setSport] = useState('nba');
   const [difficulty, setDifficulty] = useState('medium');
   const [rounds, setRounds] = useState('free');
+  const [overlay, setOverlay] = useState('none');
 
-  const Auth = useContext(AuthContext);
+  const [hints, setHints] = useState([]);
+  const [playerPicture, setPlayerPicture] = useState('');
+
   const navigate = useNavigate();
   const [gameState, setGameState] = useState('before');
-  const [overlay, setOverlay] = useState<string | null>('correct');
+
+  const Auth = useContext(AuthContext);
 
   const startGame = async () => {
     // Start the game on the backend
@@ -44,7 +48,6 @@ export default function WhoAmI() {
     );
     const json = await response.json();
 
-    console.log(json);
     // If the user has an invalid token, wipe the user and send them to login
     if (response.status === 401) {
       navigate('/logout');
@@ -52,6 +55,8 @@ export default function WhoAmI() {
     }
 
     // Otherwise, the game was successfully created. Update the game state
+    setHints([json.hints]);
+    setPlayerPicture([json.playerPicture]);
     setGameState('during');
   };
 
@@ -258,12 +263,12 @@ export default function WhoAmI() {
                 onClick={undefined}
               />
             </div>
-            {overlay ? null : (
+            {overlay === 'none' && (
               <div className="gameContainer">
                 <div className="hintsContainer">
                   <div className="impossible">
                     <h3>Impossible (4 pts)</h3>
-                    <p className="hint">I ate a Banana in the 6th grade</p>
+                    <p className="hint">{hints[0] ? hints[0] : ''}</p>
                   </div>
                   <div className="hard">
                     <h3>Hard (3 pts)</h3>
@@ -283,14 +288,18 @@ export default function WhoAmI() {
                 <div className="player">
                   <h2 className="title">Who Am I?</h2>
                   <div className="silhouetteContainer">
-                    <img src={LeBron} alt="" className="silhouette" />
+                    <img
+                      src={playerPicture ? playerPicture : LeBron}
+                      alt="player headshot silhouette"
+                      className="silhouette"
+                    />
                   </div>
                   <h4 className="playerName">Lebron James</h4>
                 </div>
               </div>
             )}
 
-            {overlay === 'correct' ? (
+            {overlay === 'correct' && (
               <div className="notifyContainer correct">
                 <div className="iconContainer">
                   <img src={Check} alt="" />
@@ -298,8 +307,8 @@ export default function WhoAmI() {
                 <p className="correct">Correct!</p>
                 <p className="score">+5 Points</p>
               </div>
-            ) : null}
-            {overlay === 'incorrect' ? (
+            )}
+            {overlay === 'incorrect' && (
               <div className="notifyContainer incorrect">
                 <div className="iconContainer">
                   <img src={Close} alt="" />
@@ -307,8 +316,7 @@ export default function WhoAmI() {
                 <p className="incorrect">Incorrect!</p>
                 <p className="score">No Points ;(</p>
               </div>
-            ) : null}
-
+            )}
             <div className="gameInfo">
               <div className="score">Score: 5</div>
               <div className="rounds">
