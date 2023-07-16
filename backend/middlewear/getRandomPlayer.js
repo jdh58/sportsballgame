@@ -23,7 +23,6 @@ module.exports = async function getRandomPlayer(sport, difficulty) {
       'stats.2022-23.mpg': { $gt: minutesLimit },
       'stats.2022-23.games': { $gt: minutesLimit > 15 ? 20 : 10 },
     }).exec();
-    console.log(playerCount);
 
     // Now, create a random number from 1-documentCount
     const random = Math.floor(Math.random() * playerCount);

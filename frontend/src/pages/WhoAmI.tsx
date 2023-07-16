@@ -44,13 +44,12 @@ export default function WhoAmI() {
     );
     const json = await response.json();
 
+    console.log(json);
     // If the user has an invalid token, wipe the user and send them to login
     if (response.status === 401) {
       navigate('/logout');
       return;
     }
-
-    console.log(json);
 
     // Otherwise, the game was successfully created. Update the game state
     setGameState('during');

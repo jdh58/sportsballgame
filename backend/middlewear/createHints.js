@@ -32,8 +32,6 @@ module.exports = function createHints(sport, Player) {
   hintsLeft -= 1;
   hints.push(hint);
 
-  console.log(hints);
-
   return hints;
 };
 

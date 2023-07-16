@@ -7,10 +7,12 @@ const requireAuth = require('../middlewear/requireAuth');
 
 exports.startWhoAmIGame = async function (req, res, next) {
   const userID = requireAuth(req, res, next);
-  console.log(userID);
-
-  console.log(req.body);
   const { sport, difficulty, rounds } = req.body;
+
+  if (sport !== 'nba') {
+    res.status(400).json({ error: 'No support for this sport' });
+    return;
+  }
 
   const newGame = new WhoAmI({
     userID,
@@ -21,17 +23,20 @@ exports.startWhoAmIGame = async function (req, res, next) {
   });
 
   // Now randomly pick a player from the database
-
-  // First, get the number of players stored
   const randomPlayer = await getRandomPlayer(sport, difficulty);
-
   newGame.correctPlayer = randomPlayer;
 
   // Next up, create hints
   newGame.hints = createHints(sport, randomPlayer);
 
-  if (difficulty === 'easy') {
-  }
+  // Return the player's headshot picture and first hint
+  const firstReturn = {
+    playerPicture: newGame.correctPlayer.picture,
+    hints: [newGame.hints[0]],
+  };
 
-  res.send(newGame);
+  // Take off the first hint
+  newGame.hints.shift();
+
+  res.status(200).json(firstReturn);
 };
