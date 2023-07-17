@@ -137,12 +137,17 @@ export default function WhoAmI() {
     }
 
     (async () => {
+      // Grab the answers based off the query
       const response = await fetch(
         `http://localhost:3100/api/game/playerSearch?search=${searchQuery}`
       );
       const json = await response.json();
+      const top5Answers = json.top5Answers;
 
-      console.log(json);
+      // Return the <li> elements for each answer
+      setAutofillAnswers(
+        top5Answers.map((answer: { name: string }) => <li>{answer.name}</li>)
+      );
     })();
   }, [guessFocus, searchQuery]);
 
@@ -356,6 +361,9 @@ export default function WhoAmI() {
                     setGuessFocus(false);
                   }}
                 />
+                {autofillAnswers.length > 0 && (
+                  <ul className="autofillContainer">{autofillAnswers}</ul>
+                )}
               </div>
               <Button
                 label="Guess"

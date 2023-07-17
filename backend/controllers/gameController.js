@@ -78,7 +78,6 @@ exports.playerSearch = async function (req, res, next) {
   try {
     const query = req.query.search;
 
-    console.log(query);
     await NBAPlayer.ensureIndexes({ name: 'text' });
 
     const top5Answers = await NBAPlayer.aggregate([
@@ -107,7 +106,7 @@ exports.playerSearch = async function (req, res, next) {
       .limit(5)
       .exec();
 
-    res.status(200).json({ answers: top5Answers });
+    res.status(200).json({ top5Answers });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to fetch search results.' });
