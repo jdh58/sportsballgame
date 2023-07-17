@@ -146,7 +146,17 @@ export default function WhoAmI() {
 
       // Return the <li> elements for each answer
       setAutofillAnswers(
-        top5Answers.map((answer: { name: string }) => <li>{answer.name}</li>)
+        top5Answers.map((answer: { name: string }) => (
+          <li
+            className="autofillAnswer"
+            onMouseDown={() => {
+              setSearchQuery(answer.name);
+              setGuessFocus(false);
+            }}
+          >
+            {answer.name}
+          </li>
+        ))
       );
     })();
   }, [guessFocus, searchQuery]);
@@ -341,26 +351,29 @@ export default function WhoAmI() {
         <div className="page whoAmIPage">
           <div className="mainContainer">
             <div className="inputs">
-              <div className="guessField">
-                <div className="searchIconContainer">
-                  <img src={Search} alt="" className="searchIcon" />
+              <div className="guessFieldContainer">
+                <div className="guessField">
+                  <div className="searchIconContainer">
+                    <img src={Search} alt="" className="searchIcon" />
+                  </div>
+                  <input
+                    type="text"
+                    name="guess"
+                    id="guess"
+                    placeholder="Type your guess..."
+                    maxLength={50}
+                    value={searchQuery}
+                    onChange={(e) => {
+                      setSearchQuery(e.currentTarget.value);
+                    }}
+                    onFocus={() => {
+                      setGuessFocus(true);
+                    }}
+                    onBlur={() => {
+                      setGuessFocus(false);
+                    }}
+                  />
                 </div>
-                <input
-                  type="text"
-                  name="guess"
-                  id="guess"
-                  placeholder="Type your guess..."
-                  maxLength={50}
-                  onChange={(e) => {
-                    setSearchQuery(e.currentTarget.value);
-                  }}
-                  onFocus={() => {
-                    setGuessFocus(true);
-                  }}
-                  onBlur={() => {
-                    setGuessFocus(false);
-                  }}
-                />
                 {autofillAnswers.length > 0 && (
                   <ul className="autofillContainer">{autofillAnswers}</ul>
                 )}
