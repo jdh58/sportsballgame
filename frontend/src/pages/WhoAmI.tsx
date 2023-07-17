@@ -17,6 +17,7 @@ import ArrowRight from '../assets/arrow-right.svg';
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function WhoAmI() {
   const [sport, setSport] = useState('nba');
@@ -37,6 +38,9 @@ export default function WhoAmI() {
   const Auth = useContext(AuthContext);
 
   const startGame = async () => {
+    console.log('baba');
+    setGameState('loading');
+
     // Start the game on the backend
     const response = await fetch(
       'http://localhost:3100/api/game/whoami/start',
@@ -101,24 +105,16 @@ export default function WhoAmI() {
     }
 
     const lastIndex = hints.length - 1;
-
     let tempString = '';
-
     let i = 0;
 
     writeLoop();
-
     function writeLoop() {
       setTimeout(() => {
         tempString += hints[lastIndex][i];
-
-        i++;
-
-        if (i % 5 === 0) {
-          console.log(hintText);
-        }
         setHintText([...hintText, tempString]);
 
+        i++;
         if (i < hints[lastIndex].length) {
           writeLoop();
         }
@@ -129,6 +125,11 @@ export default function WhoAmI() {
 
   return (
     <>
+      {gameState === 'loading' && (
+        <div className="page optionsPage">
+          <LoadingSpinner />
+        </div>
+      )}
       {gameState === 'before' && (
         <div className="page optionsPage">
           <div className="mainContainer">

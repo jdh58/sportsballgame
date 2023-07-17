@@ -76,20 +76,19 @@ function createDebutHint(Player, difficulty) {
 
   // Select either debut age or current age
   if (randomSelector === 0) {
-    // Give up more info if the difficulty is lower
-    if (difficulty > 2) {
-      return `I made my debut on ${format(Player.debut, 'MMMM d, yyyy')}.`;
-    } else {
-      return `I made my debut on ${format(
-        Player.debut,
-        'MMMM d, yyyy'
-      )} at the age of ${differenceInYears(
-        Player.debut,
-        Player.birthdate
-      )} years and ${
-        differenceInDays(Player.debut, Player.birthdate) % 365
-      } days.`;
-    }
+    // // Give up more info if the difficulty is lower
+    // if (difficulty > 2) {
+    //   return `I made my debut on ${format(Player.debut, 'MMMM d, yyyy')}.`;
+    // } else {
+    return `I made my debut on ${format(
+      Player.debut,
+      'MMMM d, yyyy'
+    )} at the age of ${differenceInYears(
+      Player.debut,
+      Player.birthdate
+    )} years and ${
+      differenceInDays(Player.debut, Player.birthdate) % 365
+    } days.`;
   } else if (randomSelector === 1) {
     // Give current age
     return `I am ${differenceInYears(new Date(), Player.birthdate)} years and ${
@@ -339,9 +338,13 @@ function createContractHint(Player, difficulty) {
   const randomSelector = Math.floor(Math.random() * 2);
 
   if (randomSelector === 0) {
-    return `I have made ${Player.careerEarnings} money in my career.`;
+    return `I have made $${Player.careerEarnings.toLocaleString(
+      'en-US'
+    )} in my career.`;
   } else {
-    return `I was paid ${Player.recentSalary} money last season.`;
+    return `I was paid $${Player.recentSalary.toLocaleString(
+      'en-US'
+    )} last season.`;
   }
 }
 
@@ -359,12 +362,7 @@ function createStartedHint(Player, difficulty) {
   const randomSelector = Math.floor(Math.random() * 2);
 
   if (randomSelector === 0) {
-    const percentStarted = (
-      (Player.stats['2022-23'].games_started / Player.stats['2022-23'].games) *
-      100
-    ).toFixed(1);
-
-    return `I started in ${percentStarted}% of my games last season.`;
+    return `I started in ${Player.stats['2022-23'].games_started} of my ${Player.stats['2022-23'].games} games last season.`;
   } else {
     const percentStarted = (
       (Player.stats.career.games_started / Player.stats.career.games) *
@@ -380,6 +378,8 @@ function createAccoladeHint(Player, difficulty) {
 
   if (difficulty === 1 && accolades.length >= 3) {
     return `My accolades are ${accolades.join(', ').trim()}.`;
+  } else if (difficulty === 1) {
+    return -1;
   }
 
   if (Player.mvps === 0 && Player.allStars === 0) {
@@ -405,7 +405,13 @@ function createShootingHandHint(Player, difficulty) {
 }
 
 function createNameHint(Player, difficulty) {
-  return `My first name starts with ${Player.name.charAt(0)}.`;
+  const randomSelector = Math.floor(Math.random() * 2);
+
+  if (randomSelector === 0) {
+    return `My first name starts with ${Player.name.charAt(0)}.`;
+  } else {
+    return `My last name starts with ${Player.name.split(' ')[1].charAt(0)}.`;
+  }
 }
 
 function createHyphenHint(Player, difficulty) {
