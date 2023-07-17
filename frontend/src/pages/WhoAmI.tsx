@@ -1,5 +1,6 @@
 import Button from '../components/Button';
-import GuessField from '../components/GuessField';
+
+import Search from '../assets/search.svg';
 import LeBron from '../assets/lebron.webp';
 import Check from '../assets/check.svg';
 import Close from '../assets/close.svg';
@@ -12,6 +13,7 @@ import '../styles/DifficultyContainer.css';
 import '../styles/RoundContainer.css';
 import '../styles/WhoAmI.css';
 import '../styles/OptionsPage.scss';
+import '../styles/GuessField.css';
 
 import ArrowRight from '../assets/arrow-right.svg';
 import { useEffect, useState, useContext } from 'react';
@@ -31,6 +33,10 @@ export default function WhoAmI() {
   const [hintLevel, setHintLevel] = useState(4);
   const [playerPicture, setPlayerPicture] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState('');
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [autofillAnswers, setAutofillAnswers] = useState([]);
+  const [guessFocus, setGuessFocus] = useState(false);
 
   const navigate = useNavigate();
   const [gameState, setGameState] = useState('before');
@@ -122,6 +128,23 @@ export default function WhoAmI() {
       }, 50);
     }
   }, [hints]);
+
+  // This will show the autocomplete if the text field is in focus
+  useEffect(() => {
+    if (!guessFocus || !searchQuery) {
+      setAutofillAnswers([]);
+      return;
+    }
+
+    (async () => {
+      const response = await fetch(
+        `http://localhost:3100/api/game/playerSearch?search=${searchQuery}`
+      );
+      const json = await response.json();
+
+      console.log(json);
+    })();
+  }, [guessFocus, searchQuery]);
 
   return (
     <>
@@ -313,7 +336,27 @@ export default function WhoAmI() {
         <div className="page whoAmIPage">
           <div className="mainContainer">
             <div className="inputs">
-              <GuessField type="player" />
+              <div className="guessField">
+                <div className="searchIconContainer">
+                  <img src={Search} alt="" className="searchIcon" />
+                </div>
+                <input
+                  type="text"
+                  name="guess"
+                  id="guess"
+                  placeholder="Type your guess..."
+                  maxLength={50}
+                  onChange={(e) => {
+                    setSearchQuery(e.currentTarget.value);
+                  }}
+                  onFocus={() => {
+                    setGuessFocus(true);
+                  }}
+                  onBlur={() => {
+                    setGuessFocus(false);
+                  }}
+                />
+              </div>
               <Button
                 label="Guess"
                 type="button"

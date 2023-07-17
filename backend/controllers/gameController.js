@@ -5,6 +5,7 @@ const WhoAmI = require('../models/WhoAmI');
 const getRandomPlayer = require('../middlewear/getRandomPlayer');
 const createHints = require('../middlewear/createHints');
 const requireAuth = require('../middlewear/requireAuth');
+const NBAPlayer = require('../models/NBAPlayer');
 
 exports.startWhoAmIGame = async function (req, res, next) {
   const userID = requireAuth(req, res, next);
@@ -72,3 +73,45 @@ exports.getWhoAmIHint = async function (req, res, next) {
   // Finally, send back the new hint
   res.json({ hint, hintLevel: game.currentHint });
 };
+
+exports.playerSearch = async function (req, res, next) {
+  try {
+    const query = req.query.search;
+
+    console.log(query);
+    await NBAPlayer.ensureIndexes({ name: 'text' });
+
+    const top5Answers = await NBAPlayer.aggregate([
+      {
+        $search: {
+          index: 'nbaplayersearch',
+          text: {
+            query: query,
+            path: {
+              wildcard: '*',
+            },
+            fuzzy: {
+              maxEdits: 2,
+              prefixLength: 1,
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          name: 1,
+          _id: 0,
+        },
+      },
+    ])
+      .limit(5)
+      .exec();
+
+    res.status(200).json({ answers: top5Answers });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch search results.' });
+  }
+};
+
+// Wrap all in try/catch block later
