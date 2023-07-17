@@ -52,7 +52,6 @@ const hintFunctions = [
   createNicknameHint,
   createStartedHint,
   createAccoladeHint,
-  createMeasurablesHint,
   createShootingHandHint,
   createNameHint,
   createHyphenHint,
@@ -274,10 +273,17 @@ function createPositionHint(Player, difficulty) {
     return -1;
   }
 
-  if (Player.positions.length === 1) {
-    return `The position I play is ${Player.positions[0]}.`;
+  const randomSelector = Math.floor(Math.random() * 2);
+
+  // Randomly select between measurables or positions
+  if (randomSelector === 0) {
+    if (Player.positions.length === 1) {
+      return `The position I play is ${Player.positions[0]}.`;
+    } else {
+      return `The positions I play are ${Player.positions.join(' and ')}.`;
+    }
   } else {
-    return `The positions I play are ${Player.positions.join(' and ')}.`;
+    return `I am ${Player.height} and ${Player.weight} pounds.`;
   }
 }
 
@@ -389,10 +395,6 @@ function createAccoladeHint(Player, difficulty) {
   }
 }
 
-function createMeasurablesHint(Player, difficulty) {
-  return `I am ${Player.height} and ${Player.weight} pounds.`;
-}
-
 function createShootingHandHint(Player, difficulty) {
   // If they're right handed it's lame
   if (Player.shootingHand === 'Right') {
@@ -419,6 +421,12 @@ function createCollegeHint(Player, difficulty) {
     return `I did not go to college.`;
   }
 
+  // If they went to multiple colleges, split them
+  if (/,/.test(Player.college)) {
+    const colleges = Player.college.split(', ');
+
+    return `I went to ${colleges.join(' and ')} for college.`;
+  }
   return `I went to ${Player.college} for college.`;
 }
 
