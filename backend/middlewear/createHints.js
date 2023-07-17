@@ -56,6 +56,7 @@ const hintFunctions = [
   createShootingHandHint,
   createNameHint,
   createHyphenHint,
+  createCollegeHint,
 ];
 
 function createDraftHint(Player, difficulty) {
@@ -274,9 +275,9 @@ function createPositionHint(Player, difficulty) {
   }
 
   if (Player.positions.length === 1) {
-    return `The position I play is ${Player.positions[0]}`;
+    return `The position I play is ${Player.positions[0]}.`;
   } else {
-    return `The positions I play are ${Player.positions.join(' and ')}`;
+    return `The positions I play are ${Player.positions.join(' and ')}.`;
   }
 }
 
@@ -411,6 +412,14 @@ function createHyphenHint(Player, difficulty) {
   } else {
     return -1;
   }
+}
+
+function createCollegeHint(Player, difficulty) {
+  if (Player.college.length <= 0) {
+    return `I did not go to college.`;
+  }
+
+  return `I went to ${Player.college} for college.`;
 }
 
 const states = [

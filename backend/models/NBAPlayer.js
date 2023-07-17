@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const NBAPlayerSchema = new Schema({
   name: { type: String, required: true, minLength: 1, maxLength: 100 },
+  jerseyNumbers: { type: Array, required: true },
   picture: { type: String, required: true, maxLength: 100 },
-  // jerseyNumbers: { type: Array, required: true },
   positions: { type: Array, required: true },
   height: { type: String, required: true, minLength: 1, maxLength: 5 },
   weight: { type: Number, required: true },
@@ -23,6 +23,8 @@ const NBAPlayerSchema = new Schema({
   draftYear: { type: Number, required: true },
   draftTeam: { type: String, required: false, maxLength: 50 },
   debut: { type: Date, required: false },
+  recentSalary: { type: Number, required: false },
+  careerEarnings: { type: Number, required: false },
   careerLength: { type: Number, required: true },
 });
 

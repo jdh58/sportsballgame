@@ -24,6 +24,11 @@ app.use(express.json());
 app.use('/api/user', userRouter);
 app.use('/api/game', gameRouter);
 
+const NBAUpdate = require('./middlewear/NBAUpdate');
+(async () => {
+  NBAUpdate();
+})();
+
 app.listen(parseInt(process.env.PORT), () => {
   console.log(`server now running on port ${process.env.PORT}`);
 });
