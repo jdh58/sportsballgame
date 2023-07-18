@@ -28,6 +28,9 @@ export default function WhoAmI() {
   const [overlay, setOverlay] = useState('none');
 
   const [gameID, setGameID] = useState([]);
+  const [round, setRound] = useState([-1]);
+  const [score, setScore] = useState(0);
+  const [scoreDiff, setScoreDiff] = useState(0);
   const [hints, setHints] = useState<Array<string>>([]);
   const [hintText, setHintText] = useState<Array<string>>([]);
   const [hintLevel, setHintLevel] = useState(4);
@@ -44,7 +47,6 @@ export default function WhoAmI() {
   const Auth = useContext(AuthContext);
 
   const startGame = async () => {
-    console.log('baba');
     setGameState('loading');
 
     // Start the game on the backend
@@ -119,6 +121,53 @@ export default function WhoAmI() {
       }
     );
     const json = await response.json();
+
+    // If the search query didn't work, tell the user.
+    if (response.status !== 200) {
+      setSearchQuery(json.error);
+      return;
+    }
+
+    console.log(json);
+
+    // If it's correct, show the score addition
+    // iterate the round, update the score, set the correct player, set the score difference
+    // wait 2 seconds, fade into correct overlay with score showing,
+    if (json.correct) {
+      const scoreAdded = hintLevel;
+      setRound([...round, hintLevel]);
+      setScore((score) => score + scoreAdded);
+      setCorrectAnswer(json.correctPlayer);
+      setScoreDiff(scoreAdded);
+      // Wait for 2 seconds
+      await new Promise((res) => setTimeout(res, 2000));
+      // Show the overlay
+      setOverlay('correct');
+    } else {
+      setRound([...round, hintLevel]);
+      setCorrectAnswer(json.correctPlayer);
+      // Wait for 2 seconds
+      await new Promise((res) => setTimeout(res, 2000));
+      // Show the overlay
+      setOverlay('incorrect');
+    }
+
+    // Update with new info
+    setHintLevel(4);
+    setPlayerPicture(json.newPlayer.playerPicture);
+    setHintText([]);
+    setHints([json.newPlayer.hints]);
+
+    // Wipe the current info
+    setCorrectAnswer('');
+
+    await new Promise((res) => setTimeout(res, 2000));
+    setOverlay('none');
+
+    // If it's the end of the game, do that
+    // Otherwise,
+    // set hints to the new hints, set picture to the new picture
+    // set hint level back to 4
   };
 
   // This will cause a text writing effect for the hints
@@ -127,6 +176,7 @@ export default function WhoAmI() {
       return;
     }
 
+    console.log('hints updated');
     const lastIndex = hints.length - 1;
     let tempString = '';
     let i = 0;
@@ -170,6 +220,7 @@ export default function WhoAmI() {
               setSearchQuery(answer.name);
               setGuessFocus(false);
             }}
+            key={answer.name}
           >
             {answer.name}
           </li>
@@ -438,7 +489,9 @@ export default function WhoAmI() {
                     <img
                       src={playerPicture ? playerPicture : LeBron}
                       alt="player headshot silhouette"
-                      className="silhouette"
+                      className={
+                        correctAnswer ? 'silhouette visible' : 'silhouette'
+                      }
                     />
                   </div>
                   <h4 className="playerName">
@@ -454,7 +507,7 @@ export default function WhoAmI() {
                   <img src={Check} alt="" />
                 </div>
                 <p className="correct">Correct!</p>
-                <p className="score">+5 Points</p>
+                <p className="score">+{scoreDiff} Points</p>
               </div>
             )}
             {overlay === 'incorrect' && (
@@ -467,7 +520,7 @@ export default function WhoAmI() {
               </div>
             )}
             <div className="gameInfo">
-              <div className="score">Score: 5</div>
+              <div className="score">Score: {score}</div>
               <div className="rounds">
                 <div className="roundIndicator"></div>
                 <div className="roundIndicator"></div>

@@ -26,14 +26,14 @@ exports.startWhoAmIGame = async function (req, res, next) {
 
   // Now randomly pick a player from the database
   const randomPlayer = await getRandomPlayer(sport, difficulty);
-  newGame.correctPlayer = randomPlayer;
+  newGame.correctPlayer = randomPlayer.name;
 
   // Next up, create hints
   newGame.hints = createHints(sport, randomPlayer);
 
   // Return the player's headshot picture and first hint
   const firstReturn = {
-    playerPicture: newGame.correctPlayer.picture,
+    playerPicture: randomPlayer.picture,
     hints: newGame.hints[0],
     _id: newGame._id,
   };
@@ -119,7 +119,9 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
   try {
     const { guess, gameID } = req.body;
 
-    const guessedPlayer = await NBAPlayer.aggregate([
+    console.log(guess);
+
+    const searchResults = await NBAPlayer.aggregate([
       {
         $search: {
           index: 'nbaplayersearch',
@@ -143,7 +145,11 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
       },
     ])
       .limit(1)
-      .exec()[0];
+      .exec();
+
+    const guessedPlayer = searchResults[0].name;
+
+    console.log(guessedPlayer);
 
     // If their query didn't return a player, return an error and don't submit the guess
     if (!guessedPlayer) {
@@ -154,8 +160,11 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
     // Otherwise, compare if it's the correct guess
     const game = await WhoAmI.findById(gameID).exec();
 
+    const correctPlayer = game.correctPlayer;
+
+    const isGuessCorrect = guessedPlayer.name === game.correctPlayer;
     // If it's correct, add the currentHint to the score
-    if (guessedPlayer.name === game.correctPlayer) {
+    if (isGuessCorrect) {
       game.score += game.currentHint;
     }
 
@@ -163,22 +172,24 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
     if (game.currentRound >= game.gameMode.rounds) {
       // If so, return the final stats
       res.status(200).json({
-        correct: true,
+        correct: isGuessCorrect,
         score: game.score,
         currentRound: game.currentRound,
         gameEnd: true,
+        correctPlayer,
       });
     }
 
     // If not, prepare the next round and give updated info
-    const newPlayerReturn = prepareWhoAmIRound(true);
+    const newPlayer = await prepareWhoAmIRound(true);
 
     res.status(200).json({
-      correct: true,
+      correct: isGuessCorrect,
       score: game.score,
       currentRound: game.currentRound,
       gameEnd: false,
-      newPlayerReturn,
+      correctPlayer,
+      newPlayer,
     });
 
     async function prepareWhoAmIRound() {
@@ -191,10 +202,10 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
         game.gameMode.sport,
         game.gameMode.difficulty
       );
-      game.correctPlayer = randomPlayer;
+      game.correctPlayer = randomPlayer.name;
 
       // Next up, create hints for the new player
-      game.hints = createHints(sport, randomPlayer);
+      game.hints = createHints(game.gameMode.sport, randomPlayer);
 
       // Return the player's headshot picture and first hint
       const firstReturn = {
@@ -205,8 +216,9 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
 
       // Take off the first hint and save to the database to access later
       game.hints.shift();
+      game.markModified('hints');
 
-      await newGame.save();
+      await game.save();
 
       return firstReturn;
     }

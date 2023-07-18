@@ -396,7 +396,12 @@ function createAccoladeHint(Player, difficulty) {
 }
 
 function createShootingHandHint(Player, difficulty) {
-  // If they're right handed it's lame
+  // If they're right handed or first hint it's lame
+
+  // if (difficulty === 4) {
+  //   return -1;
+  // }
+
   if (Player.shootingHand === 'Right') {
     return -1;
   } else {

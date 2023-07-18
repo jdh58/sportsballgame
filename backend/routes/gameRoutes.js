@@ -10,6 +10,9 @@ route.post('/whoami/start', controller.startWhoAmIGame);
 // Get a new hint
 route.post('/whoami/getHint', controller.getWhoAmIHint);
 
+// Submit a guess
+route.post('/whoami/guess', controller.submitWhoAmIGuess);
+
 // Return a list of players from a search
 route.get('/playerSearch', controller.playerSearch);
 
