@@ -104,6 +104,23 @@ export default function WhoAmI() {
     console.log(json);
   };
 
+  const submitGuess = async () => {
+    const guess = searchQuery;
+
+    const response = await fetch(
+      'http://localhost:3100/api/game/whoami/guess',
+      {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ guess, gameID }),
+      }
+    );
+    const json = await response.json();
+  };
+
   // This will cause a text writing effect for the hints
   useEffect(() => {
     if (hints.length === 0) {
@@ -384,7 +401,7 @@ export default function WhoAmI() {
                 icon=""
                 classes="small guess"
                 disabled={false}
-                onClick={undefined}
+                onClick={submitGuess}
               />
               <Button
                 label="Next Hint"

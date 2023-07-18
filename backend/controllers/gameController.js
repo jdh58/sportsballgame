@@ -114,3 +114,104 @@ exports.playerSearch = async function (req, res, next) {
 };
 
 // Wrap all in try/catch block later
+
+exports.submitWhoAmIGuess = async function (req, res, next) {
+  try {
+    const { guess, gameID } = req.body;
+
+    const guessedPlayer = await NBAPlayer.aggregate([
+      {
+        $search: {
+          index: 'nbaplayersearch',
+          text: {
+            query: guess,
+            path: {
+              wildcard: '*',
+            },
+            fuzzy: {
+              maxEdits: 2,
+              prefixLength: 1,
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          name: 1,
+          _id: 0,
+        },
+      },
+    ])
+      .limit(1)
+      .exec()[0];
+
+    // If their query didn't return a player, return an error and don't submit the guess
+    if (!guessedPlayer) {
+      res.status(400).json({ error: 'Player not found.' });
+      return;
+    }
+
+    // Otherwise, compare if it's the correct guess
+    const game = await WhoAmI.findById(gameID).exec();
+
+    // If it's correct, add the currentHint to the score
+    if (guessedPlayer.name === game.correctPlayer) {
+      game.score += game.currentHint;
+    }
+
+    // Check if the game should end
+    if (game.currentRound >= game.gameMode.rounds) {
+      // If so, return the final stats
+      res.status(200).json({
+        correct: true,
+        score: game.score,
+        currentRound: game.currentRound,
+        gameEnd: true,
+      });
+    }
+
+    // If not, prepare the next round and give updated info
+    const newPlayerReturn = prepareWhoAmIRound(true);
+
+    res.status(200).json({
+      correct: true,
+      score: game.score,
+      currentRound: game.currentRound,
+      gameEnd: false,
+      newPlayerReturn,
+    });
+
+    async function prepareWhoAmIRound() {
+      // Iterate the current round and set currenthint back to default
+      game.currentRound += 1;
+      game.currentHint = 4;
+
+      // Randomly pick a new player from the database
+      const randomPlayer = await getRandomPlayer(
+        game.gameMode.sport,
+        game.gameMode.difficulty
+      );
+      game.correctPlayer = randomPlayer;
+
+      // Next up, create hints for the new player
+      game.hints = createHints(sport, randomPlayer);
+
+      // Return the player's headshot picture and first hint
+      const firstReturn = {
+        playerPicture: game.correctPlayer.picture,
+        hints: game.hints[0],
+        _id: game._id,
+      };
+
+      // Take off the first hint and save to the database to access later
+      game.hints.shift();
+
+      await newGame.save();
+
+      return firstReturn;
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to submit guess' });
+  }
+};
