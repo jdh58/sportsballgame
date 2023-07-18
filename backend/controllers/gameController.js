@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const WhoAmI = require('../models/WhoAmI');
+const Score = require('../models/Score');
 
 const getRandomPlayer = require('../middlewear/getRandomPlayer');
 const createHints = require('../middlewear/createHints');
@@ -8,7 +9,7 @@ const requireAuth = require('../middlewear/requireAuth');
 const NBAPlayer = require('../models/NBAPlayer');
 
 exports.startWhoAmIGame = async function (req, res, next) {
-  const userID = requireAuth(req, res, next);
+  let userID = requireAuth(req, res, next);
   const { sport, difficulty, rounds } = req.body;
 
   if (userID.error) {
@@ -181,10 +182,19 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
         correctPlayer,
       });
 
-      if (game.userID) {
+      if (game.userID !== null) {
+        console.log('banna');
+        console.log(game.userID);
+        const newScore = new Score({
+          userID: game.userID,
+          score: game.score,
+          gameMode: game.gameMode,
+        });
+
+        await newScore.save();
       }
 
-      await WhoAmI.deleteOne({ name: guessedPlayer }).exec();
+      await WhoAmI.findByIdAndDelete(gameID).exec();
       return;
     }
 
