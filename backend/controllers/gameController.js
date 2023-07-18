@@ -169,7 +169,8 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
 
     // Check if the game should end
     if (game.currentRound === game.gameMode.rounds) {
-      // If so, return the final stats
+      // If so, return the final stats, if the game has a user upload & delete it,
+      // if not just delete.
       res.status(200).json({
         correct: isGuessCorrect,
         score: game.score,
@@ -177,6 +178,8 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
         gameEnd: true,
         correctPlayer,
       });
+
+      await WhoAmI.deleteOne({ name: guessedPlayer }).exec();
       return;
     }
 

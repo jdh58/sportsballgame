@@ -180,7 +180,7 @@ export default function WhoAmI() {
       setOverlay('incorrect');
     }
 
-    // If it's the end of the game, do that
+    // If it's the end of the game, set the gamestate to after
     if (json.gameEnd) {
       setGameState('after');
       return;
