@@ -17,10 +17,12 @@ import '../styles/GuessField.css';
 import '../styles/GameOver.css';
 
 import ArrowRight from '../assets/arrow-right.svg';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinner';
+
+import { v4 as uuid } from 'uuid';
 
 export default function WhoAmI() {
   const [sport, setSport] = useState('nba');
@@ -32,7 +34,7 @@ export default function WhoAmI() {
   const [hintDisabled, setHintDisabled] = useState(false);
 
   const [gameID, setGameID] = useState([]);
-  const [round, setRound] = useState([-1]);
+  const [roundResults, setRoundResults] = useState([-1]);
   const [score, setScore] = useState(0);
   const [scoreDiff, setScoreDiff] = useState(0);
   const [hints, setHints] = useState<Array<string>>([]);
@@ -40,6 +42,10 @@ export default function WhoAmI() {
   const [hintLevel, setHintLevel] = useState(4);
   const [playerPicture, setPlayerPicture] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState('');
+
+  const [placeholderIndicators, setPlaceholderIndicators] = useState<
+    Array<ReactElement>
+  >([]);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [autofillAnswers, setAutofillAnswers] = useState([]);
@@ -75,6 +81,17 @@ export default function WhoAmI() {
     }
 
     // Otherwise, the game was successfully created. Update the game state
+
+    // Cleanup from previous
+    setScore(0);
+    setOverlay('none');
+    setRoundResults([-1]);
+    setCorrectAnswer('');
+    setGuessDisabled(false);
+    setHintDisabled(false);
+    setHintText([]);
+
+    // Set up new player
     setHints([json.hints]);
     setPlayerPicture(json.playerPicture);
     setGameID(json._id);
@@ -106,7 +123,7 @@ export default function WhoAmI() {
     // Append it to the hints array
     setHints([...hints, json.hint]);
     setHintLevel(json.hintLevel);
-
+    setScore(0);
     console.log(json);
   };
 
@@ -146,7 +163,7 @@ export default function WhoAmI() {
     // wait 2 seconds, fade into correct overlay with score showing,
     if (json.correct) {
       const scoreAdded = hintLevel;
-      setRound([...round, hintLevel]);
+      setRoundResults([...roundResults, hintLevel]);
       setScore((score) => score + scoreAdded);
       setCorrectAnswer(json.correctPlayer);
       setScoreDiff(scoreAdded);
@@ -155,7 +172,7 @@ export default function WhoAmI() {
       // Show the overlay
       setOverlay('correct');
     } else {
-      setRound([...round, hintLevel]);
+      setRoundResults([...roundResults, 0]);
       setCorrectAnswer(json.correctPlayer);
       // Wait for 2 seconds
       await new Promise((res) => setTimeout(res, 2000));
@@ -247,6 +264,26 @@ export default function WhoAmI() {
       );
     })();
   }, [guessFocus, searchQuery]);
+
+  // This will set the placeholder indicators. We need one for each round other
+  // than the current round and the already done ones
+  useEffect(() => {
+    if (gameState !== 'during') {
+      return;
+    }
+
+    const placeholderIndicatorArray = [];
+
+    // Do this for each round besides the ones already done with a result.
+    // (the roundResults array has a -1 at the start to make it iterable,
+    // but we also need an "active" indicator, so it takes that place.)
+    for (let i = 0; i < rounds - roundResults.length; i++) {
+      placeholderIndicatorArray.push(
+        <div key={uuid()} className="roundIndicator"></div>
+      );
+    }
+    setPlaceholderIndicators(placeholderIndicatorArray);
+  }, [roundResults, gameState]);
 
   return (
     <>
@@ -541,16 +578,32 @@ export default function WhoAmI() {
             <div className="gameInfo">
               <div className="score">Score: {score}</div>
               <div className="rounds">
-                <div className="roundIndicator"></div>
-                <div className="roundIndicator"></div>
-                <div className="roundIndicator"></div>
-                <div className="roundIndicator"></div>
-                <div className="roundIndicator"></div>
-                <div className="roundIndicator"></div>
-                <div className="roundIndicator"></div>
-                <div className="roundIndicator"></div>
-                <div className="roundIndicator"></div>
-                <div className="roundIndicator"></div>
+                {roundResults.map((result) => {
+                  if (result === -1) {
+                    return null;
+                  }
+
+                  return (
+                    <div
+                      key={uuid()}
+                      className={
+                        result === 4
+                          ? 'roundIndicator impossible'
+                          : result === 3
+                          ? 'roundIndicator hard'
+                          : result === 2
+                          ? 'roundIndicator normal'
+                          : result === 1
+                          ? 'roundIndicator easy'
+                          : 'roundIndicator fail'
+                      }
+                    ></div>
+                  );
+                })}
+                {rounds > 0 && roundResults.length <= rounds && (
+                  <div className="roundIndicator active"></div>
+                )}
+                {placeholderIndicators}
               </div>
             </div>
           </div>

@@ -170,7 +170,7 @@
   filter: brightness(0) blur(10px);
 }
 .whoAmIPage .player .silhouette.level3 {
-  filter: brightness(0) blur(7px);
+  filter: brightness(0) blur(6px);
 }
 .whoAmIPage .player .silhouette.level2 {
   filter: brightness(0) blur(4px);
@@ -209,19 +209,22 @@
   border-radius: 1000px;
 }
 
-.roundIndicator.easy {
+.whoAmIPage .gameInfo .rounds .roundIndicator.fail {
+  opacity: 0.5;
+}
+.whoAmIPage .gameInfo .rounds .roundIndicator.easy {
   background-color: var(--easy-500);
 }
-.roundIndicator.normal {
+.whoAmIPage .gameInfo .rounds .roundIndicator.normal {
   background-color: var(--normal-500);
 }
-.roundIndicator.hard {
+.whoAmIPage .gameInfo .rounds .roundIndicator.hard {
   background-color: var(--hard-400);
 }
-.roundIndicator.impossible {
+.whoAmIPage .gameInfo .rounds .roundIndicator.impossible {
   background-color: var(--impossible-500);
 }
-.roundIndicator.active {
+.whoAmIPage .gameInfo .rounds .roundIndicator.active {
   box-shadow: 0px 0px 8px 1px #fff;
 }
 
