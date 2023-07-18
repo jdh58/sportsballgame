@@ -168,7 +168,7 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
     }
 
     // Check if the game should end
-    if (game.currentRound >= game.gameMode.rounds) {
+    if (game.currentRound === game.gameMode.rounds) {
       // If so, return the final stats
       res.status(200).json({
         correct: isGuessCorrect,
@@ -177,6 +177,7 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
         gameEnd: true,
         correctPlayer,
       });
+      return;
     }
 
     // If not, prepare the next round and give updated info

@@ -52,6 +52,23 @@
     </div>
   */
 
+.whoAmIPage,
+.gameContainer,
+.notifyContainer {
+  animation-name: fade-in;
+  animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .whoAmIPage .inputs {
   display: flex;
   gap: 20px;
@@ -141,6 +158,12 @@
 .whoAmIPage .player .silhouette {
   filter: brightness(0) blur(10px);
   width: 100%;
+  transition: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.whoAmIPage .player .silhouette.visible {
+  filter: brightness(1) blur(00px);
 }
 
 .whoAmIPage .gameContainer .player > h4.playerName {

@@ -14,6 +14,7 @@ import '../styles/RoundContainer.css';
 import '../styles/WhoAmI.css';
 import '../styles/OptionsPage.scss';
 import '../styles/GuessField.css';
+import '../styles/GameOver.css';
 
 import ArrowRight from '../assets/arrow-right.svg';
 import { useEffect, useState, useContext } from 'react';
@@ -24,7 +25,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 export default function WhoAmI() {
   const [sport, setSport] = useState('nba');
   const [difficulty, setDifficulty] = useState('medium');
-  const [rounds, setRounds] = useState('free');
+  const [rounds, setRounds] = useState(-1);
   const [overlay, setOverlay] = useState('none');
 
   const [guessDisabled, setGuessDisabled] = useState(false);
@@ -163,9 +164,13 @@ export default function WhoAmI() {
     }
 
     // If it's the end of the game, do that
-    // Otherwise,
-    // set hints to the new hints, set picture to the new picture
-    // set hint level back to 4
+    if (json.gameEnd) {
+      setGameState('after');
+      return;
+    }
+
+    // Otherwise, set hints to the new hints, set picture to the new picture
+    // and set hint level back to 4
 
     // Update with new info
     setHintLevel(4);
@@ -351,21 +356,17 @@ export default function WhoAmI() {
               </div>
               <div className="roundContainer">
                 <button
-                  className={`optionButton ${
-                    rounds === 'free' ? 'selected' : ''
-                  }`}
+                  className={`optionButton ${rounds === -1 ? 'selected' : ''}`}
                   onClick={() => {
-                    setRounds('free');
+                    setRounds(-1);
                   }}
                 >
                   <p className="label">Freeplay</p>
                 </button>
                 <button
-                  className={`optionButton ${
-                    rounds === 'three' ? 'selected' : ''
-                  }`}
+                  className={`optionButton ${rounds === 3 ? 'selected' : ''}`}
                   onClick={() => {
-                    setRounds('three');
+                    setRounds(3);
                   }}
                 >
                   <p className="label">
@@ -375,11 +376,9 @@ export default function WhoAmI() {
                   </p>
                 </button>
                 <button
-                  className={`optionButton ${
-                    rounds === 'five' ? 'selected' : ''
-                  }`}
+                  className={`optionButton ${rounds === 5 ? 'selected' : ''}`}
                   onClick={() => {
-                    setRounds('five');
+                    setRounds(5);
                   }}
                 >
                   <p className="label">
@@ -389,11 +388,9 @@ export default function WhoAmI() {
                   </p>
                 </button>
                 <button
-                  className={`optionButton ${
-                    rounds === 'ten' ? 'selected' : ''
-                  }`}
+                  className={`optionButton ${rounds === 10 ? 'selected' : ''}`}
                   onClick={() => {
-                    setRounds('ten');
+                    setRounds(10);
                   }}
                 >
                   <p className="label">
@@ -403,11 +400,9 @@ export default function WhoAmI() {
                   </p>
                 </button>
                 <button
-                  className={`optionButton ${
-                    rounds === 'twenty-five' ? 'selected' : ''
-                  }`}
+                  className={`optionButton ${rounds === 25 ? 'selected' : ''}`}
                   onClick={() => {
-                    setRounds('twenty-five');
+                    setRounds(25);
                   }}
                 >
                   <p className="label">
@@ -547,6 +542,64 @@ export default function WhoAmI() {
                 <div className="roundIndicator"></div>
                 <div className="roundIndicator"></div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {gameState === 'after' && (
+        <div className="page gameOverPage">
+          <h1 className="gameOver">Game Over!</h1>
+          <div className="scoreContainer">
+            {/* <p className="bestIndicator">NEW BEST!</p> */}
+            <h2 className="score">
+              <span className="label">Score:</span>
+              {score}
+            </h2>
+          </div>
+          {Auth.user && (
+            <h2 className="personalBest">
+              <span className="label">Personal Best:</span>
+              21
+            </h2>
+          )}
+          <h2 className="mode">
+            <span className="label">Mode:</span>
+            {rounds} Rounds
+          </h2>
+          <div className="buttons">
+            <div className="buttonContainer">
+              <Button
+                label="Play Again"
+                type="button"
+                icon=""
+                classes="taller easy"
+                disabled={false}
+                onClick={() => {
+                  setGameState('before');
+                }}
+              />
+            </div>
+            <div className="buttonContainer">
+              <Button
+                label="Main Menu"
+                type="button"
+                icon=""
+                classes="taller"
+                disabled={false}
+                onClick={() => {
+                  navigate('/');
+                }}
+              />
+              <Button
+                label="Leaderboards"
+                type="button"
+                icon=""
+                classes="taller"
+                disabled={false}
+                onClick={() => {
+                  navigate('/leaderboard');
+                }}
+              />
             </div>
           </div>
         </div>
