@@ -149,8 +149,6 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
 
     const guessedPlayer = searchResults[0].name;
 
-    console.log(guessedPlayer);
-
     // If their query didn't return a player, return an error and don't submit the guess
     if (!guessedPlayer) {
       res.status(400).json({ error: 'Player not found.' });
@@ -158,11 +156,12 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
     }
 
     // Otherwise, compare if it's the correct guess
+
+    // Grab the game first then compare
     const game = await WhoAmI.findById(gameID).exec();
-
     const correctPlayer = game.correctPlayer;
+    const isGuessCorrect = guessedPlayer === correctPlayer;
 
-    const isGuessCorrect = guessedPlayer.name === game.correctPlayer;
     // If it's correct, add the currentHint to the score
     if (isGuessCorrect) {
       game.score += game.currentHint;
@@ -209,7 +208,7 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
 
       // Return the player's headshot picture and first hint
       const firstReturn = {
-        playerPicture: game.correctPlayer.picture,
+        playerPicture: randomPlayer.picture,
         hints: game.hints[0],
         _id: game._id,
       };

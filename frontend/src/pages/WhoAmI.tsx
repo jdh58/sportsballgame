@@ -27,6 +27,9 @@ export default function WhoAmI() {
   const [rounds, setRounds] = useState('free');
   const [overlay, setOverlay] = useState('none');
 
+  const [guessDisabled, setGuessDisabled] = useState(false);
+  const [hintDisabled, setHintDisabled] = useState(false);
+
   const [gameID, setGameID] = useState([]);
   const [round, setRound] = useState([-1]);
   const [score, setScore] = useState(0);
@@ -106,8 +109,15 @@ export default function WhoAmI() {
     console.log(json);
   };
 
-  const submitGuess = async () => {
+  const submitGuess = async (e) => {
+    // Disable the guess and hint buttons
+    setGuessDisabled(true);
+    setHintDisabled(true);
+
     const guess = searchQuery;
+
+    // Wipe the search field
+    setSearchQuery('');
 
     const response = await fetch(
       'http://localhost:3100/api/game/whoami/guess',
@@ -152,6 +162,11 @@ export default function WhoAmI() {
       setOverlay('incorrect');
     }
 
+    // If it's the end of the game, do that
+    // Otherwise,
+    // set hints to the new hints, set picture to the new picture
+    // set hint level back to 4
+
     // Update with new info
     setHintLevel(4);
     setPlayerPicture(json.newPlayer.playerPicture);
@@ -164,10 +179,9 @@ export default function WhoAmI() {
     await new Promise((res) => setTimeout(res, 2000));
     setOverlay('none');
 
-    // If it's the end of the game, do that
-    // Otherwise,
-    // set hints to the new hints, set picture to the new picture
-    // set hint level back to 4
+    // Enable the buttons again
+    setGuessDisabled(false);
+    setHintDisabled(false);
   };
 
   // This will cause a text writing effect for the hints
@@ -451,7 +465,7 @@ export default function WhoAmI() {
                 type="button"
                 icon=""
                 classes="small guess"
-                disabled={false}
+                disabled={guessDisabled}
                 onClick={submitGuess}
               />
               <Button
@@ -459,7 +473,7 @@ export default function WhoAmI() {
                 type="button"
                 icon=""
                 classes="small nexthint"
-                disabled={false}
+                disabled={hintDisabled}
                 onClick={getHint}
               />
             </div>
