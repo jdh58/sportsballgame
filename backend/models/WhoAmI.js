@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const WhoAmISchema = new Schema(
   {
-    userID: { type: mongoose.SchemaTypes.ObjectId, required: true },
+    userID: { type: mongoose.SchemaTypes.ObjectId | null, required: true },
     gameMode: { type: Object, required: true },
     hints: { type: Object, required: true },
     currentRound: { type: Number, required: true },

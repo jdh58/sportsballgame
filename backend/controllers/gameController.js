@@ -11,6 +11,10 @@ exports.startWhoAmIGame = async function (req, res, next) {
   const userID = requireAuth(req, res, next);
   const { sport, difficulty, rounds } = req.body;
 
+  if (userID.error) {
+    userID = null;
+  }
+
   if (sport !== 'nba') {
     res.status(400).json({ error: 'No support for this sport' });
     return;
@@ -119,8 +123,6 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
   try {
     const { guess, gameID } = req.body;
 
-    console.log(guess);
-
     const searchResults = await NBAPlayer.aggregate([
       {
         $search: {
@@ -178,6 +180,9 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
         gameEnd: true,
         correctPlayer,
       });
+
+      if (game.userID) {
+      }
 
       await WhoAmI.deleteOne({ name: guessedPlayer }).exec();
       return;

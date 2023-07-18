@@ -6,8 +6,7 @@ module.exports = function requireAuth(req, res, next) {
 
   // No authorization in header, not authenticated. Respond with 401 not authenticated
   if (!authorization) {
-    res.status(401).json({ error: 'No auth token provided' });
-    return;
+    return { error: 'No auth token provided' };
   }
 
   // Otherwise, there is a bearer token so grab it.
@@ -17,7 +16,6 @@ module.exports = function requireAuth(req, res, next) {
     const _id = jwt.verify(token, process.env.SECRET)._id;
     return _id;
   } catch (err) {
-    res.status(401).json({ error: 'Token invalid or expired' });
-    return;
+    return { error: 'Token invalid or expired' };
   }
 };
