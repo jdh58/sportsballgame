@@ -271,6 +271,7 @@ html {
   --button-shadow-hover: 0px 3px 0px 0.5px #fff;
   --button-border: 3px solid white;
   --small-button-shadow: 0px 1px 0px 0.25px #fff;
+  --small-button-shadow-hover: 0px 3px 0px 0.25px #fff;
   --subtle-border: rgb(93, 93, 109);
 
   color: var(--white);

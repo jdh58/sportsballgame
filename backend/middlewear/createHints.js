@@ -337,6 +337,10 @@ function createContractHint(Player, difficulty) {
   // Randomly select between career earnings and recent salary
   const randomSelector = Math.floor(Math.random() * 2);
 
+  if (Player.careerEarnings <= 0 || Player.recentSalary <= 0) {
+    return -1;
+  }
+
   if (randomSelector === 0) {
     return `I have made $${Player.careerEarnings.toLocaleString(
       'en-US'

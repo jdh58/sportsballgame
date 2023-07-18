@@ -499,7 +499,17 @@ export default function WhoAmI() {
                       src={playerPicture ? playerPicture : LeBron}
                       alt="player headshot silhouette"
                       className={
-                        correctAnswer ? 'silhouette visible' : 'silhouette'
+                        correctAnswer
+                          ? 'silhouette visible'
+                          : hintLevel === 4
+                          ? 'silhouette level4'
+                          : hintLevel === 3
+                          ? 'silhouette level3'
+                          : hintLevel === 2
+                          ? 'silhouette level2'
+                          : hintLevel === 1
+                          ? 'silhouette level1'
+                          : 'silhouette'
                       }
                     />
                   </div>
@@ -556,12 +566,12 @@ export default function WhoAmI() {
               {score}
             </h2>
           </div>
-          {Auth.user && (
+          {/* {Auth.user && (
             <h2 className="personalBest">
               <span className="label">Personal Best:</span>
               21
             </h2>
-          )}
+          )} */}
           <h2 className="mode">
             <span className="label">Mode:</span>
             {rounds} Rounds

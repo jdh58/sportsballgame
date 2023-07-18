@@ -166,6 +166,19 @@
   filter: brightness(1) blur(00px);
 }
 
+.whoAmIPage .player .silhouette.level4 {
+  filter: brightness(0) blur(10px);
+}
+.whoAmIPage .player .silhouette.level3 {
+  filter: brightness(0) blur(7px);
+}
+.whoAmIPage .player .silhouette.level2 {
+  filter: brightness(0) blur(4px);
+}
+.whoAmIPage .player .silhouette.level1 {
+  filter: brightness(0) blur(0px);
+}
+
 .whoAmIPage .gameContainer .player > h4.playerName {
   font-size: 4rem;
   font-weight: 600;
