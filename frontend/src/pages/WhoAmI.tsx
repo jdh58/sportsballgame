@@ -326,6 +326,7 @@ export default function WhoAmI() {
                   onClick={() => {
                     setSport('nfl');
                   }}
+                  disabled={true}
                 >
                   <div className="optionPicContainer">
                     <img src={NFL} alt="" />
@@ -339,6 +340,7 @@ export default function WhoAmI() {
                   onClick={() => {
                     setSport('mlb');
                   }}
+                  disabled={true}
                 >
                   <div className="optionPicContainer">
                     <img src={MLB} alt="" />

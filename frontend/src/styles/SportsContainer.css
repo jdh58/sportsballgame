@@ -17,6 +17,10 @@
   transition: 0.1s;
 }
 
+.sportsContainer .optionButton:disabled {
+  opacity: 0.5;
+}
+
 .optionButton > .optionPicContainer {
   width: 100px;
   height: 100px;
