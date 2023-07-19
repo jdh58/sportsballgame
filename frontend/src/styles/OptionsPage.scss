@@ -69,13 +69,17 @@
   color: hsla(0, 0%, 100%, 0.5);
 }
 
+.page.optionsPage .optionButton {
+  position: relative;
+}
+
 .page.optionsPage .optionButton:hover:not(:disabled) {
   cursor: pointer;
   box-shadow: 0px 5px 0px 0.5px #fff;
   transform: translateY(-2px);
 }
 
-.page.optionsPage .optionButton:active {
+.page.optionsPage .optionButton:active:not(:disabled) {
   cursor: pointer;
   box-shadow: 0px 0px 0px 0.5px #fff;
   transform: translateY(3px);
@@ -102,6 +106,29 @@
 
 .page.optionsPage .optionButton:disabled {
   opacity: 0.5;
+}
+
+.page.optionsPage .optionButton:disabled:after {
+  content: 'Coming soon!';
+  position: absolute;
+  bottom: 0px;
+  color: white;
+  font-size: 2rem;
+
+  transform: translateY(0px);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.page.optionsPage .optionButton:disabled:hover:after {
+  content: 'Coming soon!';
+  position: absolute;
+  bottom: 0px;
+  color: white;
+  font-size: 2rem;
+
+  opacity: 1;
+  transform: translateY(30px);
 }
 
 @media (max-width: 1800px) {

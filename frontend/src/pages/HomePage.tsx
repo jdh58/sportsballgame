@@ -6,7 +6,7 @@ import Curry from '../assets/curry.jpg';
 import WhoAmI from '../assets/whoamibackground.png';
 import Locker from '../assets/locker.jpg';
 import Leaderboard from '../assets/leaderboard.jpg';
-import Gears from '../assets/gears.jpg';
+import Refs from '../assets/refs.jpg';
 import Hoop from '../assets/hoop.jpg';
 import '../styles/HomePage.css';
 import { AuthContext } from '../context/AuthContext';
@@ -33,18 +33,21 @@ export default function HomePage() {
                 bgImage={WhoAmI}
                 bgColor="55, 5, 5"
                 redirect="/whoami"
+                disabled={false}
               />
               <TileButton
                 label="Higher or Lower"
                 bgImage={Curry}
                 bgColor="20, 20, 2"
                 redirect="/"
+                disabled={true}
               />
               <TileButton
                 label="More"
                 bgImage={Hoop}
                 bgColor="10, 36, 70"
                 redirect="/"
+                disabled={true}
               />
             </div>
             <div className="right">
@@ -53,18 +56,21 @@ export default function HomePage() {
                 bgImage={Locker}
                 bgColor="55, 5, 5"
                 redirect={`/profile/${Auth.user?.username}`}
+                disabled={false}
               />
               <TileButton
                 label="Leaderboards"
                 bgImage={Leaderboard}
                 bgColor="20, 20, 2"
                 redirect="/leaderboard"
+                disabled={false}
               />
               <TileButton
-                label="Settings"
-                bgImage={Gears}
+                label="Help & Contact"
+                bgImage={Refs}
                 bgColor="10, 36, 70"
-                redirect="/"
+                redirect="/contact"
+                disabled={false}
               />
             </div>
           </div>

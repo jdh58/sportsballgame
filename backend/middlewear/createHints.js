@@ -110,50 +110,7 @@ function createDebutHint(Player, difficulty) {
 }
 
 function createStatHint(Player, difficulty) {
-  const randomSelector1 = Math.floor(Math.random() * 2);
-  const randomSelector2 = Math.floor(Math.random() * 5);
-
-  let stats;
-
-  // Randomly pick a stat to show as hint
-  switch (randomSelector2) {
-    case 0:
-      stats = ['ppg', 'points'];
-      break;
-    case 1:
-      stats = ['ast', 'assists'];
-      break;
-    case 2:
-      stats = ['tpg', 'rebounds'];
-      break;
-    case 3:
-      // Only use steals if they get a lot of them
-      if (Player.stats['2022-23'].stl > 1) {
-        stats = ['stl', 'steals'];
-      } else {
-        stats = ['ppg', 'points'];
-      }
-      break;
-    case 4:
-      // Only use blocks if they get a lot of them
-      if (Player.stats['2022-23'].bpg > 1) {
-        stats = ['bpg', 'blocks'];
-      } else {
-        stats = ['ast', 'assists'];
-      }
-      break;
-  }
-
-  // Randomly pick if it does the career stat or most recent season
-  if (randomSelector1 === 0) {
-    return `I averaged ${Player.stats['2022-23'][stats[0]]} ${
-      stats[1]
-    } per game last season.`;
-  } else {
-    return `I have averaged ${Player.stats.career[stats[0]]} ${
-      stats[1]
-    } per game in my career.`;
-  }
+  return `I averaged ${Player.stats['2022-23'].ppg} points, ${Player.stats['2022-23'].ast} assists, and ${Player.stats['2022-23'].trb} rebounds last season`;
 }
 
 function createScoringHint(Player, difficulty) {

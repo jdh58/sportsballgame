@@ -105,6 +105,9 @@ export default function WhoAmI() {
       return;
     }
 
+    // Disable the hint button
+    setHintDisabled(true);
+
     // Grab a new hint
     const response = await fetch(
       'http://localhost:3100/api/game/whoami/getHint',
@@ -123,11 +126,13 @@ export default function WhoAmI() {
     // Append it to the hints array
     setHints([...hints, json.hint]);
     setHintLevel(json.hintLevel);
-    setScore(0);
-    console.log(json);
+
+    // Wait 3 seconds before enabling again
+    await new Promise((res) => setTimeout(res, 3000));
+    setHintDisabled(false);
   };
 
-  const submitGuess = async (e) => {
+  const submitGuess = async () => {
     // Disable the guess and hint buttons
     setGuessDisabled(true);
     setHintDisabled(true);
@@ -360,7 +365,7 @@ export default function WhoAmI() {
                     setDifficulty('easy');
                   }}
                 >
-                  <p className="label">35+ Mins/G</p>
+                  <p className="label">30+ Mins/G</p>
                   <p className="easy">Easy</p>
                 </button>
                 <button

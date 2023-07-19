@@ -6,16 +6,18 @@ export default function TileButton({
   bgImage = null,
   bgColor = null,
   redirect,
+  disabled,
 }: {
   label: string;
   bgImage: string | null;
   bgColor: string | null;
   redirect: string;
+  disabled: boolean;
 }) {
   const navigate = useNavigate();
 
   return (
-    <div
+    <button
       className="tileButtonContainer"
       style={
         bgImage
@@ -30,6 +32,7 @@ export default function TileButton({
       onClick={() => {
         navigate(redirect);
       }}
+      disabled={disabled}
     >
       <div
         className="tileButton"
@@ -43,6 +46,6 @@ export default function TileButton({
       >
         <p className="label">{label}</p>
       </div>
-    </div>
+    </button>
   );
 }

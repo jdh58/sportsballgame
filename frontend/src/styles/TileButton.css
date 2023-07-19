@@ -12,6 +12,7 @@
 */
 
 .tileButtonContainer {
+  position: relative;
   border-radius: 16px;
   filter: saturate(33%);
   transition: 0.4s;
@@ -52,11 +53,43 @@
 }
 
 .tileButton > .label {
+  color: white;
   font-size: 3rem;
   text-align: center;
   font-weight: 600;
   letter-spacing: 0.25px;
   user-select: none;
+}
+
+.tileButtonContainer:disabled:hover {
+  filter: saturate(2%);
+}
+
+.tileButtonContainer:disabled:after {
+  content: 'Coming soon!';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  color: white;
+  font-size: 2rem;
+
+  transform: translateY(0px);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.tileButtonContainer:disabled:hover:after {
+  content: 'Coming soon!';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  color: white;
+  font-size: 2rem;
+
+  opacity: 1;
+  transform: translateY(30px);
 }
 
 @media (max-width: 1800px) {
