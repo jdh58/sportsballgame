@@ -66,7 +66,7 @@ export default function HomePage() {
                 disabled={false}
               />
               <TileButton
-                label="Help & Contact"
+                label="Contact & Support"
                 bgImage={Refs}
                 bgColor="10, 36, 70"
                 redirect="/contact"

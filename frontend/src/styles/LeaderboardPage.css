@@ -13,7 +13,7 @@
   justify-content: space-around;
 }
 
-.selectors div {
+.selectors > div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,6 +68,32 @@
 
 .specialScores .leaderboardItem {
   height: 90px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+}
+
+.selector {
+  position: relative;
+}
+
+.leaderboardDropdown {
+  display: none;
+}
+
+.leaderboardDropdown.visible {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownElement {
+  z-index: 6;
 }
 
 @media (max-width: 1800px) {

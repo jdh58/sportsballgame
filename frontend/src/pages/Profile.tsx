@@ -145,7 +145,7 @@ export default function Profile() {
               </div>
             </div>
           </div>
-          <div className="separator"></div>
+          {/* <div className="separator"></div>
           <div className="favoritesList">
             <h2 className="favoritesHeader">Favorites</h2>
             <div className="favoritesContainer">
@@ -170,7 +170,7 @@ export default function Profile() {
                 <p>Aaron Rodgers</p>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="endSeparator">
             <div className="separator"></div>
             <p className="report">Report User?</p>
