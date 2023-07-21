@@ -261,6 +261,7 @@ html {
   --easy-600: #16a34a;
   --easy-500: #22c55e;
   --background-primary: #222831;
+  --background-primary-hover: hsl(216, 18%, 19%);
   --background-secondary: #393e46;
   --background-secondary-hover: hsl(217, 10%, 30%);
   --main-border-radius: 8px;

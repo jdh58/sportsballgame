@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import LeaderboardItem from '../components/LeaderboardItem';
+import DownArrow from '../assets/down.svg';
 import Selector from '../components/Selector';
 
 import '../styles/LeaderboardPage.css';
@@ -34,7 +35,10 @@ export default function LeaderboardPage() {
                     setDropdown('sports');
                   }}
                 >
-                  {sport}
+                  <div className="label">{sport}</div>
+                  <div className="arrowContainer">
+                    <img src={DownArrow} alt="" />
+                  </div>
                 </div>
                 <div
                   className={
@@ -82,7 +86,10 @@ export default function LeaderboardPage() {
                     setDropdown('games');
                   }}
                 >
-                  {game}
+                  <div className="label">{game}</div>
+                  <div className="arrowContainer">
+                    <img src={DownArrow} alt="" />
+                  </div>
                 </div>
                 <div
                   className={
@@ -166,7 +173,10 @@ export default function LeaderboardPage() {
                     setDropdown('modes');
                   }}
                 >
-                  {mode}
+                  <div className="label">{mode}</div>
+                  <div className="arrowContainer">
+                    <img src={DownArrow} alt="" />
+                  </div>
                 </div>
                 <div
                   className={
@@ -223,7 +233,10 @@ export default function LeaderboardPage() {
                     setDropdown('difficulties');
                   }}
                 >
-                  {difficulty}
+                  <div className="label">{difficulty}</div>
+                  <div className="arrowContainer">
+                    <img src={DownArrow} alt="" />
+                  </div>
                 </div>
                 <div
                   className={
