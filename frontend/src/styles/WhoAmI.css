@@ -328,6 +328,17 @@
   color: var(--easy-500);
 }
 
+.loggedOutMessage {
+  font-size: 2rem;
+}
+
+.loggedOutMessage a {
+  text-decoration: underline;
+}
+.loggedOutMessage a:hover {
+  text-decoration: none;
+}
+
 @media (max-width: 1800px) {
   .notifyContainer > div {
     width: 200px;

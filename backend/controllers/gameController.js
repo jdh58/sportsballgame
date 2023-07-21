@@ -9,46 +9,61 @@ const requireAuth = require('../middlewear/requireAuth');
 const NBAPlayer = require('../models/NBAPlayer');
 
 exports.startWhoAmIGame = async function (req, res, next) {
-  let userID = requireAuth(req, res, next);
-  const { sport, difficulty, rounds } = req.body;
+  try {
+    let userID = requireAuth(req, res, next);
+    const { sport, difficulty, rounds } = req.body;
 
-  if (userID.error) {
-    userID = null;
+    let invalidToken = false;
+
+    if (userID.error) {
+      if (userID.error === 'Token invalid or expired') {
+        invalidToken = true;
+      }
+      userID = null;
+    }
+
+    if (sport !== 'nba') {
+      res.status(400).json({ error: 'No support for this sport' });
+      return;
+    }
+
+    const newGame = new WhoAmI({
+      userID,
+      gameMode: { sport, difficulty, rounds },
+      currentRound: 1,
+      currentHint: 4,
+      score: 0,
+    });
+
+    // Now randomly pick a player from the database
+    const randomPlayer = await getRandomPlayer(sport, difficulty);
+    newGame.correctPlayer = randomPlayer.name;
+
+    // Next up, create hints
+    newGame.hints = createHints(sport, randomPlayer);
+
+    // Return the player's headshot picture and first hint
+    const firstReturn = {
+      playerPicture: randomPlayer.picture,
+      hints: newGame.hints[0],
+      _id: newGame._id,
+    };
+
+    // Take off the first hint and save to the database to access later
+    newGame.hints.shift();
+
+    await newGame.save();
+
+    // If the user's token was invalid or expired, still give return, but let the frontend know
+    if (invalidToken) {
+      res.status(401).json(firstReturn);
+    } else {
+      res.status(200).json(firstReturn);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
   }
-
-  if (sport !== 'nba') {
-    res.status(400).json({ error: 'No support for this sport' });
-    return;
-  }
-
-  const newGame = new WhoAmI({
-    userID,
-    gameMode: { sport, difficulty, rounds },
-    currentRound: 1,
-    currentHint: 4,
-    score: 0,
-  });
-
-  // Now randomly pick a player from the database
-  const randomPlayer = await getRandomPlayer(sport, difficulty);
-  newGame.correctPlayer = randomPlayer.name;
-
-  // Next up, create hints
-  newGame.hints = createHints(sport, randomPlayer);
-
-  // Return the player's headshot picture and first hint
-  const firstReturn = {
-    playerPicture: randomPlayer.picture,
-    hints: newGame.hints[0],
-    _id: newGame._id,
-  };
-
-  // Take off the first hint and save to the database to access later
-  newGame.hints.shift();
-
-  await newGame.save();
-
-  res.status(200).json(firstReturn);
 };
 
 exports.getWhoAmIHint = async function (req, res, next) {

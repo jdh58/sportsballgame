@@ -22,6 +22,8 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 
+import { Link } from 'react-router-dom';
+
 import { v4 as uuid } from 'uuid';
 
 export default function WhoAmI() {
@@ -74,10 +76,13 @@ export default function WhoAmI() {
     );
     const json = await response.json();
 
-    // If the user has an invalid token, wipe the user and send them to login
+    // If the user has an invalid token, wipe the user but let them play logged out
     if (response.status === 401) {
-      navigate('/logout');
-      return;
+      // Delete the user from localStorage
+      localStorage.removeItem('user');
+
+      // Dispatch a logout state change
+      Auth.dispatch({ type: 'LOGOUT', user: null });
     }
 
     // Otherwise, the game was successfully created. Update the game state
@@ -620,18 +625,11 @@ export default function WhoAmI() {
         <div className="page gameOverPage">
           <h1 className="gameOver">Game Over!</h1>
           <div className="scoreContainer">
-            {/* <p className="bestIndicator">NEW BEST!</p> */}
             <h2 className="score">
               <span className="label">Score:</span>
               {score}
             </h2>
           </div>
-          {/* {Auth.user && (
-            <h2 className="personalBest">
-              <span className="label">Personal Best:</span>
-              21
-            </h2>
-          )} */}
           <h2 className="mode">
             <span className="label">Mode:</span>
             {rounds} Rounds
@@ -672,6 +670,13 @@ export default function WhoAmI() {
               />
             </div>
           </div>
+          {!Auth.user && (
+            <p className="loggedOutMessage">
+              Want your score on the leaderboard?{' '}
+              <Link to="/login">Log in</Link> or{' '}
+              <Link to="/signup">Sign up</Link>!
+            </p>
+          )}
         </div>
       )}
     </>

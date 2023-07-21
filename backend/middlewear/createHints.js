@@ -105,7 +105,12 @@ function createDebutHint(Player, difficulty) {
       }
     }
 
-    return `I have played for ${seasonCount} seasons.`;
+    // Make sure pluralization is correct
+    if (seasonCount === 1) {
+      return `I have played for ${seasonCount} season.`;
+    } else {
+      return `I have played for ${seasonCount} seasons.`;
+    }
   }
 }
 
