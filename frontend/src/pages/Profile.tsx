@@ -44,7 +44,7 @@ export default function Profile() {
         const response = await fetch(`http://localhost:3100/api/user/${urlID}`);
         const json = await response.json();
 
-        setProfileUser(json);
+        setProfileUser(json.user);
         setIsLoading(false);
       } catch (err) {
         console.error(err);

@@ -1,20 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import LeaderboardItem from '../components/LeaderboardItem';
 import DownArrow from '../assets/down.svg';
 import Selector from '../components/Selector';
 
 import '../styles/LeaderboardPage.css';
 import { useParams } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 export default function LeaderboardPage() {
   const [sport, setSport] = useState('NBA');
   const [game, setGame] = useState('Who Am I?');
   const [mode, setMode] = useState('3 Rounds');
   const [difficulty, setDifficulty] = useState('Easy');
-
   const [dropdown, setDropdown] = useState('none');
 
+  const [userTopScore, setUserTopScore] = useState<React.ReactElement | null>(
+    null
+  );
+
   const userID = useParams().userID;
+  const Auth = useContext(AuthContext);
 
   const [leaderboardItems, setLeaderbordItems] = useState<
     Array<React.ReactElement>
@@ -38,33 +43,74 @@ export default function LeaderboardPage() {
       console.log(json);
 
       const leaderboardItemArray = await Promise.all(
-        scores.map(async (score, index) => {
-          console.log(score);
-          console.log(index);
-          const scoreUserResponse = await fetch(
-            `http://localhost:3100/api/user/id/${score.userID}`
-          );
+        scores.map(
+          async (score: { userID: string; score: number }, index: number) => {
+            const scoreUserResponse = await fetch(
+              `http://localhost:3100/api/user/id/${score.userID}`
+            );
 
-          const scoreUserJson = await scoreUserResponse.json();
+            const scoreUserJson = await scoreUserResponse.json();
 
-          console.log(scoreUserJson);
+            console.log(scoreUserJson);
 
-          const scoreUser = scoreUserJson.user;
+            const scoreUser = scoreUserJson.user;
 
-          return (
-            <LeaderboardItem
-              rank={index + 1}
-              username={scoreUser.username}
-              picture={scoreUser.profilePicURL}
-              score={score.score}
-            />
-          );
-        })
+            return (
+              <LeaderboardItem
+                rank={index + 1}
+                username={scoreUser.username}
+                picture={scoreUser.profilePicURL}
+                score={score.score}
+              />
+            );
+          }
+        )
       );
+
+      // If the user is logged in, grab their top score for the selected category
+      if (Auth.user) {
+        const userTopScoreResponse = await fetch(
+          `http://localhost:3100/api/score/user/${Auth.user._id}`,
+          {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ sport, game, mode, difficulty }),
+          }
+        );
+        const userTopScoreJSON = await userTopScoreResponse.json();
+        const userTopScore = userTopScoreJSON.userTopScore;
+
+        console.log(userTopScore);
+
+        const userScoreRankResponse = await fetch(
+          `http://localhost:3100/api/score/amountAbove/${userTopScore}`,
+          {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ sport, game, mode, difficulty }),
+          }
+        );
+        const userScoreRankJSON = await userScoreRankResponse.json();
+
+        setUserTopScore(
+          <LeaderboardItem
+            rank={userScoreRankJSON.amountAbove + 1}
+            username={Auth.user.username}
+            picture={Auth.user.profilePicURL}
+            score={userTopScore}
+          />
+        );
+      }
 
       setLeaderbordItems(leaderboardItemArray);
     })();
-  }, [userID, sport, game, mode, difficulty]);
+  }, [Auth, userID, sport, game, mode, difficulty]);
 
   return (
     <>
@@ -334,8 +380,7 @@ export default function LeaderboardPage() {
             <div className="leaderboard">
               <div className="normalScores">{leaderboardItems}</div>
               <div className="specialScores">
-                <LeaderboardItem />
-                <LeaderboardItem />
+                {userTopScore && userTopScore}
               </div>
             </div>
           </div>
