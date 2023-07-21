@@ -183,12 +183,15 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
       });
 
       if (game.userID !== null) {
-        console.log('banna');
         console.log(game.userID);
+        // Alter the score game mode for full details
+        const scoreGameMode = game.gameMode;
+        scoreGameMode.game = 'Who Am I?';
+
         const newScore = new Score({
           userID: game.userID,
           score: game.score,
-          gameMode: game.gameMode,
+          gameMode: scoreGameMode,
         });
 
         await newScore.save();

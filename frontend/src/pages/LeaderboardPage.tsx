@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LeaderboardItem from '../components/LeaderboardItem';
 import DownArrow from '../assets/down.svg';
 import Selector from '../components/Selector';
 
 import '../styles/LeaderboardPage.css';
+import { useParams } from 'react-router-dom';
 
 export default function LeaderboardPage() {
   const [sport, setSport] = useState('NBA');
@@ -12,6 +13,29 @@ export default function LeaderboardPage() {
   const [difficulty, setDifficulty] = useState('Easy');
 
   const [dropdown, setDropdown] = useState('none');
+
+  const userID = useParams().userID;
+
+  const [leaderboardItems, setLeaderbordItems] = useState<
+    Array<React.ReactElement>
+  >([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('http://localhost:3100/api/score/top50', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sport, game, mode, difficulty }),
+      });
+
+      const json = await response.json();
+
+      console.log(json);
+    })();
+  }, [userID, sport, game, mode, difficulty]);
 
   return (
     <>
