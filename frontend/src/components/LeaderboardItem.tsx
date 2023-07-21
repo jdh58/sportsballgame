@@ -13,14 +13,16 @@ export default function LeaderboardItem({
   rank: number;
   username: string;
   picture: string;
-  score: number;
+  score: number | string;
 }) {
   return (
     <div className="leaderboardItem">
       <p className="rank">{rank}</p>
       <ProfilePic image={picture} />
       <p className="username">{username}</p>
-      <p className="score">{score} pts</p>
+      <p className="score">
+        {typeof score === 'number' ? `${score} pts` : `${score}`}
+      </p>
     </div>
   );
 }

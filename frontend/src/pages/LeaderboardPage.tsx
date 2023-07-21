@@ -4,7 +4,7 @@ import DownArrow from '../assets/down.svg';
 import Selector from '../components/Selector';
 
 import '../styles/LeaderboardPage.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useRouteLoaderData } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 export default function LeaderboardPage() {
@@ -17,8 +17,11 @@ export default function LeaderboardPage() {
   const [userTopScore, setUserTopScore] = useState<React.ReactElement | null>(
     null
   );
+  const [urlTopScore, setURLTopScore] = useState<React.ReactElement | null>(
+    null
+  );
 
-  const userID = useParams().userID;
+  const urlUsername = useParams().username;
   const Auth = useContext(AuthContext);
 
   const [leaderboardItems, setLeaderbordItems] = useState<
@@ -87,9 +90,16 @@ export default function LeaderboardPage() {
         const userTopScoreJSON = await userTopScoreResponse.json();
 
         // If the user doesn't have a score for this mode,
-        // set the user top score to null and return
+        // set the user top score to a placeholder and return
         if (userTopScoreJSON.error) {
-          setUserTopScore(null);
+          setUserTopScore(
+            <LeaderboardItem
+              rank={0}
+              username={Auth.user.username}
+              picture={Auth.user.profilePicURL}
+              score="None"
+            />
+          );
           return;
         }
 
@@ -120,9 +130,84 @@ export default function LeaderboardPage() {
       }
     };
 
-    // Run both in parallel to speed up the process since they're independent
-    Promise.all([grabLeaderboardItems(), grabUserTopScore()]);
-  }, [Auth, userID, sport, game, mode, difficulty]);
+    const grabURLUserTopScore = async function () {
+      if (!urlUsername) {
+        return;
+      }
+      // First, grab the url user for the profile pic
+      const urlUserResponse = await fetch(
+        `http://localhost:3100/api/user/${urlUsername}`
+      );
+      const urlUserJSON = await urlUserResponse.json();
+
+      // If the user doesn't exist, set top score to null and return
+      if (urlUserJSON.error) {
+        setURLTopScore(null);
+        return;
+      }
+
+      // If the user is logged in, grab their top score for the selected category
+      if (urlUsername) {
+        const urlTopScoreResponse = await fetch(
+          `http://localhost:3100/api/score/user/${urlUsername}`,
+          {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ sport, game, mode, difficulty }),
+          }
+        );
+        const urlTopScoreJSON = await urlTopScoreResponse.json();
+
+        // If the user doesn't have a score for this mode,
+        // set the user top score to a filler and return
+        if (urlTopScoreJSON.error) {
+          setURLTopScore(
+            <LeaderboardItem
+              rank={0}
+              username={urlUsername}
+              picture={urlUserJSON.profilePicURL}
+              score="None"
+            />
+          );
+          return;
+        }
+
+        // Otherwise, save the score and get the score's rank
+        const userTopScore = urlTopScoreJSON.userTopScore;
+        const urlScoreRankResponse = await fetch(
+          `http://localhost:3100/api/score/amountAbove/${urlTopScore}`,
+          {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ sport, game, mode, difficulty }),
+          }
+        );
+        const urlScoreRankJSON = await urlScoreRankResponse.json();
+
+        setUserTopScore(
+          <LeaderboardItem
+            rank={urlScoreRankJSON.amountAbove + 1}
+            username={urlUsername}
+            picture={urlUserJSON.profilePicURL}
+            score={userTopScore}
+          />
+        );
+      }
+    };
+
+    // Run all in parallel to speed up the process since they're independent
+    Promise.all([
+      grabLeaderboardItems(),
+      grabUserTopScore(),
+      grabURLUserTopScore(),
+    ]);
+  }, [Auth, urlUsername, sport, game, mode, difficulty]);
 
   return (
     <>
@@ -393,6 +478,7 @@ export default function LeaderboardPage() {
               <div className="normalScores">{leaderboardItems}</div>
               <div className="specialScores">
                 {userTopScore && userTopScore}
+                {urlTopScore && urlTopScore}
               </div>
             </div>
           </div>

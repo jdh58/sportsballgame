@@ -23,23 +23,28 @@ exports.grabTop50 = async function (req, res, next) {
 };
 
 exports.grabAbove = async function (req, res, next) {
-  const sport = req.body.sport.toLowerCase();
-  const game = req.body.game;
-  // Extract the number from the mode submitted to align with round from game
-  const mode = parseInt(req.body.mode.charAt(0));
-  const difficulty = req.body.difficulty.toLowerCase();
+  try {
+    const sport = req.body.sport.toLowerCase();
+    const game = req.body.game;
+    // Extract the number from the mode submitted to align with round from game
+    const mode = parseInt(req.body.mode.charAt(0));
+    const difficulty = req.body.difficulty.toLowerCase();
 
-  const score = parseInt(req.params.score);
+    const score = parseInt(req.params.score);
 
-  const amountAbove = await Score.countDocuments({
-    'gameMode.sport': sport,
-    'gameMode.game': game,
-    'gameMode.rounds': mode,
-    'gameMode.difficulty': difficulty,
-    score: { $gt: score },
-  });
+    const amountAbove = await Score.countDocuments({
+      'gameMode.sport': sport,
+      'gameMode.game': game,
+      'gameMode.rounds': mode,
+      'gameMode.difficulty': difficulty,
+      score: { $gt: score },
+    });
 
-  res.status(200).json({ amountAbove });
+    res.status(200).json({ amountAbove });
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ error: 'Invalid request' });
+  }
 };
 
 exports.grabUserTopScore = async function (req, res, next) {
