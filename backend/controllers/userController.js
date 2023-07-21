@@ -24,7 +24,6 @@ const profilePicURLS = [
 
 exports.getUser = async function (req, res) {
   try {
-    console.log('banan');
     // Anybody can get this info so don't bother to check token
     const grabbedUser = await User.findOne({ username: req.params.username });
 

@@ -75,70 +75,73 @@ export default function LeaderboardPage() {
 
     const grabUserTopScore = async function () {
       // If the user is logged in, grab their top score for the selected category
-      if (Auth.user) {
-        const userTopScoreResponse = await fetch(
-          `http://localhost:3100/api/score/user/${Auth.user._id}`,
-          {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ sport, game, mode, difficulty }),
-          }
-        );
-        const userTopScoreJSON = await userTopScoreResponse.json();
-
-        // If the user doesn't have a score for this mode,
-        // set the user top score to a placeholder and return
-        if (userTopScoreJSON.error) {
-          setUserTopScore(
-            <LeaderboardItem
-              rank={0}
-              username={Auth.user.username}
-              picture={Auth.user.profilePicURL}
-              score="None"
-            />
-          );
-          return;
+      if (!Auth.user) {
+        return;
+      }
+      const userTopScoreResponse = await fetch(
+        `http://localhost:3100/api/score/user/${Auth.user._id}`,
+        {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ sport, game, mode, difficulty }),
         }
+      );
+      const userTopScoreJSON = await userTopScoreResponse.json();
 
-        // Otherwise, save the score and get the score's rank
-        const userTopScore = userTopScoreJSON.userTopScore;
-
-        const userScoreRankResponse = await fetch(
-          `http://localhost:3100/api/score/amountAbove/${userTopScore}`,
-          {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ sport, game, mode, difficulty }),
-          }
-        );
-        const userScoreRankJSON = await userScoreRankResponse.json();
-
+      // If the user doesn't have a score for this mode,
+      // set the user top score to a placeholder and return
+      if (userTopScoreJSON.error) {
         setUserTopScore(
           <LeaderboardItem
-            rank={userScoreRankJSON.amountAbove + 1}
+            rank={0}
             username={Auth.user.username}
             picture={Auth.user.profilePicURL}
-            score={userTopScore}
+            score="None"
           />
         );
+        return;
       }
+
+      // Otherwise, save the score and get the score's rank
+      const userTopScore = userTopScoreJSON.userTopScore;
+
+      const userScoreRankResponse = await fetch(
+        `http://localhost:3100/api/score/amountAbove/${userTopScore}`,
+        {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ sport, game, mode, difficulty }),
+        }
+      );
+      const userScoreRankJSON = await userScoreRankResponse.json();
+
+      setUserTopScore(
+        <LeaderboardItem
+          rank={userScoreRankJSON.amountAbove + 1}
+          username={Auth.user.username}
+          picture={Auth.user.profilePicURL}
+          score={userTopScore}
+        />
+      );
     };
 
     const grabURLUserTopScore = async function () {
       if (!urlUsername) {
         return;
       }
+
       // First, grab the url user for the profile pic
       const urlUserResponse = await fetch(
         `http://localhost:3100/api/user/${urlUsername}`
       );
       const urlUserJSON = await urlUserResponse.json();
+      const urlUser = urlUserJSON.user;
 
       // If the user doesn't exist, set top score to null and return
       if (urlUserJSON.error) {
@@ -146,59 +149,57 @@ export default function LeaderboardPage() {
         return;
       }
 
-      // If the user is logged in, grab their top score for the selected category
-      if (urlUsername) {
-        const urlTopScoreResponse = await fetch(
-          `http://localhost:3100/api/score/user/${urlUsername}`,
-          {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ sport, game, mode, difficulty }),
-          }
-        );
-        const urlTopScoreJSON = await urlTopScoreResponse.json();
-
-        // If the user doesn't have a score for this mode,
-        // set the user top score to a filler and return
-        if (urlTopScoreJSON.error) {
-          setURLTopScore(
-            <LeaderboardItem
-              rank={0}
-              username={urlUsername}
-              picture={urlUserJSON.profilePicURL}
-              score="None"
-            />
-          );
-          return;
+      const urlTopScoreResponse = await fetch(
+        `http://localhost:3100/api/score/user/${urlUser._id}`,
+        {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ sport, game, mode, difficulty }),
         }
+      );
+      const urlTopScoreJSON = await urlTopScoreResponse.json();
 
-        // Otherwise, save the score and get the score's rank
-        const userTopScore = urlTopScoreJSON.userTopScore;
-        const urlScoreRankResponse = await fetch(
-          `http://localhost:3100/api/score/amountAbove/${urlTopScore}`,
-          {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ sport, game, mode, difficulty }),
-          }
-        );
-        const urlScoreRankJSON = await urlScoreRankResponse.json();
-
-        setUserTopScore(
+      // If the user doesn't have a score for this mode,
+      // set the user top score to a filler and return
+      if (urlTopScoreJSON.error) {
+        setURLTopScore(
           <LeaderboardItem
-            rank={urlScoreRankJSON.amountAbove + 1}
+            rank={0}
             username={urlUsername}
-            picture={urlUserJSON.profilePicURL}
-            score={userTopScore}
+            picture={urlUser.profilePicURL}
+            score="None"
           />
         );
+        return;
       }
+
+      // Otherwise, save the score and get the score's rank
+      const urlTopScoreNUM = urlTopScoreJSON.userTopScore;
+
+      const urlScoreRankResponse = await fetch(
+        `http://localhost:3100/api/score/amountAbove/${urlTopScoreNUM}`,
+        {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ sport, game, mode, difficulty }),
+        }
+      );
+      const urlScoreRankJSON = await urlScoreRankResponse.json();
+
+      setURLTopScore(
+        <LeaderboardItem
+          rank={urlScoreRankJSON.amountAbove + 1}
+          username={urlUsername}
+          picture={urlUser.profilePicURL}
+          score={urlTopScoreNUM}
+        />
+      );
     };
 
     // Run all in parallel to speed up the process since they're independent
