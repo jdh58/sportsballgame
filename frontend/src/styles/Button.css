@@ -84,7 +84,7 @@
   background-color: var(--easy-700);
 }
 
-.button.small:hover {
+.button.small:hover:not(:disabled) {
   box-shadow: var(--small-button-shadow-hover);
   transform: translateY(-2px);
 }
