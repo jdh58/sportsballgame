@@ -43,7 +43,7 @@ export default function DropdownMenu({ killMenu }: { killMenu: Function }) {
       <DropdownItem
         icon={Help}
         label="Contact & Support"
-        redirect=""
+        redirect="/contact"
         classes=""
         killMenu={killMenu}
       />
