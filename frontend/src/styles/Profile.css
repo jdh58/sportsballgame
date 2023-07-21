@@ -133,6 +133,7 @@
 .profilePage .topScores {
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 250px;
   gap: 36px;
   /* padding: 0 50px; */
@@ -142,7 +143,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: fit-content;
   gap: 5px;
+}
+
+.topScores .scoresHeader:hover {
+  cursor: pointer;
 }
 
 .scoresHeader p,
