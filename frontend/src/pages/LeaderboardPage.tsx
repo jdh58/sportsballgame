@@ -33,7 +33,13 @@ export default function LeaderboardPage() {
 
       const json = await response.json();
 
-      console.log(json);
+      const leaderboardItemArray = json.map(async (score) => {
+        const scoreUserResponse = await fetch(
+          `http://localhost:3100/api/user/id/${userID}`
+        );
+
+        const scoreUser = await scoreUserResponse.json();
+      });
     })();
   }, [userID, sport, game, mode, difficulty]);
 

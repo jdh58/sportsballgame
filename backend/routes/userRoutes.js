@@ -7,6 +7,9 @@ const controller = require('../controllers/userController');
 // GET user
 route.get('/:username', controller.getUser);
 
+// GET user by ID
+route.get('/id/:userID', controller.getUser);
+
 // Log in user
 route.post('/login', controller.logIn);
 

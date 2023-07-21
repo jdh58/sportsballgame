@@ -34,6 +34,18 @@ exports.getUser = async function (req, res) {
   }
 };
 
+exports.getUserByID = async function (req, res) {
+  try {
+    // Anybody can get this info so don't bother to check token
+    const grabbedUser = await User.findById(req.params.userID);
+
+    res.status(200).json(grabbedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Failed to grab user profile');
+  }
+};
+
 exports.logIn = [
   // Validate and trim login details
   body('email')
