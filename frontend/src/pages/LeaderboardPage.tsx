@@ -6,6 +6,7 @@ import Selector from '../components/Selector';
 import '../styles/LeaderboardPage.css';
 import { useParams, useRouteLoaderData } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function LeaderboardPage() {
   const [sport, setSport] = useState('NBA');
@@ -13,6 +14,8 @@ export default function LeaderboardPage() {
   const [mode, setMode] = useState('3 Rounds');
   const [difficulty, setDifficulty] = useState('Easy');
   const [dropdown, setDropdown] = useState('none');
+
+  const [loading, setLoading] = useState(true);
 
   const [userTopScore, setUserTopScore] = useState<React.ReactElement | null>(
     null
@@ -29,6 +32,8 @@ export default function LeaderboardPage() {
   >([]);
 
   useEffect(() => {
+    setLoading(true);
+
     const grabLeaderboardItems = async function () {
       const response = await fetch('http://localhost:3100/api/score/top50', {
         method: 'POST',
@@ -203,11 +208,14 @@ export default function LeaderboardPage() {
     };
 
     // Run all in parallel to speed up the process since they're independent
-    Promise.all([
-      grabLeaderboardItems(),
-      grabUserTopScore(),
-      grabURLUserTopScore(),
-    ]);
+    (async () => {
+      await Promise.all([
+        grabLeaderboardItems(),
+        grabUserTopScore(),
+        grabURLUserTopScore(),
+      ]);
+      setLoading(false);
+    })();
   }, [Auth, urlUsername, sport, game, mode, difficulty]);
 
   return (
@@ -404,7 +412,9 @@ export default function LeaderboardPage() {
           <div className="leaderboardContainer">
             <h1 className="title">Leaderboard</h1>
             <div className="leaderboard">
-              <div className="normalScores">{leaderboardItems}</div>
+              <div className="normalScores">
+                {loading ? <LoadingSpinner /> : leaderboardItems}
+              </div>
               <div className="specialScores">
                 {userTopScore && userTopScore}
                 {urlTopScore && urlTopScore}

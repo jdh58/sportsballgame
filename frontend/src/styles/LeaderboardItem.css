@@ -12,8 +12,13 @@
   border-bottom: none;
 }
 
-.leaderboardItem p {
+.leaderboardItem p,
+.leaderboardItem a {
   font-size: 2.4rem;
+}
+
+.leaderboardItem a:hover {
+  text-decoration: underline;
 }
 
 .leaderboardItem .username {

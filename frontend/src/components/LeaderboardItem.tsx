@@ -1,6 +1,6 @@
 import ProfilePic from './ProfilePic';
 
-import Blank from '../assets/white.png';
+import { Link } from 'react-router-dom';
 
 import '../styles/LeaderboardItem.css';
 
@@ -19,7 +19,9 @@ export default function LeaderboardItem({
     <div className="leaderboardItem">
       <p className="rank">{rank}</p>
       <ProfilePic image={picture} />
-      <p className="username">{username}</p>
+      <Link to={`/profile/${username}`} className="username">
+        {username}
+      </Link>
       <p className="score">
         {typeof score === 'number' ? `${score} pts` : `${score}`}
       </p>
