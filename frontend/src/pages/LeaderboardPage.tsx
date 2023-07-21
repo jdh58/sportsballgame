@@ -26,7 +26,7 @@ export default function LeaderboardPage() {
   >([]);
 
   useEffect(() => {
-    (async () => {
+    const grabLeaderboardItems = async function () {
       const response = await fetch('http://localhost:3100/api/score/top50', {
         method: 'POST',
         mode: 'cors',
@@ -67,6 +67,10 @@ export default function LeaderboardPage() {
         )
       );
 
+      setLeaderbordItems(leaderboardItemArray);
+    };
+
+    const grabUserTopScore = async function () {
       // If the user is logged in, grab their top score for the selected category
       if (Auth.user) {
         const userTopScoreResponse = await fetch(
@@ -107,8 +111,14 @@ export default function LeaderboardPage() {
           />
         );
       }
+    };
 
-      setLeaderbordItems(leaderboardItemArray);
+    (async () => {
+      console.log('bann');
+      const nothing = await Promise.all([
+        grabLeaderboardItems(),
+        grabUserTopScore(),
+      ]);
     })();
   }, [Auth, userID, sport, game, mode, difficulty]);
 
