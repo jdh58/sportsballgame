@@ -5,6 +5,7 @@ const cors = require('cors');
 const userRouter = require('./routes/userRoutes');
 const gameRouter = require('./routes/gameRoutes');
 const scoreRouter = require('./routes/scoreRoutes');
+const formRouter = require('./routes/formRoutes');
 
 // Configure .env variables
 require('dotenv').config();
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use('/api/user', userRouter);
 app.use('/api/game', gameRouter);
 app.use('/api/score', scoreRouter);
+app.use('/api/form', formRouter);
 
 app.listen(parseInt(process.env.PORT), () => {
   console.log(`server now running on port ${process.env.PORT}`);

@@ -89,7 +89,7 @@
   transform: translateY(-2px);
 }
 
-.button.small:active {
+.button.small:active:not(:disabled) {
   box-shadow: 0px 0px 0px 0.25px #fff;
   transform: translateY(2px);
 }
