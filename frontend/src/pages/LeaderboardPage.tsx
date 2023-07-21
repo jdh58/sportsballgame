@@ -106,10 +106,10 @@ export default function LeaderboardPage() {
       }
 
       // Otherwise, save the score and get the score's rank
-      const userTopScore = userTopScoreJSON.userTopScore;
+      const userTopScoreNUM = userTopScoreJSON.userTopScore;
 
       const userScoreRankResponse = await fetch(
-        `http://localhost:3100/api/score/amountAbove/${userTopScore}`,
+        `http://localhost:3100/api/score/amountAbove/${userTopScoreNUM}`,
         {
           method: 'POST',
           mode: 'cors',
@@ -126,7 +126,7 @@ export default function LeaderboardPage() {
           rank={userScoreRankJSON.amountAbove + 1}
           username={Auth.user.username}
           picture={Auth.user.profilePicURL}
-          score={userTopScore}
+          score={userTopScoreNUM}
         />
       );
     };
@@ -253,24 +253,6 @@ export default function LeaderboardPage() {
                   >
                     NBA
                   </span>
-                  <span
-                    className={'dropdownElement'}
-                    onClick={() => {
-                      setSport('NFL');
-                      setDropdown('none');
-                    }}
-                  >
-                    NFL
-                  </span>
-                  <span
-                    className="dropdownElement"
-                    onClick={() => {
-                      setSport('MLB');
-                      setDropdown('none');
-                    }}
-                  >
-                    MLB
-                  </span>
                 </div>
               </div>
             </div>
@@ -303,60 +285,6 @@ export default function LeaderboardPage() {
                     }}
                   >
                     Who Am I?
-                  </span>
-                  <span
-                    className={'dropdownElement'}
-                    onClick={() => {
-                      setGame('Higher or Lower');
-                      setDropdown('none');
-                    }}
-                  >
-                    Higher or Lower
-                  </span>
-                  <span
-                    className="dropdownElement"
-                    onClick={() => {
-                      setGame('Grid');
-                      setDropdown('none');
-                    }}
-                  >
-                    Grid
-                  </span>
-                  <span
-                    className="dropdownElement"
-                    onClick={() => {
-                      setGame('Face Mix');
-                      setDropdown('none');
-                    }}
-                  >
-                    Face Mix
-                  </span>
-                  <span
-                    className="dropdownElement"
-                    onClick={() => {
-                      setGame('Call the Call');
-                      setDropdown('none');
-                    }}
-                  >
-                    Call the Call
-                  </span>
-                  <span
-                    className="dropdownElement"
-                    onClick={() => {
-                      setGame('Shot Chart Secret');
-                      setDropdown('none');
-                    }}
-                  >
-                    Shot Chart Secret
-                  </span>
-                  <span
-                    className="dropdownElement"
-                    onClick={() => {
-                      setGame('Lineup Decoder');
-                      setDropdown('none');
-                    }}
-                  >
-                    Lineup Decoder
                   </span>
                 </div>
               </div>
