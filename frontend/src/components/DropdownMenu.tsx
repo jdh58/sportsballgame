@@ -47,13 +47,7 @@ export default function DropdownMenu({ killMenu }: { killMenu: Function }) {
         classes=""
         killMenu={killMenu}
       />
-      <DropdownItem
-        icon={Settings}
-        label="Settings"
-        redirect=""
-        classes=""
-        killMenu={killMenu}
-      />
+
       <DropdownItem
         icon={Logout}
         label="Log Out"
@@ -61,11 +55,6 @@ export default function DropdownMenu({ killMenu }: { killMenu: Function }) {
         classes="red"
         killMenu={killMenu}
       />
-      <div className="lightMode">
-        <p>Light</p>
-        <ToggleSwitch />
-        <p>Dark</p>
-      </div>
     </div>
   );
 }
