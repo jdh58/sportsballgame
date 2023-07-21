@@ -61,5 +61,9 @@ exports.grabUserTopScore = async function (req, res, next) {
     .sort({ score: 'desc' })
     .limit(1);
 
-  res.status(200).json({ userTopScore: userTopScore[0].score });
+  if (userTopScore[0]) {
+    res.status(200).json({ userTopScore: userTopScore[0].score });
+  } else {
+    res.status(400).json({ error: 'User has no score for this mode' });
+  }
 };

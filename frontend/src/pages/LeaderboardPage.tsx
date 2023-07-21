@@ -85,9 +85,16 @@ export default function LeaderboardPage() {
           }
         );
         const userTopScoreJSON = await userTopScoreResponse.json();
-        const userTopScore = userTopScoreJSON.userTopScore;
 
-        console.log(userTopScore);
+        // If the user doesn't have a score for this mode,
+        // set the user top score to null and return
+        if (userTopScoreJSON.error) {
+          setUserTopScore(null);
+          return;
+        }
+
+        // Otherwise, save the score and get the score's rank
+        const userTopScore = userTopScoreJSON.userTopScore;
 
         const userScoreRankResponse = await fetch(
           `http://localhost:3100/api/score/amountAbove/${userTopScore}`,
@@ -113,13 +120,8 @@ export default function LeaderboardPage() {
       }
     };
 
-    (async () => {
-      console.log('bann');
-      const nothing = await Promise.all([
-        grabLeaderboardItems(),
-        grabUserTopScore(),
-      ]);
-    })();
+    // Run both in parallel to speed up the process since they're independent
+    Promise.all([grabLeaderboardItems(), grabUserTopScore()]);
   }, [Auth, userID, sport, game, mode, difficulty]);
 
   return (
