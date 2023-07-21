@@ -55,7 +55,9 @@ export default function HomePage() {
                 label="Profile"
                 bgImage={Locker}
                 bgColor="55, 5, 5"
-                redirect={`/profile/${Auth.user?.username}`}
+                redirect={
+                  Auth.user ? `/profile/${Auth.user?.username}` : '/signup'
+                }
                 disabled={false}
               />
               <TileButton
