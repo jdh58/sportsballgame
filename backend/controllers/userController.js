@@ -27,7 +27,7 @@ exports.getUser = async function (req, res) {
     // Anybody can get this info so don't bother to check token
     const grabbedUser = await User.findOne({ username: req.params.username });
 
-    res.status(200).json(grabbedUser);
+    res.status(200).json({ user: grabbedUser });
   } catch (err) {
     console.error(err);
     res.status(500).send('Failed to grab user profile');
@@ -36,10 +36,11 @@ exports.getUser = async function (req, res) {
 
 exports.getUserByID = async function (req, res) {
   try {
+    console.log(req.params.userID);
     // Anybody can get this info so don't bother to check token
-    const grabbedUser = await User.findById(req.params.userID);
+    const grabbedUser = await User.findById(req.params.userID).exec();
 
-    res.status(200).json(grabbedUser);
+    res.status(200).json({ user: grabbedUser });
   } catch (err) {
     console.error(err);
     res.status(500).send('Failed to grab user profile');

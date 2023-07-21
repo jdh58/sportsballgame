@@ -33,13 +33,36 @@ export default function LeaderboardPage() {
 
       const json = await response.json();
 
-      const leaderboardItemArray = json.map(async (score) => {
-        const scoreUserResponse = await fetch(
-          `http://localhost:3100/api/user/id/${userID}`
-        );
+      const scores = json.results;
 
-        const scoreUser = await scoreUserResponse.json();
-      });
+      console.log(json);
+
+      const leaderboardItemArray = await Promise.all(
+        scores.map(async (score, index) => {
+          console.log(score);
+          console.log(index);
+          const scoreUserResponse = await fetch(
+            `http://localhost:3100/api/user/id/${score.userID}`
+          );
+
+          const scoreUserJson = await scoreUserResponse.json();
+
+          console.log(scoreUserJson);
+
+          const scoreUser = scoreUserJson.user;
+
+          return (
+            <LeaderboardItem
+              rank={index + 1}
+              username={scoreUser.username}
+              picture={scoreUser.profilePicURL}
+              score={score.score}
+            />
+          );
+        })
+      );
+
+      setLeaderbordItems(leaderboardItemArray);
     })();
   }, [userID, sport, game, mode, difficulty]);
 
@@ -309,27 +332,7 @@ export default function LeaderboardPage() {
           <div className="leaderboardContainer">
             <h1 className="title">Leaderboard</h1>
             <div className="leaderboard">
-              <div className="normalScores">
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-                <LeaderboardItem />
-              </div>
+              <div className="normalScores">{leaderboardItems}</div>
               <div className="specialScores">
                 <LeaderboardItem />
                 <LeaderboardItem />

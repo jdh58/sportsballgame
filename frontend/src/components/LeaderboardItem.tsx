@@ -4,13 +4,23 @@ import Blank from '../assets/white.png';
 
 import '../styles/LeaderboardItem.css';
 
-export default function LeaderboardItem() {
+export default function LeaderboardItem({
+  rank,
+  username,
+  picture,
+  score,
+}: {
+  rank: number;
+  username: string;
+  picture: string;
+  score: number;
+}) {
   return (
     <div className="leaderboardItem">
-      <p className="rank">1</p>
-      <ProfilePic image={Blank} />
-      <p className="username">jdh58</p>
-      <p className="score">25 pts</p>
+      <p className="rank">{rank}</p>
+      <ProfilePic image={picture} />
+      <p className="username">{username}</p>
+      <p className="score">{score} pts</p>
     </div>
   );
 }
