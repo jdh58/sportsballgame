@@ -48,8 +48,6 @@ export default function LeaderboardPage() {
 
       const scores = json.results;
 
-      console.log(json);
-
       const leaderboardItemArray = await Promise.all(
         scores.map(
           async (score: { userID: string; score: number }, index: number) => {
@@ -58,8 +56,6 @@ export default function LeaderboardPage() {
             );
 
             const scoreUserJson = await scoreUserResponse.json();
-
-            console.log(scoreUserJson);
 
             const scoreUser = scoreUserJson.user;
 

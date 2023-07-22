@@ -51,8 +51,6 @@ export const AuthContextProvider = ({
     }
   }, []);
 
-  console.log(`Auth Context: ${state}`);
-
   // The context's value will always be in sync with the reducer
   return (
     // @ts-expect-error

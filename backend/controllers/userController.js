@@ -36,7 +36,6 @@ exports.getUser = async function (req, res) {
 
 exports.getUserByID = async function (req, res) {
   try {
-    console.log(req.params.userID);
     // Anybody can get this info so don't bother to check token
     const grabbedUser = await User.findById(req.params.userID).exec();
 
@@ -196,11 +195,3 @@ exports.signUp = [
 exports.deleteUser = function (req, res) {
   res.send('delete user');
 };
-
-// How to use userReducer() with action type,
-
-// Ampersand to do conditional rendering
-
-// Hooks you can access all their state the entire time not just return
-
-// Store in local storage

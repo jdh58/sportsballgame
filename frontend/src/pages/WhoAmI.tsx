@@ -101,7 +101,6 @@ export default function WhoAmI() {
     setPlayerPicture(json.playerPicture);
     setGameID(json._id);
     setGameState('during');
-    console.log(json);
   };
 
   const getHint = async () => {
@@ -165,8 +164,6 @@ export default function WhoAmI() {
       setSearchQuery(json.error);
       return;
     }
-
-    console.log(json);
 
     // If it's correct, show the score addition
     // iterate the round, update the score, set the correct player, set the score difference

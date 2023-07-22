@@ -67,31 +67,36 @@ exports.startWhoAmIGame = async function (req, res, next) {
 };
 
 exports.getWhoAmIHint = async function (req, res, next) {
-  // First, find the game that's being played
-  const gameID = req.body.gameID;
-  const game = await WhoAmI.findById(gameID).exec();
+  try {
+    // First, find the game that's being played
+    const gameID = req.body.gameID;
+    const game = await WhoAmI.findById(gameID).exec();
 
-  // Then check if all the hints have been used. If so, return and send 400.
-  if (game.hints.length <= 0) {
-    res.status(400).json({ error: 'All hints have been given.' });
-    return;
+    // Then check if all the hints have been used. If so, return and send 400.
+    if (game.hints.length <= 0) {
+      res.status(400).json({ error: 'All hints have been given.' });
+      return;
+    }
+
+    // Then, save the next hint
+    const hint = game.hints[0];
+
+    // Now update the current hint and lower the currentHint on the game
+    game.hints.shift();
+    game.currentHint = game.currentHint - 1;
+
+    // Have to mark hints as modified because it wasn't clear enough I guess...
+    game.markModified('hints');
+
+    // Save these updates to the database
+    await game.save();
+
+    // Finally, send back the new hint
+    res.status(200).json({ hint, hintLevel: game.currentHint });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to get new hint' });
   }
-
-  // Then, save the next hint
-  const hint = game.hints[0];
-
-  // Now update the current hint and lower the currentHint on the game
-  game.hints.shift();
-  game.currentHint = game.currentHint - 1;
-
-  // Have to mark hints as modified because it wasn't clear enough I guess...
-  game.markModified('hints');
-
-  // Save these updates to the database
-  await game.save();
-
-  // Finally, send back the new hint
-  res.json({ hint, hintLevel: game.currentHint });
 };
 
 exports.playerSearch = async function (req, res, next) {
@@ -198,7 +203,6 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
       });
 
       if (game.userID !== null) {
-        console.log(game.userID);
         // Alter the score game mode for full details
         const scoreGameMode = game.gameMode;
         scoreGameMode.game = 'Who Am I?';

@@ -30,9 +30,6 @@ exports.grabAbove = async function (req, res, next) {
     const mode = parseInt(req.body.mode.charAt(0));
     const difficulty = req.body.difficulty.toLowerCase();
 
-    console.log(req.params);
-
-    console.log('SCORE' + req.params.score);
     const score = parseInt(req.params.score);
 
     const amountAbove = await Score.countDocuments({
