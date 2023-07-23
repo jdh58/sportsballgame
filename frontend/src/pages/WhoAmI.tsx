@@ -278,7 +278,7 @@ export default function WhoAmI() {
 
       // Return the <li> elements for each answer
       setAutofillAnswers(
-        top5Answers.map((name: { name: string }) => (
+        top5Answers.map((name: string) => (
           <li
             className="autofillAnswer"
             onMouseDown={() => {
