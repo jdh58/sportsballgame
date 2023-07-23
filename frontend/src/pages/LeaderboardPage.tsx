@@ -36,7 +36,7 @@ export default function LeaderboardPage() {
 
     const grabLeaderboardItems = async function () {
       const response = await fetch(
-        'https://https://sportsballgame.onrender.com/api/score/top50',
+        'https://sportsballgame.onrender.com/api/score/top50',
         {
           method: 'POST',
           mode: 'cors',
@@ -55,7 +55,7 @@ export default function LeaderboardPage() {
         scores.map(
           async (score: { userID: string; score: number }, index: number) => {
             const scoreUserResponse = await fetch(
-              `https://https://sportsballgame.onrender.com/api/user/id/${score.userID}`
+              `https://sportsballgame.onrender.com/api/user/id/${score.userID}`
             );
 
             const scoreUserJson = await scoreUserResponse.json();
@@ -83,7 +83,7 @@ export default function LeaderboardPage() {
         return;
       }
       const userTopScoreResponse = await fetch(
-        `https://https://sportsballgame.onrender.com/api/score/user/${Auth.user._id}`,
+        `https://sportsballgame.onrender.com/api/score/user/${Auth.user._id}`,
         {
           method: 'POST',
           mode: 'cors',
@@ -113,7 +113,7 @@ export default function LeaderboardPage() {
       const userTopScoreNUM = userTopScoreJSON.userTopScore;
 
       const userScoreRankResponse = await fetch(
-        `https://https://sportsballgame.onrender.com/api/score/amountAbove/${userTopScoreNUM}`,
+        `https://sportsballgame.onrender.com/api/score/amountAbove/${userTopScoreNUM}`,
         {
           method: 'POST',
           mode: 'cors',
@@ -142,7 +142,7 @@ export default function LeaderboardPage() {
 
       // First, grab the url user for the profile pic
       const urlUserResponse = await fetch(
-        `https://https://sportsballgame.onrender.com/api/user/${urlUsername}`
+        `https://sportsballgame.onrender.com/api/user/${urlUsername}`
       );
       const urlUserJSON = await urlUserResponse.json();
       const urlUser = urlUserJSON.user;
@@ -154,7 +154,7 @@ export default function LeaderboardPage() {
       }
 
       const urlTopScoreResponse = await fetch(
-        `https://https://sportsballgame.onrender.com/api/score/user/${urlUser._id}`,
+        `https://sportsballgame.onrender.com/api/score/user/${urlUser._id}`,
         {
           method: 'POST',
           mode: 'cors',
@@ -184,7 +184,7 @@ export default function LeaderboardPage() {
       const urlTopScoreNUM = urlTopScoreJSON.userTopScore;
 
       const urlScoreRankResponse = await fetch(
-        `https://https://sportsballgame.onrender.com/api/score/amountAbove/${urlTopScoreNUM}`,
+        `https://sportsballgame.onrender.com/api/score/amountAbove/${urlTopScoreNUM}`,
         {
           method: 'POST',
           mode: 'cors',

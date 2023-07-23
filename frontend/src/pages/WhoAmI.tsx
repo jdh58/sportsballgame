@@ -81,7 +81,7 @@ export default function WhoAmI() {
 
     // Start the game on the backend
     const response = await fetch(
-      'https://https://sportsballgame.onrender.com/api/game/whoami/start',
+      'https://sportsballgame.onrender.com/api/game/whoami/start',
       {
         method: 'POST',
         mode: 'cors',
@@ -132,7 +132,7 @@ export default function WhoAmI() {
 
     // Grab a new hint
     const response = await fetch(
-      'https://https://sportsballgame.onrender.com/api/game/whoami/getHint',
+      'https://sportsballgame.onrender.com/api/game/whoami/getHint',
       {
         method: 'POST',
         mode: 'cors',
@@ -165,7 +165,7 @@ export default function WhoAmI() {
     setSearchQuery('');
 
     const response = await fetch(
-      'https://https://sportsballgame.onrender.com/api/game/whoami/guess',
+      'https://sportsballgame.onrender.com/api/game/whoami/guess',
       {
         method: 'POST',
         mode: 'cors',

@@ -45,7 +45,7 @@ export default function Profile() {
     (async () => {
       try {
         const response = await fetch(
-          `https://https://sportsballgame.onrender.com/api/user/${urlID}`
+          `https://sportsballgame.onrender.com/api/user/${urlID}`
         );
         const json = await response.json();
 

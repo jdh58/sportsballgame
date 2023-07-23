@@ -41,7 +41,7 @@ export default function Signup() {
 
       // Request the signup and get the data
       const response = await fetch(
-        'https://https://sportsballgame.onrender.com/api/user/signup',
+        'https://sportsballgame.onrender.com/api/user/signup',
         {
           method: 'POST',
           mode: 'cors',

@@ -115,7 +115,7 @@ function createDebutHint(Player, difficulty) {
 }
 
 function createStatHint(Player, difficulty) {
-  return `I averaged ${Player.stats['2022-23'].ppg} points, ${Player.stats['2022-23'].ast} assists, and ${Player.stats['2022-23'].trb} rebounds last season`;
+  return `I averaged ${Player.stats['2022-23'].ppg} points, ${Player.stats['2022-23'].ast} assists, and ${Player.stats['2022-23'].trb} rebounds last season.`;
 }
 
 function createScoringHint(Player, difficulty) {
