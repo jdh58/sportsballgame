@@ -13,6 +13,9 @@ route.post('/whoami/getHint', controller.getWhoAmIHint);
 // Submit a guess
 route.post('/whoami/guess', controller.submitWhoAmIGuess);
 
+// Return a list of all player names
+route.get('/players', controller.getAllPlayers);
+
 // Return a list of players from a search
 route.get('/playerSearch', controller.playerSearch);
 

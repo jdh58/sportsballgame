@@ -24,6 +24,8 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 import { Link } from 'react-router-dom';
 
+import fuzzysort from 'fuzzysort';
+
 import { v4 as uuid } from 'uuid';
 
 export default function WhoAmI() {
@@ -45,18 +47,32 @@ export default function WhoAmI() {
   const [playerPicture, setPlayerPicture] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState('');
 
+  const [playerArray, setPlayerArray] = useState<Array<string>>([]);
+
   const [placeholderIndicators, setPlaceholderIndicators] = useState<
     Array<ReactElement>
   >([]);
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [autofillAnswers, setAutofillAnswers] = useState([]);
+  const [autofillAnswers, setAutofillAnswers] = useState<Array<ReactElement>>(
+    []
+  );
   const [guessFocus, setGuessFocus] = useState(false);
 
   const navigate = useNavigate();
   const [gameState, setGameState] = useState('before');
 
   const Auth = useContext(AuthContext);
+
+  // Grab a list off all the player names on page load
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('http://localhost:3100/api/game/players');
+      const json = await response.json();
+
+      setPlayerArray(json.playerArray);
+    })();
+  }, []);
 
   const startGame = async () => {
     setGameState('loading');
@@ -247,25 +263,31 @@ export default function WhoAmI() {
     }
 
     (async () => {
-      // Grab the answers based off the query
-      const response = await fetch(
-        `http://localhost:3100/api/game/playerSearch?search=${searchQuery}`
-      );
-      const json = await response.json();
-      const top5Answers = json.top5Answers;
+      // Filter the answers based off the query
+
+      const fuzzyResults = fuzzysort.go(searchQuery, playerArray, {
+        key: 'name',
+        limit: 5,
+      });
+
+      const top5Answers = fuzzyResults.map((result) => {
+        return result.target;
+      });
+
+      console.log(top5Answers);
 
       // Return the <li> elements for each answer
       setAutofillAnswers(
-        top5Answers.map((answer: { name: string }) => (
+        top5Answers.map((name: { name: string }) => (
           <li
             className="autofillAnswer"
             onMouseDown={() => {
-              setSearchQuery(answer.name);
+              setSearchQuery(name);
               setGuessFocus(false);
             }}
-            key={answer.name}
+            key={name}
           >
-            {answer.name}
+            {name}
           </li>
         ))
       );

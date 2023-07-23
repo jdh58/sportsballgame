@@ -267,3 +267,21 @@ exports.submitWhoAmIGuess = async function (req, res, next) {
     res.status(500).json({ error: 'Failed to submit guess' });
   }
 };
+
+exports.getAllPlayers = async function (req, res, next) {
+  try {
+    const playerArray = await NBAPlayer.aggregate([
+      {
+        $project: {
+          name: 1,
+          _id: 0,
+        },
+      },
+    ]);
+
+    res.status(200).json({ playerArray });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to grab players' });
+  }
+};

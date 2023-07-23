@@ -2,6 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const compression = require('compression');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+
 const userRouter = require('./routes/userRoutes');
 const gameRouter = require('./routes/gameRoutes');
 const scoreRouter = require('./routes/scoreRoutes');
@@ -16,6 +20,18 @@ mongoose.connect(mongoDB).catch((err) => {
 });
 
 const app = express();
+
+// Set up rate limiter: maximum of twenty requests per minute
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
+// Apply rate limiter to all requests
+app.use(limiter);
+// Compress responses
+app.use(compression());
+// Use helmet for protection
+app.use(helmet());
 
 // Allow access from localhost
 app.use(cors());
