@@ -2,11 +2,12 @@ import Button from '../components/Button';
 
 import Send from '../assets/send.svg';
 import '../styles/ContactPage.css';
-import { FormEventHandler, useState } from 'react';
+import { useState } from 'react';
 
 export default function ContactPage() {
   const [formMessage, setFormMessage] = useState<string | null>(null);
 
+  // @ts-ignore
   const onFormSubmit = async (e) => {
     e.preventDefault();
 

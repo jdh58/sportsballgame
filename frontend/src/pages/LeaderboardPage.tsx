@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import LeaderboardItem from '../components/LeaderboardItem';
 import DownArrow from '../assets/down.svg';
-import Selector from '../components/Selector';
 
 import '../styles/LeaderboardPage.css';
-import { useParams, useRouteLoaderData } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 

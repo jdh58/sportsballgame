@@ -26,6 +26,7 @@ import { Link } from 'react-router-dom';
 
 import fuzzysort from 'fuzzysort';
 
+// @ts-ignore
 import { v4 as uuid } from 'uuid';
 
 export default function WhoAmI() {

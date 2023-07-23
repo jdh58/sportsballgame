@@ -1,22 +1,5 @@
 import ProfilePic from '../components/ProfilePic';
-import Button from '../components/Button';
-
-import Blank from '../assets/white.png';
-import Badge1k from '../assets/1kbadge.svg';
-import Badge2k from '../assets/2kbadge.svg';
-import Badge3k from '../assets/3kbadge.svg';
-import Badge4k from '../assets/4kbadge.svg';
-import Badge5k from '../assets/5kbadge.svg';
-import Badge6k from '../assets/6kbadge.svg';
 import RightArrow from '../assets/small-right-arrow.svg';
-import Ribbon from '../assets/ribbon.svg';
-import Medals from '../assets/medals.svg';
-import Blazers from '../assets/blazers.png';
-import ARod from '../assets/arod.png';
-import LeBron from '../assets/lebron.webp';
-import Baseball from '../assets/baseball.png';
-
-import DropdownMenu from '../components/DropdownMenu';
 
 import { Link } from 'react-router-dom';
 

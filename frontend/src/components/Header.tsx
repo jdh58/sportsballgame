@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProfilePic from './ProfilePic';
 import Dropdown from '../assets/dropdown.svg';

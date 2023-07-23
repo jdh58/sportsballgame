@@ -1,16 +1,14 @@
 import ProfilePic from './ProfilePic';
-import ToggleSwitch from './ToggleSwitch';
 import DropdownItem from './DropdownMenuItem';
 
 import Blank from '../assets/white.png';
 import User from '../assets/user-filled.svg';
 import Leaderboard from '../assets/leaderboard.svg';
 import Help from '../assets/help.svg';
-import Settings from '../assets/settings.svg';
 import Logout from '../assets/logout.svg';
 
 import '../styles/DropdownMenu.css';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 export default function DropdownMenu({ killMenu }: { killMenu: Function }) {
