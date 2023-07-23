@@ -44,7 +44,9 @@ export default function Profile() {
     setIsLoading(true);
     (async () => {
       try {
-        const response = await fetch(`http://localhost:3100/api/user/${urlID}`);
+        const response = await fetch(
+          `https://https://sportsballgame.onrender.com/api/user/${urlID}`
+        );
         const json = await response.json();
 
         setProfileUser(json.user);

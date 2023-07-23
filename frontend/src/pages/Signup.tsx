@@ -40,14 +40,17 @@ export default function Signup() {
       const password: string = form.elements['password'].value;
 
       // Request the signup and get the data
-      const response = await fetch('http://localhost:3100/api/user/signup', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, username, password }),
-      });
+      const response = await fetch(
+        'https://https://sportsballgame.onrender.com/api/user/signup',
+        {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, username, password }),
+        }
+      );
 
       const responseData = await response.json();
       /* Response if good should be:

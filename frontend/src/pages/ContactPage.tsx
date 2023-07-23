@@ -23,7 +23,7 @@ export default function ContactPage() {
 
     // Save them in the server
     const response = await fetch(
-      'http://localhost:3100/api/form/message/submit',
+      'https://https://sportsballgame.onrender.com/api/form/message/submit',
       {
         method: 'POST',
         mode: 'cors',

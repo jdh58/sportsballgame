@@ -24,7 +24,7 @@ export default function OptionsPage() {
   const startGame = async () => {
     // Start the game on the backend
     const response = await fetch(
-      'http://localhost:3100/api/game/whoami/start',
+      'https://https://sportsballgame.onrender.com/api/game/whoami/start',
       {
         method: 'POST',
         mode: 'cors',

@@ -27,6 +27,7 @@ const limiter = rateLimit({
   max: 20,
 });
 // Apply rate limiter to all requests
+app.set('trust proxy', 1); // This is needed for it to work
 app.use(limiter);
 // Compress responses
 app.use(compression());
