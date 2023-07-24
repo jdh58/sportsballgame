@@ -76,3 +76,24 @@
     font-size: 3.5rem;
   }
 }
+
+@media (max-width: 1250px) {
+  .gameOverPage {
+    gap: 36px;
+  }
+  .gameOverPage h1 {
+    font-size: 3.5rem;
+  }
+  .gameOverPage h2 {
+    font-size: 3rem;
+  }
+  .gameOverPage h2 .label {
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 675px) {
+  .gameOverPage .buttonContainer {
+    flex-direction: column;
+  }
+}

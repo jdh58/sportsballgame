@@ -285,7 +285,7 @@ html {
 body {
   min-height: 100%;
   height: 100%;
-  max-width: fit-content;
+  width: 100%;
   overflow: auto;
   overscroll-behavior: none;
 }
@@ -296,9 +296,6 @@ body {
   min-height: 100%;
   height: 100%;
   background-color: var(--background-primary);
-}
-
-@media (max-width: 875px) {
 }
 
 .page {
