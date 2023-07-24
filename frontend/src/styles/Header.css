@@ -46,6 +46,7 @@ header.header > .profileIndicator {
   display: flex;
   align-items: center;
   justify-self: flex-end;
+  height: 100%;
   gap: 10px;
 }
 
@@ -92,5 +93,57 @@ header.header > .profileIndicator {
   }
   .signInButtonContainer > a {
     font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 1250px) {
+  header.header {
+    height: 50px;
+    padding: 0 35px;
+  }
+  header > .logo {
+    font-size: 3rem;
+  }
+  .signInButtonContainer > a {
+    font-size: 2rem;
+  }
+
+  header.header > .profileIndicator {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-self: flex-end;
+    gap: 5px;
+  }
+
+  .profileIndicator > .dropdownContainer {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 675px) {
+  header > .logo {
+    font-size: 2.5rem;
+  }
+  .signInButtonContainer {
+    display: none;
+  }
+  .header.header > .profileIndicator {
+    display: none;
+  }
+  .header.header > .mobileMenuIcon {
+    display: flex;
+  }
+}
+
+@media (max-width: 575px) {
+  header.header {
+    height: 35px;
+    padding: 0 35px;
+  }
+
+  header > .logo {
+    font-size: 2rem;
   }
 }

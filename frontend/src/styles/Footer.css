@@ -27,3 +27,14 @@ footer.footer > p.copyright {
     font-weight: 500;
   }
 }
+
+@media (max-width: 675px) {
+  footer.footer {
+    height: 30px;
+  }
+
+  footer.footer > p.copyright {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}

@@ -279,18 +279,26 @@ html {
   /* font-size: 7.5px; */
 }
 
+html {
+}
+
 body {
-  min-height: 100vh;
+  min-height: 100%;
   height: 100%;
+  max-width: fit-content;
   overflow: auto;
+  overscroll-behavior: none;
 }
 
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100%;
   height: 100%;
   background-color: var(--background-primary);
+}
+
+@media (max-width: 875px) {
 }
 
 .page {

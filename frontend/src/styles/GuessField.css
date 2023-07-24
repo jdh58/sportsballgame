@@ -92,3 +92,18 @@
     font-size: 2rem;
   }
 }
+
+@media (max-width: 1250px) {
+  .guessField {
+    padding: 5px 16px;
+  }
+
+  .guessField > input {
+    font-size: 1.75rem;
+  }
+
+  .guessField > .searchIconContainer {
+    height: 30px;
+    width: 30px;
+  }
+}

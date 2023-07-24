@@ -145,3 +145,104 @@
     }
   }
 }
+
+@media (max-width: 1250px) {
+  .optionsPage > .mainContainer {
+    gap: 35px;
+  }
+  .optionsPage > .mainContainer > .optionContainer {
+    gap: 20px;
+  }
+  .optionsPage h2.title {
+    font-size: 3rem;
+  }
+  .optionsPage h2.title .separator {
+    width: 250px;
+  }
+  .optionsPage h3 {
+    font-size: 2.5rem;
+  }
+
+  .optionsPage .sportsContainer {
+    gap: 50px;
+  }
+
+  .page.optionsPage .sportsContainer .optionButton {
+    width: 100px;
+    height: 100px;
+  }
+  .page.optionsPage .sportsContainer .optionButton .optionPicContainer {
+    width: 60px;
+    height: 60px;
+  }
+
+  .page.optionsPage .difficultyContainer .optionButton {
+    width: 150px;
+    height: 90px;
+    gap: 7.5px;
+    padding: 0;
+  }
+
+  .page.optionsPage .roundContainer .optionButton {
+    width: 110px;
+    height: 100px;
+    gap: 7.5px;
+    padding: 0;
+  }
+
+  .optionButton > p {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 825px) {
+  .optionsPage > .mainContainer {
+    width: 375px;
+  }
+
+  .optionsPage .sportsContainer {
+    gap: 25px;
+  }
+  .page.optionsPage .sportsContainer .optionButton .optionPicContainer {
+    display: none;
+  }
+  .page.optionsPage .sportsContainer .optionButton {
+    width: 80px;
+    height: 50px;
+    justify-content: center;
+  }
+
+  .page.optionsPage .difficultyContainer {
+    gap: 25px;
+  }
+
+  .page.optionsPage .difficultyContainer .optionButton {
+    width: 100px;
+    height: fit-content;
+    gap: 5px;
+    padding: 10px 5px;
+  }
+
+  .difficultyContainer .optionButton > p {
+    font-size: 1.5rem;
+  }
+
+  .page.optionsPage .roundContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .page.optionsPage .roundContainer .optionButton {
+    width: 110px;
+    height: 50px;
+    padding: 0;
+  }
+  .page.optionsPage .roundContainer .optionButton.label {
+    flex-direction: row;
+  }
+
+  .roundContainer .optionButton > p {
+    font-size: 1.5rem;
+  }
+}

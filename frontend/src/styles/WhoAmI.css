@@ -102,8 +102,8 @@
 .whoAmIPage .gameContainer .hintsContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 120px 0;
+  justify-content: center;
+  gap: 75px;
   width: 100%;
 }
 
@@ -132,7 +132,7 @@
 }
 .whoAmIPage .hintsContainer > div > p.hint {
   font-size: 3.2rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .whoAmIPage .gameContainer .player {
@@ -160,6 +160,7 @@
   width: 100%;
   transition: 0.5s;
   transition-timing-function: ease-out;
+  user-select: none;
 }
 
 .whoAmIPage .player .silhouette.visible {
@@ -230,7 +231,6 @@
 
 @media (max-width: 1800px) {
   .whoAmIPage .gameContainer .hintsContainer {
-    padding: 50px;
     gap: 50px;
   }
   .whoAmIPage .hintsContainer > div > h3 {
@@ -346,5 +346,155 @@
   }
   .notifyContainer > p {
     font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 1250px) {
+  .notifyContainer > div {
+    width: 200px;
+    height: 200px;
+  }
+  .notifyContainer > p {
+    font-size: 3.5rem;
+  }
+
+  .whoAmIPage .gameInfo .score {
+    font-size: 3.5rem;
+  }
+
+  .whoAmIPage .gameContainer .player .silhouetteContainer {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+  }
+
+  .whoAmIPage .gameContainer {
+    padding: 0 50px;
+  }
+
+  .whoAmIPage .gameContainer .hintsContainer {
+    padding: 15px 0;
+    gap: 35px;
+  }
+
+  .whoAmIPage .gameContainer .player > h4.playerName {
+    font-size: 3.5rem;
+  }
+
+  .whoAmIPage .hintsContainer > div > h3 {
+    font-size: 2.5rem;
+  }
+  .whoAmIPage .hintsContainer > div > p.hint {
+    font-size: 2rem;
+  }
+
+  .whoAmIPage .gameInfo {
+    gap: 5px;
+  }
+
+  .whoAmIPage .gameInfo .rounds .roundIndicator {
+    width: 7.5px;
+    height: 7.5px;
+  }
+}
+
+@media (max-width: 800px) {
+  .whoAmIPage .mainContainer {
+    width: 100%;
+    padding: 15px;
+    justify-content: center;
+    gap: 25px;
+  }
+  .whoAmIPage .inputs {
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .whoAmIPage .inputs .guessFieldContainer {
+    width: 100%;
+  }
+  .whoAmIPage .inputs .guessField {
+    width: 100%;
+  }
+
+  .whoAmIPage .gameContainer {
+    width: 100%;
+    padding: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  .whoAmIPage .gameContainer .player {
+    width: 100%;
+    gap: 15px;
+  }
+
+  .whoAmIPage .gameContainer .player > h2.title {
+    font-size: 2.5rem;
+  }
+
+  .whoAmIPage .gameContainer .player .silhouetteContainer {
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    max-width: 350px;
+  }
+
+  .whoAmIPage .gameContainer .player .silhouetteContainer .silhouette {
+    width: 100%;
+  }
+
+  .whoAmIPage .gameContainer .player > h4.playerName {
+    font-size: 2.25rem;
+  }
+
+  .whoAmIPage .gameContainer .hintsContainer {
+    gap: 15px;
+    padding: 0px;
+    justify-content: center;
+  }
+
+  .whoAmIPage .hintsContainer > div {
+    align-items: center;
+    text-align: center;
+  }
+  .whoAmIPage .hintsContainer > div > h3 {
+    font-size: 2rem;
+  }
+  .whoAmIPage .hintsContainer > div > p.hint {
+    font-size: 1.6rem;
+  }
+
+  .whoAmIPage .gameInfo {
+    margin-top: auto;
+  }
+  .whoAmIPage .gameInfo .score {
+    font-size: 2.5rem;
+  }
+
+  .notifyContainer {
+    height: 100%;
+    justify-content: center;
+    gap: 20px;
+  }
+  .notifyContainer.correct > div {
+    border-width: 5px;
+  }
+  .notifyContainer.incorrect > div {
+    border-width: 5px;
+  }
+  .notifyContainer > div {
+    width: 100px;
+    height: 100px;
+  }
+  .notifyContainer > p {
+    font-size: 2.5rem;
+  }
+
+  .whoAmIPage .gameInfo .rounds {
+    width: 80vw;
   }
 }

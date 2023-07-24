@@ -102,3 +102,52 @@
     font-size: 2.6rem;
   }
 }
+
+@media (max-width: 1250px) {
+  .tileButton {
+    width: 250px;
+    height: 100px;
+  }
+
+  .tileButton > .label {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .tileButton {
+    width: 225px;
+    height: 90px;
+  }
+
+  .tileButton > .label {
+    font-size: 2rem;
+  }
+
+  .tileButtonContainer:disabled:after {
+    font-size: 1.25rem;
+  }
+
+  .tileButtonContainer:disabled:hover:after {
+    font-size: 1.25rem;
+    transform: translateY(20px);
+  }
+}
+
+@media (max-width: 575px) {
+  .tileButton {
+    width: 150px;
+    height: 60px;
+    width: 100%;
+  }
+
+  .tileButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tileButton > .label {
+    font-size: 2rem;
+  }
+}
