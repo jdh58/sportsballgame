@@ -7,6 +7,9 @@ import { useParams } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 
+// @ts-ignore
+import { v4 as uuid } from 'uuid';
+
 export default function LeaderboardPage() {
   const [sport, setSport] = useState('NBA');
   const [game, setGame] = useState('Who Am I?');
@@ -67,6 +70,7 @@ export default function LeaderboardPage() {
                 username={scoreUser.username}
                 picture={scoreUser.profilePicURL}
                 score={score.score}
+                key={uuid()}
               />
             );
           }

@@ -4,3 +4,21 @@
   align-items: center;
   justify-content: center;
 }
+.spinner img {
+  width: 125px;
+  height: 125px;
+}
+
+@media (max-width: 1250px) {
+  .spinner img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 875px) {
+  .spinner img {
+    width: 100px;
+    height: 100px;
+  }
+}
