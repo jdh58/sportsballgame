@@ -17,10 +17,6 @@
   transition: 0.1s;
 }
 
-.sportsContainer .optionButton:disabled {
-  opacity: 0.5;
-}
-
 .optionButton > .optionPicContainer {
   width: 100px;
   height: 100px;
@@ -38,7 +34,7 @@
   font-weight: 600;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .sportsContainer .optionButton {
     width: 125px;
     gap: 5px;

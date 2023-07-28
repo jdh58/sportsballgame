@@ -229,7 +229,7 @@
   box-shadow: 0px 0px 8px 1px #fff;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .whoAmIPage .gameContainer .hintsContainer {
     gap: 50px;
   }
@@ -339,7 +339,7 @@
   text-decoration: none;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .notifyContainer > div {
     width: 200px;
     height: 200px;

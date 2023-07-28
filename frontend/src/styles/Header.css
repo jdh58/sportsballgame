@@ -22,20 +22,20 @@ header.header {
   position: sticky;
   top: 0;
   left: 0;
-  height: 100px;
+  height: 75px;
   width: 100%;
   background-color: var(--background-secondary);
   display: grid;
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
   flex-shrink: 0;
-  padding: 0 150px;
+  padding: 0 50px;
   border-bottom: 1px solid var(--subtle-border);
 }
 
 header > .logo {
   font-family: 'Orbitron';
-  font-size: 4.8rem;
+  font-size: 4rem;
   font-weight: 500;
   justify-self: center;
   grid-column: 2 / 3;
@@ -74,26 +74,13 @@ header.header > .profileIndicator {
 
 .signInButtonContainer > a {
   font-family: 'Orbitron';
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   color: white;
 }
 
 .signInButtonContainer > a:hover {
   cursor: pointer;
   text-decoration: underline;
-}
-
-@media (max-width: 1800px) {
-  header.header {
-    height: 75px;
-    padding: 0 50px;
-  }
-  header > .logo {
-    font-size: 4rem;
-  }
-  .signInButtonContainer > a {
-    font-size: 2.2rem;
-  }
 }
 
 @media (max-width: 1250px) {

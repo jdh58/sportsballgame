@@ -43,7 +43,7 @@
   z-index: 5;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .dropdown {
     top: 75px;
   }

@@ -50,7 +50,7 @@
   color: var(--impossible-500);
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .difficultyContainer .optionButton {
     padding: 20px 30px;
   }

@@ -92,7 +92,7 @@
   transform: translateY(30px);
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .tileButton {
     width: 300px;
     height: 115px;

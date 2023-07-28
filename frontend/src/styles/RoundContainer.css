@@ -15,7 +15,7 @@
   transition: 0.1s;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .roundContainer .optionButton {
     padding: 40px 25px;
   }

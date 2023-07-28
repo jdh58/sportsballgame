@@ -83,7 +83,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .guessField {
     padding: 6px 16px;
   }

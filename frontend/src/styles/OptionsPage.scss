@@ -131,7 +131,7 @@
   transform: translateY(30px);
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .optionsPage {
     > .mainContainer {
       gap: 50px;
@@ -244,5 +244,14 @@
 
   .roundContainer .optionButton > p {
     font-size: 1.5rem;
+  }
+
+  .page.optionsPage .optionButton:disabled:after {
+    font-size: 1.4rem;
+  }
+
+  .page.optionsPage .optionButton:disabled:hover:after {
+    font-size: 1.4rem;
+    transform: translateY(35px);
   }
 }

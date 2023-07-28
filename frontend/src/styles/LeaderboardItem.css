@@ -35,7 +35,7 @@
   text-align: right;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 2200px) {
   .leaderboardItem {
     height: 65px;
   }
