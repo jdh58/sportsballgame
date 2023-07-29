@@ -120,9 +120,6 @@ export default function Login() {
               onClick={undefined}
             />
             <p>
-              <Link to="/login">Forgot password?</Link>
-            </p>
-            <p>
               Don't have an account? <Link to="/signup">Sign up</Link>
             </p>
           </div>

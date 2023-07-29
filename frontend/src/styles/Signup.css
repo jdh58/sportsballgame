@@ -56,10 +56,6 @@
   outline: 1px solid var(--subtle-border);
 }
 
-.signupForm #password {
-  font-size: 1.2rem;
-}
-
 .signupForm .buttonContainer {
   display: flex;
   flex-direction: column;
@@ -80,4 +76,39 @@
   list-style: disc;
   color: var(--impossible-500);
   font-size: 1.6rem;
+}
+
+@media (max-width: 1250px) {
+  .signupPage h1 {
+    font-size: 3rem;
+  }
+  .signupPage .mainContainer {
+    width: 350px;
+  }
+  .signupForm .inputContainer label {
+    font-size: 2.2rem;
+  }
+  .signupForm input {
+    width: 225px;
+    height: 35px;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 675px) {
+  .signupPage h1 {
+    font-size: 2.5rem;
+  }
+  .signupPage .mainContainer {
+    width: 300px;
+    gap: 35px;
+  }
+  .signupForm .inputContainer label {
+    font-size: 2rem;
+  }
+  .signupForm input {
+    width: 200px;
+    height: 32.5px;
+    font-size: 1.8rem;
+  }
 }

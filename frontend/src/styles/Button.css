@@ -207,7 +207,6 @@
 .button.login {
   width: fit-content;
   height: 60px;
-  padding: 0 16px;
 }
 
 .button.login {
@@ -217,4 +216,17 @@
 .button.login > p.label,
 .button.signup > p.label {
   font-size: 2.2rem;
+}
+
+@media (max-width: 1250px) {
+  .button.signup,
+  .button.login {
+    height: 50px;
+    padding: 0 20px;
+  }
+
+  .button.login > p.label,
+  .button.signup > p.label {
+    font-size: 2rem;
+  }
 }
