@@ -12,7 +12,7 @@
 
 .contactPage .mainContainer {
   width: 1000px;
-  padding-top: 50px;
+  padding: 50px 0;
 }
 
 .contactPage h1 {
@@ -78,4 +78,83 @@
 
 .formMessage {
   font-size: 2rem;
+}
+
+@media (max-width: 1800px) {
+  .contactPage .mainContainer {
+    width: 1000px;
+    padding-top: 50px;
+    flex-grow: 0;
+  }
+}
+
+@media (max-width: 1250px) {
+  .contactPage .mainContainer {
+    width: 850px;
+    padding-top: 50px;
+    flex-grow: 0;
+  }
+
+  .contactPage h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+  }
+
+  .contactPage p {
+    font-size: 2rem;
+  }
+
+  .contactPage form {
+    width: 375px;
+  }
+
+  .contactPage legend {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+
+  .contactPage label {
+    font-size: 2.2rem;
+  }
+
+  .contactPage input {
+    height: 35px;
+    font-size: 1.8rem;
+  }
+
+  .contactPage textarea {
+    height: 150px;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .contactPage .mainContainer {
+    width: 700px;
+    padding-top: 50px;
+    flex-grow: 0;
+  }
+}
+
+@media (max-width: 875px) {
+  .contactPage .mainContainer {
+    padding: 35px 0;
+    width: 90%;
+  }
+}
+
+@media (max-width: 475px) {
+  .contactPage .mainContainer {
+    width: 90%;
+  }
+  .contactPage .contactSection {
+    align-items: center;
+  }
+
+  .contactPage form {
+    width: 100%;
+  }
+  .contactPage label {
+    font-size: 2rem;
+  }
 }
