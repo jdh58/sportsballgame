@@ -106,4 +106,15 @@
     height: 30px;
     width: 30px;
   }
+
+  .autofillContainer li {
+    width: 100%;
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .guessFieldContainer .autofillContainer {
+    width: 100%;
+  }
 }
