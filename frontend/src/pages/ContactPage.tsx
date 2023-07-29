@@ -54,7 +54,7 @@ export default function ContactPage() {
             <p>
               Have any questions, suggestions, bug reports, or anything else
               you’d like to say? Please e-mail us at{' '}
-              <a href="mailto:">sportsballgame@gmail.com</a>, or alternatively
+              <a href="mailto:">contact@sportsballgame.com</a>, or alternatively
               fill out the form below. We will get back to you as soon as
               possible. Thanks!
             </p>
