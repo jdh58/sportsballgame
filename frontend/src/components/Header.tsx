@@ -6,6 +6,8 @@ import DropdownMenu from './DropdownMenu';
 import '../styles/Header.css';
 import { AuthContext } from '../context/AuthContext';
 
+import Menu from '../assets/menu.svg';
+
 export default function Header() {
   const [dropdownShowing, setDropdownShowing] = useState(false);
 
@@ -13,6 +15,33 @@ export default function Header() {
 
   return (
     <header className="header">
+      {Auth.user && (
+        <div className="menuContainerContainer">
+          <div
+            className="menuContainer"
+            onClick={() => {
+              setDropdownShowing(true);
+            }}
+          >
+            <img src={Menu} alt="" />
+          </div>
+          {dropdownShowing && (
+            <>
+              <DropdownMenu
+                killMenu={() => {
+                  setDropdownShowing(false);
+                }}
+              />
+              <div
+                className="overlay"
+                onClick={() => {
+                  setDropdownShowing(false);
+                }}
+              ></div>
+            </>
+          )}
+        </div>
+      )}
       <Link to="/" className="logo">
         SportsBallGame.com
       </Link>

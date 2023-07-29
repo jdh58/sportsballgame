@@ -35,3 +35,7 @@
 .dropdownItem.red .label {
   color: var(--impossible-500);
 }
+
+.dropdownItem:last-child {
+  border: none;
+}
