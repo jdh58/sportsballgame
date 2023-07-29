@@ -168,3 +168,129 @@
     height: 70px;
   }
 }
+
+@media (max-width: 1500px) {
+  .leaderboardPage .mainContainer {
+    height: 100%;
+    width: 600px;
+  }
+
+  .specialScores .leaderboardItem {
+    height: 70px;
+  }
+
+  .selector {
+    height: 40px;
+  }
+
+  .selector .label {
+    font-size: 1.8rem;
+    padding: 10px;
+  }
+
+  .selector .arrowContainer {
+    width: 30px;
+  }
+
+  .selector .arrowContainer img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .dropdownElement {
+    height: 40px;
+    padding: 0px 10px;
+    font-size: 1.8rem;
+  }
+
+  .leaderboardDropdown {
+    top: 45px;
+  }
+
+  .specialScores .leaderboardItem {
+    height: 65px;
+  }
+
+  .leaderboardContainer .title {
+    font-size: 3rem;
+  }
+
+  .normalScores {
+    padding: 5px 0;
+  }
+
+  .selectors > div > h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 875px) {
+  .leaderboardPage .mainContainer {
+    height: 100%;
+    width: 90%;
+  }
+
+  .specialScores .leaderboardItem {
+    height: 70px;
+  }
+
+  .selectors {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .selector {
+    height: 40px;
+  }
+
+  .selectors > div {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .selectors > div > h2::after {
+    content: ':';
+  }
+
+  .selector .label {
+    font-size: 1.8rem;
+    padding: 10px;
+  }
+
+  .selector .arrowContainer {
+    width: 30px;
+  }
+
+  .selector .arrowContainer img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .dropdownElement {
+    height: 40px;
+    padding: 0px 10px;
+    font-size: 1.8rem;
+  }
+
+  .leaderboardDropdown {
+    top: 45px;
+  }
+
+  .specialScores .leaderboardItem {
+    height: 65px;
+  }
+
+  .leaderboardContainer .title {
+    font-size: 3rem;
+  }
+
+  .normalScores {
+    padding: 5px 0;
+  }
+
+  .selectors > div > h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+  }
+}

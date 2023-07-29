@@ -40,3 +40,36 @@
     height: 65px;
   }
 }
+
+@media (max-width: 1500px) {
+  .leaderboardItem {
+    height: 60px;
+    padding: 0 10px;
+  }
+
+  .leaderboardItem p,
+  .leaderboardItem a {
+    font-size: 2rem;
+  }
+
+  .leaderboardItem .profilePicContainer {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 875px) {
+  .leaderboardItem {
+    height: 60px;
+  }
+
+  .leaderboardItem p,
+  .leaderboardItem a {
+    font-size: 1.7rem;
+  }
+
+  .leaderboardItem .profilePicContainer {
+    width: 30px;
+    height: 30px;
+  }
+}
